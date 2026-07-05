@@ -1,0 +1,11 @@
+# Global pipeline settings
+ticker: "^NSEI"
+start_date: "2007-09-17"
+end_date: null  # Set to null or empty string to fetch data up to the current date dynamically
+
+# Data storage paths (relative to project root)
+db_path: "database/quantengine.db"
+raw_data_dir: "data/raw"
+processed_data_dir: "data/processed"
+features_data_dir: "data/features"
+versions_dir: "data/versions"

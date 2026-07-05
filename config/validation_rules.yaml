@@ -1,0 +1,21 @@
+# Rules and thresholds for validation checks
+price_columns:
+  - Open
+  - High
+  - Low
+  - Close
+  - Adj Close
+
+volume_column: "Volume"
+
+# Maximum threshold of calendar days between successive trading sessions
+# to flag as a warning (except for known market holidays)
+max_gap_days: 4
+
+# Constraints to enforce on OHLC prices
+ohlc_constraints:
+  high_ge_low: true
+  high_ge_open: true
+  high_ge_close: true
+  low_le_open: true
+  low_le_close: true

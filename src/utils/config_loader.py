@@ -1,0 +1,94 @@
+import yaml
+from pathlib import Path
+from typing import List, Dict, Any, Optional
+from pydantic import BaseModel, Field
+
+# Project root resolution
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+
+class GlobalConfig(BaseModel):
+    ticker: str
+    start_date: str
+    end_date: Optional[str] = None
+    db_path: str
+    raw_data_dir: str
+    processed_data_dir: str
+    features_data_dir: str
+    versions_dir: str
+
+    def get_db_path(self) -> Path:
+        return PROJECT_ROOT / self.db_path
+
+    def get_raw_data_dir(self) -> Path:
+        return PROJECT_ROOT / self.raw_data_dir
+
+    def get_processed_data_dir(self) -> Path:
+        return PROJECT_ROOT / self.processed_data_dir
+
+    def get_features_data_dir(self) -> Path:
+        return PROJECT_ROOT / self.features_data_dir
+
+    def get_versions_dir(self) -> Path:
+        return PROJECT_ROOT / self.versions_dir
+
+class IndicatorMAConfig(BaseModel):
+    sma: List[int]
+    ema: List[int]
+
+class IndicatorRSIConfig(BaseModel):
+    period: int
+
+class IndicatorMACDConfig(BaseModel):
+    fast: int
+    slow: int
+    signal: int
+
+class IndicatorBBConfig(BaseModel):
+    period: int
+    std_dev: float
+
+class IndicatorATRConfig(BaseModel):
+    period: int
+
+class IndicatorsConfig(BaseModel):
+    moving_averages: IndicatorMAConfig
+    rsi: IndicatorRSIConfig
+    macd: IndicatorMACDConfig
+    bollinger_bands: IndicatorBBConfig
+    atr: IndicatorATRConfig
+
+class OHLCConstraints(BaseModel):
+    high_ge_low: bool
+    high_ge_open: bool
+    high_ge_close: bool
+    low_le_open: bool
+    low_le_close: bool
+
+class ValidationRulesConfig(BaseModel):
+    price_columns: List[str]
+    volume_column: str
+    max_gap_days: int
+    ohlc_constraints: OHLCConstraints
+
+
+def _load_yaml(file_path: Path) -> Dict[str, Any]:
+    """Loads a YAML file from the given path."""
+    if not file_path.exists():
+        raise FileNotFoundError(f"Configuration file not found at: {file_path}")
+    with open(file_path, "r", encoding="utf-8") as f:
+        return yaml.safe_load(f)
+
+def load_global_config() -> GlobalConfig:
+    """Loads and validates global configuration settings."""
+    config_data = _load_yaml(PROJECT_ROOT / "config" / "config.yaml")
+    return GlobalConfig(**config_data)
+
+def load_indicators_config() -> IndicatorsConfig:
+    """Loads and validates technical indicator configurations."""
+    config_data = _load_yaml(PROJECT_ROOT / "config" / "indicators.yaml")
+    return IndicatorsConfig(**config_data)
+
+def load_validation_rules() -> ValidationRulesConfig:
+    """Loads and validates data validation constraints."""
+    config_data = _load_yaml(PROJECT_ROOT / "config" / "validation_rules.yaml")
+    return ValidationRulesConfig(**config_data)

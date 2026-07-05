@@ -1,0 +1,25 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Testing caches
+.pytest_cache/
+
+# SQLite databases
+database/*.db
+
+# Logs
+*.log
+data/logs/
+
+# CSV data files (raw, processed, features, and versions snapshots)
+data/raw/
+data/processed/
+data/features/
+data/versions/
+
+# IDE configurations
+.vscode/
+.idea/
+.gemini/
