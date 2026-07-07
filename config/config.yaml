@@ -17,3 +17,8 @@ eda:
     features: "data/features/nifty_features.csv"
   output_dir: "reports/eda/statistics/"
   date_column: "Date"
+  statistics:
+    exclude_columns:
+      - Date
+    skew_threshold: 1.0
+    kurtosis_threshold: 3.0

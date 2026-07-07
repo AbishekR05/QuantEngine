@@ -10,10 +10,16 @@ class EdaInputFiles(BaseModel):
     clean: str
     features: str
 
+class EdaStatisticsConfig(BaseModel):
+    exclude_columns: List[str]
+    skew_threshold: float
+    kurtosis_threshold: float
+
 class EdaConfig(BaseModel):
     input_files: EdaInputFiles
     output_dir: str
     date_column: str
+    statistics: EdaStatisticsConfig
 
     def get_clean_input_path(self) -> Path:
         return PROJECT_ROOT / self.input_files.clean
