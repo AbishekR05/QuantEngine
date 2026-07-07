@@ -1,7 +1,7 @@
 import sys
 import json
 from pathlib import Path
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
 import pandas as pd
 from src.utils.logger import get_logger
 from src.utils.config_loader import load_global_config
@@ -9,7 +9,7 @@ from src.data_pipeline.validator import run_validation
 
 logger = get_logger("cleaner")
 
-def clean_data(raw_filepath: str) -> str:
+def clean_data(raw_filepath: str, output_filepath: Optional[str] = None) -> str:
     """
     Reads the raw stock prices data, executes validator checks, applies 
     pre-approved data corrections (deduplication, gap filling, and boundary corrections),
@@ -187,17 +187,22 @@ def clean_data(raw_filepath: str) -> str:
                 })
                 logger.warning(f"Set negative volume to 0 on {row['Date'].strftime('%Y-%m-%d')}")
 
-    # Save output clean dataset
-    processed_dir = config.get_processed_data_dir()
-    processed_dir.mkdir(parents=True, exist_ok=True)
-    
-    clean_filepath = processed_dir / "nsei_clean.csv"
+    # Save output clean dataset and logs
+    if output_filepath:
+        clean_filepath = Path(output_filepath)
+        clean_filepath.parent.mkdir(parents=True, exist_ok=True)
+        log_filepath = clean_filepath.parent / "cleaning_log.json"
+    else:
+        processed_dir = config.get_processed_data_dir()
+        processed_dir.mkdir(parents=True, exist_ok=True)
+        clean_filepath = processed_dir / "nsei_clean.csv"
+        
+        # Save detailed cleaning audit trail to logs
+        log_dir = processed_dir.parent / "logs"
+        log_dir.mkdir(parents=True, exist_ok=True)
+        log_filepath = log_dir / "cleaning_log.json"
+        
     df.to_csv(clean_filepath, index=False)
-    
-    # Save detailed cleaning audit trail to logs
-    log_dir = processed_dir.parent / "logs"
-    log_dir.mkdir(parents=True, exist_ok=True)
-    log_filepath = log_dir / "cleaning_log.json"
     
     with open(log_filepath, "w", encoding="utf-8") as f:
         json.dump(cleaning_log, f, indent=4)

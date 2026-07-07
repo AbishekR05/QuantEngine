@@ -24,7 +24,7 @@ def test_cleaner_corrections(tmp_path):
     df.to_csv(csv_path, index=False)
     
     # Execute cleaning
-    clean_filepath = clean_data(str(csv_path))
+    clean_filepath = clean_data(str(csv_path), output_filepath=str(tmp_path / "nsei_clean.csv"))
     
     # Reload and assert modifications
     df_clean = pd.read_csv(clean_filepath)
@@ -64,4 +64,4 @@ def test_cleaner_fails_loud_on_zero_price(tmp_path):
     df.to_csv(csv_path, index=False)
     
     with pytest.raises(ValueError, match="Critical pricing error"):
-        clean_data(str(csv_path))
+        clean_data(str(csv_path), output_filepath=str(tmp_path / "nsei_clean.csv"))

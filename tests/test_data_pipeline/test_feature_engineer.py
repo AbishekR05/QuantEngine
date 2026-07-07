@@ -25,7 +25,7 @@ def test_feature_engineering_indicators(tmp_path):
     csv_path = tmp_path / "mock_clean.csv"
     df.to_csv(csv_path, index=False)
     
-    features_filepath = calculate_features(str(csv_path))
+    features_filepath = calculate_features(str(csv_path), output_filepath=str(tmp_path / "nsei_features.csv"))
     df_feat = pd.read_csv(features_filepath)
     
     # Assert columns exist

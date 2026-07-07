@@ -1,5 +1,6 @@
 import sys
 from pathlib import Path
+from typing import Optional
 import pandas as pd
 import numpy as np
 from src.utils.logger import get_logger
@@ -7,7 +8,7 @@ from src.utils.config_loader import load_global_config, load_indicators_config
 
 logger = get_logger("feature_engineer")
 
-def calculate_features(clean_filepath: str) -> str:
+def calculate_features(clean_filepath: str, output_filepath: Optional[str] = None) -> str:
     """
     Calculates technical indicators dynamically as specified in config/indicators.yaml.
     Saves the computed feature dataset to data/features/nsei_features.csv.
@@ -101,9 +102,14 @@ def calculate_features(clean_filepath: str) -> str:
     logger.debug("Calculated Daily and Log Returns.")
     
     # Save the output CSV
-    features_dir = config.get_features_data_dir()
-    features_dir.mkdir(parents=True, exist_ok=True)
-    features_filepath = features_dir / "nsei_features.csv"
+    if output_filepath:
+        features_filepath = Path(output_filepath)
+        features_filepath.parent.mkdir(parents=True, exist_ok=True)
+    else:
+        features_dir = config.get_features_data_dir()
+        features_dir.mkdir(parents=True, exist_ok=True)
+        features_filepath = features_dir / "nsei_features.csv"
+        
     df.to_csv(features_filepath, index=False)
     
     logger.info(f"Engineered feature dataset successfully saved to: {features_filepath}")
