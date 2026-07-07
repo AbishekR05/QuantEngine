@@ -60,7 +60,7 @@ Key statistics computed from the clean price data and technical indicators:
     *   `MACD` (Skewness: -1.0522) exhibits negative skewness.
 2.  **Fat-Tailed / Leptokurtic Distributions**:
     *   `Daily_Return` (Excess Kurtosis: 15.9179) and `Log_Return` (Excess Kurtosis: 15.0791) show high excess kurtosis (well above the normal threshold of 0). This is a standard characteristic of financial time-series representing "fat tails" (extreme price moves like market crashes occur much more frequently than predicted by a normal distribution).
-    *   `MACD` (6.1490) and `MACD_Signal` (5.5217) also exhibit heavy tails.
+    *   `Volume` (3.6381), `MACD` (6.1490), `MACD_Signal` (5.5217), and `MACD_Hist` (4.7137) also exhibit heavy tails exceeding the threshold of 3.0.
 3.  **Variable Effective Sample Sizes ($N$)**:
     *   Due to indicator lookback warm-up periods, the effective sample sizes vary:
         *   `SMA_20`, `BB_Middle`, `BB_Upper`, `BB_Lower`: **4,591** rows (19 NaNs)
