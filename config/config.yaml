@@ -9,3 +9,11 @@ raw_data_dir: "data/raw"
 processed_data_dir: "data/processed"
 features_data_dir: "data/features"
 versions_dir: "data/versions"
+
+# Exploratory Data Analysis (EDA) configuration
+eda:
+  input_files:
+    clean: "data/processed/nsei_clean.csv"
+    features: "data/features/nsei_features.csv"
+  output_dir: "reports/eda/statistics/"
+  date_column: "Date"

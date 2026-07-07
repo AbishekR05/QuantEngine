@@ -6,6 +6,24 @@ from pydantic import BaseModel, Field
 # Project root resolution
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 
+class EdaInputFiles(BaseModel):
+    clean: str
+    features: str
+
+class EdaConfig(BaseModel):
+    input_files: EdaInputFiles
+    output_dir: str
+    date_column: str
+
+    def get_clean_input_path(self) -> Path:
+        return PROJECT_ROOT / self.input_files.clean
+
+    def get_features_input_path(self) -> Path:
+        return PROJECT_ROOT / self.input_files.features
+
+    def get_output_dir(self) -> Path:
+        return PROJECT_ROOT / self.output_dir
+
 class GlobalConfig(BaseModel):
     ticker: str
     start_date: str
@@ -15,6 +33,7 @@ class GlobalConfig(BaseModel):
     processed_data_dir: str
     features_data_dir: str
     versions_dir: str
+    eda: EdaConfig
 
     def get_db_path(self) -> Path:
         return PROJECT_ROOT / self.db_path
