@@ -14,6 +14,6 @@ versions_dir: "data/versions"
 eda:
   input_files:
     clean: "data/processed/nsei_clean.csv"
-    features: "data/features/nsei_features.csv"
+    features: "data/features/nifty_features.csv"
   output_dir: "reports/eda/statistics/"
   date_column: "Date"

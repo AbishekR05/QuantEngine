@@ -68,7 +68,7 @@ def create_dataset_version(feature_filepath: str, validation_status: str = "PASS
     version_dir.mkdir(parents=True, exist_ok=True)
     
     # Copy dataset file
-    shipped_path = version_dir / f"nsei_features_{version_id}.csv"
+    shipped_path = version_dir / f"nifty_features_{version_id}.csv"
     shutil.copy(feature_path, shipped_path)
     logger.info(f"Dataset snapshot archived at: {shipped_path}")
     

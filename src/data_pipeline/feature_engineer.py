@@ -108,7 +108,7 @@ def calculate_features(clean_filepath: str, output_filepath: Optional[str] = Non
     else:
         features_dir = config.get_features_data_dir()
         features_dir.mkdir(parents=True, exist_ok=True)
-        features_filepath = features_dir / "nsei_features.csv"
+        features_filepath = features_dir / "nifty_features.csv"
         
     df.to_csv(features_filepath, index=False)
     
