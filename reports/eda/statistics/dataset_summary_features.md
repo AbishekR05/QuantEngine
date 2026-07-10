@@ -1,13 +1,13 @@
 # Dataset summary report for: `nifty_features`
-**Report Generated At**: 2026-07-08 00:33:47
+**Report Generated At**: 2026-07-10 23:56:23
 
 ## 1. Overview Statistics
 | Metric | Value |
 | :--- | :--- |
-| **Row Count** | 4610 |
-| **Column Count** | 22 |
-| **Date Range** | 2007-09-17 to 2026-07-06 |
-| **Memory Footprint** | 1.0333 MB |
+| **Row Count** | 4613 |
+| **Column Count** | 23 |
+| **Date Range** | 2007-09-17 to 2026-07-09 |
+| **Memory Footprint** | 1.0692 MB |
 
 ## 2. Column Data Types
 | Column Name | Pandas Data Type |
@@ -24,6 +24,7 @@
 | `SMA_200` | float64 |
 | `EMA_20` | float64 |
 | `EMA_50` | float64 |
+| `EMA_200` | float64 |
 | `RSI_14` | float64 |
 | `MACD` | float64 |
 | `MACD_Signal` | float64 |
@@ -40,7 +41,7 @@
 | :--- | :--- | :--- |
 | `SMA_20` | 19 | 0.41% |
 | `SMA_50` | 49 | 1.06% |
-| `SMA_200` | 199 | 4.32% |
+| `SMA_200` | 199 | 4.31% |
 | `RSI_14` | 1 | 0.02% |
 | `BB_Middle` | 19 | 0.41% |
 | `BB_Upper` | 19 | 0.41% |
@@ -48,7 +49,7 @@
 | `Daily_Return` | 1 | 0.02% |
 | `Log_Return` | 1 | 0.02% |
 
-*Note: The other 13 columns contain no missing values.*
+*Note: The other 14 columns contain no missing values.*
 
 ## 4. Duplicate Check Results
 - **Exact Duplicate Rows**: 0

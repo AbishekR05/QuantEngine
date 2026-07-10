@@ -15,11 +15,24 @@ class EdaStatisticsConfig(BaseModel):
     skew_threshold: float
     kurtosis_threshold: float
 
+class EdaFiguresConfig(BaseModel):
+    output_dir: str
+    dpi: int
+    figure_size: List[int]
+    rolling_volatility_window: int
+    ema_periods: List[int]
+    rsi_overbought: float
+    rsi_oversold: float
+
+    def get_output_dir(self) -> Path:
+        return PROJECT_ROOT / self.output_dir
+
 class EdaConfig(BaseModel):
     input_files: EdaInputFiles
     output_dir: str
     date_column: str
     statistics: EdaStatisticsConfig
+    figures: EdaFiguresConfig
 
     def get_clean_input_path(self) -> Path:
         return PROJECT_ROOT / self.input_files.clean

@@ -1,13 +1,13 @@
 # Dataset summary report for: `nsei_clean`
-**Report Generated At**: 2026-07-08 00:33:47
+**Report Generated At**: 2026-07-10 23:56:23
 
 ## 1. Overview Statistics
 | Metric | Value |
 | :--- | :--- |
-| **Row Count** | 4610 |
+| **Row Count** | 4613 |
 | **Column Count** | 7 |
-| **Date Range** | 2007-09-17 to 2026-07-06 |
-| **Memory Footprint** | 0.5057 MB |
+| **Date Range** | 2007-09-17 to 2026-07-09 |
+| **Memory Footprint** | 0.5060 MB |
 
 ## 2. Column Data Types
 | Column Name | Pandas Data Type |

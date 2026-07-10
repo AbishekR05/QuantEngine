@@ -1,7 +1,7 @@
 # Technical Indicator Configurations
 moving_averages:
   sma: [20, 50, 200]
-  ema: [20, 50]
+  ema: [20, 50, 200]
 
 rsi:
   period: 14

@@ -22,3 +22,16 @@ eda:
       - Date
     skew_threshold: 1.0
     kurtosis_threshold: 3.0
+  figures:
+    output_dir: "reports/eda/figures/"
+    dpi: 150
+    figure_size:
+      - 12
+      - 6
+    rolling_volatility_window: 21
+    ema_periods:
+      - 20
+      - 50
+      - 200
+    rsi_overbought: 70
+    rsi_oversold: 30
