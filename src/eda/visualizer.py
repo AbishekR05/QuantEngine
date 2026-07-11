@@ -175,17 +175,20 @@ class Visualizer:
         return str(out_path)
 
     def plot_macd(self) -> str:
-        """Plots MACD lines alongside bullish/bearish momentum histogram overlays."""
+        """Plots MACD lines alongside bullish/bearish momentum histogram bars."""
         df = self.features_data.sort_values(self.date_column)
         fig, ax = plt.subplots(figsize=self.figure_size)
         
         ax.plot(df[self.date_column], df['MACD'], color='#1f77b4', linewidth=1.0, label='MACD Line')
         ax.plot(df[self.date_column], df['MACD_Signal'], color='#ff7f0e', linewidth=1.0, label='Signal Line')
         
-        # Color-coded momentum shading (instead of heavy rendering bars)
+        # Color-coded momentum bar chart (standard MACD histogram)
         hist = df['MACD_Hist']
-        ax.fill_between(df[self.date_column], hist, 0, where=(hist >= 0), color='green', alpha=0.4, label='Bullish Momentum')
-        ax.fill_between(df[self.date_column], hist, 0, where=(hist < 0), color='red', alpha=0.4, label='Bearish Momentum')
+        pos_mask = hist >= 0
+        neg_mask = hist < 0
+        
+        ax.bar(df[self.date_column][pos_mask], hist[pos_mask], width=1.0, color='green', alpha=0.6, label='Bullish Momentum')
+        ax.bar(df[self.date_column][neg_mask], hist[neg_mask], width=1.0, color='red', alpha=0.6, label='Bearish Momentum')
         
         min_date = df[self.date_column].min().strftime('%Y-%m-%d')
         max_date = df[self.date_column].max().strftime('%Y-%m-%d')
