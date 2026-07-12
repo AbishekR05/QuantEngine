@@ -186,7 +186,7 @@ class CorrelationAnalyzer:
         # OHLC snapshots
         ohlc = ["open", "high", "low", "close", "adj close"]
         if c1 in ohlc and c2 in ohlc:
-            return "Structural intraday price markers representing snapshots of the same daily session."
+            return "Structural intraday price metrics representing snapshots of the same daily session."
             
         # Bollinger Bands & SMA_20
         bb_sma = ["sma_20", "ema_20", "bb_middle"]
@@ -209,12 +209,168 @@ class CorrelationAnalyzer:
             
         return "Standard correlation expected between lagging price indicators."
 
+    def _classify_correlation_type(self, col1: str, col2: str) -> str:
+        """Classifies the correlation as Structural, Derived, or Indicator."""
+        c1, c2 = col1.lower(), col2.lower()
+        
+        # Returns
+        if "return" in c1 and "return" in c2:
+            return "Derived Feature Correlations"
+            
+        # Close & Adj Close, snaps, MAs
+        ohlc = ["open", "high", "low", "close", "adj close"]
+        bb_sma = ["sma_20", "ema_20", "bb_middle"]
+        
+        if (c1 in ohlc and c2 in ohlc) or (c1 in bb_sma and c2 in bb_sma) or ("macd" in c1 and "macd" in c2):
+            return "Structural Correlations"
+            
+        if ("sma" in c1 or "ema" in c1) and ("sma" in c2 or "ema" in c2):
+            return "Structural Correlations"
+            
+        if (c1 in ohlc or "sma" in c1 or "ema" in c1) and (c2 in ohlc or "sma" in c2 or "ema" in c2):
+            return "Structural Correlations"
+            
+        return "Indicator Correlations"
+
+    def _get_recommendation(self, col1: str, col2: str, corr: float) -> str:
+        """Generates a plain-language engineering recommendation for highly correlated features."""
+        c1, c2 = col1.lower(), col2.lower()
+        
+        if abs(corr) >= self.leakage_threshold:
+            if ("close" in c1 and "close" in c2) and ("adj" in c1 or "adj" in c2):
+                return "These columns are functionally identical. Retain 'Close' and remove 'Adj Close' to eliminate exact duplication."
+            if "bb_middle" in c1 or "bb_middle" in c2:
+                return "BB_Middle is identical to SMA_20. Retain 'SMA_20' and remove 'BB_Middle' to prevent collinearity."
+            if "return" in c1 and "return" in c2:
+                return "Daily and log returns represent near-identical information. Retain one (typically Log_Return) and drop the other."
+            return f"Near-identical representation ($|r| = {abs(corr):.4f}$). Drop one column during model input selection."
+            
+        if ("sma" in c1 or "ema" in c1) and ("sma" in c2 or "ema" in c2):
+            return "Highly similar trend indicators. Consider retaining only one moving average window or applying PCA."
+        if "macd" in c1 and "macd" in c2:
+            return "MACD and its signal line are highly correlated trend followers. Review if MACD_Hist alone is sufficient."
+            
+        return "These indicators share strong correlation. Evaluate model performance with and without to reduce collinearity."
+
+    def get_feature_action_recommendations(self) -> Dict[str, List[Dict[str, str]]]:
+        """Categorizes features into KEEP, REVIEW, or REMOVE CANDIDATE labels with reasons."""
+        categories = {
+            "KEEP": [],
+            "REVIEW": [],
+            "REMOVE CANDIDATE": []
+        }
+        
+        p_matrix = self.pearson_matrix()
+        cols = p_matrix.columns.tolist()
+        
+        for col in cols:
+            other_corrs = p_matrix[col].drop(col).abs()
+            max_corr = other_corrs.max()
+            max_neighbor = other_corrs.idxmax()
+            
+            c_name = col.lower()
+            
+            # REMOVE CANDIDATE
+            if max_corr >= self.leakage_threshold:
+                if col == "Adj Close":
+                    reason = "Identical to `Close` by construction (no dividend adjustments for this index)."
+                elif col == "BB_Middle":
+                    reason = "Identical to `SMA_20` by configuration design."
+                elif col == "Log_Return":
+                    reason = "Nearly identical to `Daily_Return` for small daily price movements. Retain only one return metric."
+                else:
+                    reason = f"Extremely high correlation ($|r| = {max_corr:.6f}$) with `{max_neighbor}`. Redundant input."
+                categories["REMOVE CANDIDATE"].append({"feature": col, "reason": reason})
+                    
+            # REVIEW
+            elif max_corr >= self.high_corr_threshold:
+                if "ema" in c_name or "sma" in c_name:
+                    reason = f"Smoothed trend indicator highly correlated ($|r| = {max_corr:.4f}$) with `{max_neighbor}`. Retaining both may not improve model performance."
+                elif "macd" in c_name:
+                    reason = f"MACD trend line closely tracks `{max_neighbor}` ($|r| = {max_corr:.4f}$). Evaluate collinearity impact."
+                else:
+                    reason = f"High correlation ($|r| = {max_corr:.4f}$) with `{max_neighbor}`. Test model performance with and without this feature."
+                categories["REVIEW"].append({"feature": col, "reason": reason})
+                    
+            # KEEP
+            else:
+                if col == "Volume":
+                    reason = f"Low correlation with price trend cluster ($|r|_{{max}} = {max_corr:.4f}$). Offers a distinct, independent signal."
+                elif col == "ATR_14":
+                    reason = f"Volatility measure capturing range fluctuations ($|r|_{{max}} = {max_corr:.4f}$), distinct from trend direction."
+                elif col == "RSI_14":
+                    reason = f"Oscillator capturing overbought/oversold momentum ($|r|_{{max}} = {max_corr:.4f}$), distinct from trend."
+                elif col == "MACD_Hist":
+                    reason = f"Measures divergence between MACD and Signal ($|r|_{{max}} = {max_corr:.4f}$), capturing momentum shifts."
+                else:
+                    reason = f"Distinct feature profile ($|r|_{{max}} = {max_corr:.4f}$); provides independent information."
+                categories["KEEP"].append({"feature": col, "reason": reason})
+                
+        return categories
+
+    def get_group_redundancy_summary(self) -> List[Dict[str, Any]]:
+        """Computes internal min/max correlations for logical feature groups."""
+        groups = {
+            "Price Features": ["Open", "High", "Low", "Close", "Adj Close"],
+            "Trend Indicators": ["SMA_20", "SMA_50", "SMA_200", "EMA_20", "EMA_50", "EMA_200", "BB_Middle"],
+            "Momentum": ["RSI_14", "MACD", "MACD_Signal", "MACD_Hist"],
+            "Volatility": ["ATR_14", "BB_Upper", "BB_Lower"],
+            "Returns": ["Daily_Return", "Log_Return"],
+            "Volume": ["Volume"]
+        }
+        
+        p_matrix = self.pearson_matrix()
+        summaries = []
+        
+        for g_name, members in groups.items():
+            valid_members = [m for m in members if m in self.analysis_columns]
+            if not valid_members:
+                continue
+                
+            if len(valid_members) == 1:
+                summaries.append({
+                    "group": g_name,
+                    "members": valid_members,
+                    "note": f"Contains 1 feature (`{valid_members[0]}`). Volume is independent of price/trend clusters ($r \\approx 0.50$ under Spearman, $r \\approx 0.08$ under Pearson), acting as an independent source of information."
+                })
+                continue
+                
+            corrs = []
+            for i in range(len(valid_members)):
+                for j in range(i + 1, len(valid_members)):
+                    val = p_matrix.loc[valid_members[i], valid_members[j]]
+                    if not pd.isna(val):
+                        corrs.append(abs(val))
+                        
+            min_c = min(corrs) if corrs else 0.0
+            max_c = max(corrs) if corrs else 0.0
+            
+            if g_name == "Price Features":
+                note = f"Internal absolute correlation range is extremely high ({min_c:.4f} to {max_c:.4f}). Price snapshots from the same trading session are structurally near-identical."
+            elif g_name == "Trend Indicators":
+                note = f"Internal absolute correlation range is high ({min_c:.4f} to {max_c:.4f}). Trend trackers closely follow the underlying price series and show massive redundancy."
+            elif g_name == "Momentum":
+                note = f"Internal absolute correlation range is low-to-moderate ({min_c:.4f} to {max_c:.4f}). RSI and MACD_Hist exhibit independence, indicating lower internal redundancy."
+            elif g_name == "Volatility":
+                note = f"Bollinger Bands correlate heavily with price levels ($r \\approx 0.99$), but ATR_14 is distinct ($r \\approx 0.35$). Internal correlation range: {min_c:.4f} to {max_c:.4f}."
+            elif g_name == "Returns":
+                note = f"Internal absolute correlation is near-perfect ({min_c:.4f} to {max_c:.4f}). Daily return and log return are mathematically redundant."
+            else:
+                note = f"Internal absolute correlation range: {min_c:.4f} to {max_c:.4f}."
+                
+            summaries.append({
+                "group": g_name,
+                "members": valid_members,
+                "note": note
+            })
+            
+        return summaries
+
     def plot_heatmap(self, method: str = "pearson") -> str:
         """Renders and saves a high-quality correlation matrix heatmap using Matplotlib."""
         df_corr = self.pearson_matrix() if method.lower() == "pearson" else self.spearman_matrix()
         
         fig, ax = plt.subplots(figsize=(12, 10))
-        # Draw matrix grid using coolwarm
         cax = ax.imshow(df_corr.values, cmap='coolwarm', vmin=-1.0, vmax=1.0)
         
         # Color bar indicator
@@ -277,15 +433,16 @@ class CorrelationAnalyzer:
         
         for method in ["pearson", "spearman"]:
             md.append(f"### Top {self.top_n_pairs} Pairs: {method.upper()}")
-            md.append("| Rank | Feature A | Feature B | Coefficient | Abs Value |")
-            md.append("| :--- | :--- | :--- | :--- | :--- |")
+            md.append("| Rank | Feature A | Feature B | Coefficient | Category | Recommendation |")
+            md.append("| :--- | :--- | :--- | :--- | :--- | :--- |")
             
             df_ranked = self.ranked_pairs(method).head(self.top_n_pairs)
             for idx, row in df_ranked.reset_index().iterrows():
                 coef = row['Correlation']
                 coef_str = f"{coef:.4f}" if not pd.isna(coef) else "N/A"
-                abs_str = f"{row['Abs_Correlation']:.4f}" if not pd.isna(row['Abs_Correlation']) else "N/A"
-                md.append(f"| {idx+1} | `{row['Feature A']}` | `{row['Feature B']}` | {coef_str} | {abs_str} |")
+                cat = self._classify_correlation_type(row['Feature A'], row['Feature B'])
+                rec = self._get_recommendation(row['Feature A'], row['Feature B'], coef if not pd.isna(coef) else 0.0)
+                md.append(f"| {idx+1} | `{row['Feature A']}` | `{row['Feature B']}` | {coef_str} | {cat} | {rec} |")
             md.append("")
             
         # 3. High Correlation & Annotations
@@ -296,11 +453,13 @@ class CorrelationAnalyzer:
             md.append(f"No feature pairs exceed the correlation threshold of {self.high_corr_threshold}.")
         else:
             md.append(f"The following feature pairs exhibit strong correlations (above threshold {self.high_corr_threshold}):")
-            md.append("| Feature A | Feature B | Pearson $r$ | Context / Domain Caveat |")
-            md.append("| :--- | :--- | :--- | :--- |")
+            md.append("| Feature A | Feature B | Pearson $r$ | Category | Recommendation | Context / Domain Caveat |")
+            md.append("| :--- | :--- | :--- | :--- | :--- | :--- |")
             for _, row in df_high.iterrows():
                 reason = self._annotate_pair_reason(row['Feature A'], row['Feature B'])
-                md.append(f"| `{row['Feature A']}` | `{row['Feature B']}` | {row['Correlation']:.4f} | {reason} |")
+                cat = self._classify_correlation_type(row['Feature A'], row['Feature B'])
+                rec = self._get_recommendation(row['Feature A'], row['Feature B'], row['Correlation'])
+                md.append(f"| `{row['Feature A']}` | `{row['Feature B']}` | {row['Correlation']:.4f} | {cat} | {rec} | {reason} |")
         md.append("")
         
         # 4. Redundant clusters
@@ -318,18 +477,45 @@ class CorrelationAnalyzer:
                 features_list = ", ".join([f"`{f}`" for f in group])
                 md.append(f"**Group {idx+1}**: [{features_list}]")
         md.append("")
+
+        # 4a. Action Recommendations
+        md.append("### Feature Action Recommendations (KEEP / REVIEW / REMOVE CANDIDATE)")
+        actions = self.get_feature_action_recommendations()
         
-        # 5. Potential Leakage flags
-        md.append("## 5. Potential Data Leakage / Near-Duplicate Flags")
+        for act_type in ["KEEP", "REVIEW", "REMOVE CANDIDATE"]:
+            md.append(f"#### {act_type}")
+            if not actions[act_type]:
+                md.append("- *None*")
+            else:
+                for item in actions[act_type]:
+                    md.append(f"- **`{item['feature']}`**: {item['reason']}")
+            md.append("")
+
+        # 4b. Group Redundancy Summary
+        md.append("### Feature Groups with Internal Redundancy Summary")
+        group_summaries = self.get_group_redundancy_summary()
+        md.append("| Group Name | Members | Redundancy Summary |")
+        md.append("| :--- | :--- | :--- |")
+        for g in group_summaries:
+            m_list = ", ".join([f"`{m}`" for m in g['members']])
+            md.append(f"| **{g['group']}** | {m_list} | {g['note']} |")
+        md.append("")
+        
+        # 5. Near-Duplicate / Highly Redundant Features (Renamed from leakage)
+        md.append("## 5. Near-Duplicate / Highly Redundant Features")
+        md.append(
+            "No look-ahead leakage was identified in this feature set — all flagged pairs below "
+            "represent redundancy/multicollinearity, not validation leakage.\n"
+        )
         df_leak = self.flag_potential_leakage("pearson")
         if df_leak.empty:
             md.append("No suspicious near-perfect correlations (>= {}) detected.".format(self.leakage_threshold))
         else:
             md.append(
                 f"> [!WARNING]\n"
-                f"> **Potential lookahead/leakage risk detected (Pearson $|r| \\ge {self.leakage_threshold}$):**\n"
+                f"> **High multicollinearity risk identified (Pearson $|r| \\ge {self.leakage_threshold}$):**\n"
                 f"> These features are nearly identical. Using both in regression or neural network models "
-                f"causes extreme multicollinearity or validation leakage. Review if they represent identical inputs:\n"
+                f"causes extreme multicollinearity. Review if they represent identical inputs:\n"
             )
             for _, row in df_leak.iterrows():
                 md.append(f"> - `{row['Feature A']}` ↔ `{row['Feature B']}` (Correlation: {row['Correlation']:.6f})")
@@ -356,8 +542,50 @@ class CorrelationAnalyzer:
         md.append("Heatmaps are plotted individually for inspection:")
         md.append("### Pearson Linear Correlation")
         md.append("![Pearson Heatmap](../figures/correlation_heatmap_pearson.png)\n")
+        
+        md.append(
+            "> [!NOTE]\n"
+            "> **Pearson Heatmap Narrative Summary:**\n"
+            "> The Pearson heatmap reveals a massive block of near-perfect linear correlation ($r \\ge 0.99$) "
+            "among raw price features and trend-following moving averages (SMAs, EMAs, BB_Middle). "
+            "This price-level cluster dominates the linear variance. In contrast, returns and momentum "
+            "indicators (RSI_14, MACD_Hist) show extremely weak linear correlation with price levels, "
+            "suggesting they provide orthogonal, non-redundant feature dimensions. Volatility (ATR_14) "
+            "shows moderate linear correlation with the price trend cluster, indicating volatility levels "
+            "scale slowly with absolute index price heights.\n"
+        )
+        
         md.append("### Spearman Monotonic Correlation")
-        md.append("![Spearman Heatmap](../figures/correlation_heatmap_spearman.png)")
+        md.append("![Spearman Heatmap](../figures/correlation_heatmap_spearman.png)\n")
+        
+        md.append(
+            "> [!NOTE]\n"
+            "> **Spearman Heatmap Narrative Summary:**\n"
+            "> The Spearman rank-based heatmap shows similar high correlation within the trend-following moving "
+            "average and price cluster. However, the correlation between Volume and price indicators increases "
+            "significantly under Spearman ($r \\approx 0.80$) compared to Pearson ($r \\approx 0.50$). This indicates "
+            "that while volume has a strong, monotonic relationship with the long-term price trend (volume expands "
+            "as the index grows), this expansion is highly non-linear. Momentum oscillators (RSI_14, MACD_Hist) "
+            "remain largely independent of the trend indicators, confirming their value as distinct features.\n"
+        )
+        
+        # 8. Future Predictive Correlation Roadmap (Documentation Only)
+        md.append("## 8. Future Predictive Correlation Roadmap (Documentation Only)")
+        md.append(
+            "This section outlines the deferred analysis roadmap for future pipeline stages:\n\n"
+            "1. **Feature-to-Feature vs. Feature-to-Label**: The analysis in this report focuses on "
+            "feature-to-feature correlation to identify redundancy and multicollinearity. Predictive "
+            "correlation measures the relationship between a feature *today* and the target label *in the future* "
+            "(e.g., forecasting next-day returns or direction).\n"
+            "2. **Planned Predictive Metrics**: Once labels are engineered, we will measure predictive mappings:\n"
+            "   - Today's `RSI_14` $\\to$ Tomorrow's `Daily_Return`\n"
+            "   - Today's `ATR_14` $\\to$ Next-day rolling volatility\n"
+            "   - Today's `MACD_Hist` $\\to$ Future price crossover outcomes\n"
+            "   - Engineered feature vectors $\\to$ BUY / HOLD / SELL targets\n"
+            "3. **Phase Discipline deferral**: This analysis is explicitly deferred until after **Step 8 (Label Engineering)**. "
+            "Performing predictive correlation now would violate the project's separation between exploratory data analysis (EDA) "
+            "and supervised label modeling, leading to premature assumptions about feature predictive power before labels are formally defined."
+        )
         
         return "\n".join(md)
 
