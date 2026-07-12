@@ -35,3 +35,12 @@ eda:
       - 200
     rsi_overbought: 70
     rsi_oversold: 30
+  correlation:
+    input_file: "data/features/nifty_features.csv"
+    exclude_columns:
+      - Date
+    high_corr_threshold: 0.9
+    leakage_threshold: 0.99
+    top_n_pairs: 20
+    heatmap_output_dir: "reports/eda/figures/"
+    report_output_path: "reports/eda/statistics/correlation_report.md"

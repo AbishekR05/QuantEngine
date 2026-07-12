@@ -27,12 +27,31 @@ class EdaFiguresConfig(BaseModel):
     def get_output_dir(self) -> Path:
         return PROJECT_ROOT / self.output_dir
 
+class EdaCorrelationConfig(BaseModel):
+    input_file: str
+    exclude_columns: List[str]
+    high_corr_threshold: float
+    leakage_threshold: float
+    top_n_pairs: int
+    heatmap_output_dir: str
+    report_output_path: str
+
+    def get_input_file_path(self) -> Path:
+        return PROJECT_ROOT / self.input_file
+
+    def get_heatmap_output_dir(self) -> Path:
+        return PROJECT_ROOT / self.heatmap_output_dir
+
+    def get_report_output_path(self) -> Path:
+        return PROJECT_ROOT / self.report_output_path
+
 class EdaConfig(BaseModel):
     input_files: EdaInputFiles
     output_dir: str
     date_column: str
     statistics: EdaStatisticsConfig
     figures: EdaFiguresConfig
+    correlation: EdaCorrelationConfig
 
     def get_clean_input_path(self) -> Path:
         return PROJECT_ROOT / self.input_files.clean
