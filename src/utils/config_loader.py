@@ -45,6 +45,20 @@ class EdaCorrelationConfig(BaseModel):
     def get_report_output_path(self) -> Path:
         return PROJECT_ROOT / self.report_output_path
 
+class EdaOutliersConfig(BaseModel):
+    exclude_columns: List[str]
+    iqr_multiplier: float
+    zscore_threshold: float
+    top_n_per_column: int
+    output_dir: str
+    report_output_path: str
+
+    def get_output_dir(self) -> Path:
+        return PROJECT_ROOT / self.output_dir
+
+    def get_report_output_path(self) -> Path:
+        return PROJECT_ROOT / self.report_output_path
+
 class EdaConfig(BaseModel):
     input_files: EdaInputFiles
     output_dir: str
@@ -52,6 +66,7 @@ class EdaConfig(BaseModel):
     statistics: EdaStatisticsConfig
     figures: EdaFiguresConfig
     correlation: EdaCorrelationConfig
+    outliers: EdaOutliersConfig
 
     def get_clean_input_path(self) -> Path:
         return PROJECT_ROOT / self.input_files.clean

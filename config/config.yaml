@@ -44,3 +44,11 @@ eda:
     top_n_pairs: 20
     heatmap_output_dir: "reports/eda/figures/"
     report_output_path: "reports/eda/statistics/correlation_report.md"
+  outliers:
+    exclude_columns:
+      - Date
+    iqr_multiplier: 1.5
+    zscore_threshold: 3.0
+    top_n_per_column: 20
+    output_dir: "reports/eda/figures/outliers/"
+    report_output_path: "reports/eda/statistics/outlier_report.md"
