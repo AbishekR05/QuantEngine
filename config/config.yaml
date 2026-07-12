@@ -45,6 +45,7 @@ eda:
     heatmap_output_dir: "reports/eda/figures/"
     report_output_path: "reports/eda/statistics/correlation_report.md"
   outliers:
+    known_events_path: "config/known_events.yaml"
     exclude_columns:
       - Date
     iqr_multiplier: 1.5

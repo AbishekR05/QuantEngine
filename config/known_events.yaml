@@ -1,0 +1,39 @@
+# Registry of known market events and data limitations for outlier classification
+known_events:
+  - event_name: "Global Financial Crisis"
+    start_date: "2008-01-01"
+    end_date: "2009-03-31"
+    category: "known_market_event"
+    description: "Global financial crisis and extreme market volatility."
+
+  - event_name: "2009 Election Rally"
+    start_date: "2009-05-15"
+    end_date: "2009-05-22"
+    category: "known_market_event"
+    description: "Indian general election results and upper circuit rally."
+
+  - event_name: "COVID Crash"
+    start_date: "2020-03-09"
+    end_date: "2020-04-30"
+    category: "known_market_event"
+    description: "COVID-19 market crash and recovery volatility."
+
+  - event_name: "2024 Election Volatility"
+    start_date: "2024-06-03"
+    end_date: "2024-06-07"
+    category: "known_market_event"
+    description: "Indian general election result volatility."
+
+  - event_name: "RSI Warm-Up Boundary Artifact"
+    start_date: "2007-09-18"
+    end_date: "2007-10-05"
+    category: "known_data_limitation"
+    description: "Earliest RSI_14 values are mathematically pinned near 100 because the initial rolling window contains only up-days. This is a rolling-window boundary effect, not a market event or data error."
+    affected_columns: ["RSI_14"]
+
+  - event_name: "Volume Index Feed Limitation"
+    start_date: "2007-09-17"
+    end_date: "2013-12-31"
+    category: "known_data_limitation"
+    description: "Zero-volume trading sessions resulting from historical National Stock Exchange index feed calculation constraints."
+    affected_columns: ["Volume"]

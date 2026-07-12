@@ -46,6 +46,7 @@ class EdaCorrelationConfig(BaseModel):
         return PROJECT_ROOT / self.report_output_path
 
 class EdaOutliersConfig(BaseModel):
+    known_events_path: str
     exclude_columns: List[str]
     iqr_multiplier: float
     zscore_threshold: float
@@ -58,6 +59,9 @@ class EdaOutliersConfig(BaseModel):
 
     def get_report_output_path(self) -> Path:
         return PROJECT_ROOT / self.report_output_path
+
+    def get_known_events_path(self) -> Path:
+        return PROJECT_ROOT / self.known_events_path
 
 class EdaConfig(BaseModel):
     input_files: EdaInputFiles
