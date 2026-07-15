@@ -53,3 +53,13 @@ eda:
     top_n_per_column: 20
     output_dir: "reports/eda/figures/outliers/"
     report_output_path: "reports/eda/statistics/outlier_report.md"
+  regime:
+    input_file: "data/features/nifty_features.csv"
+    trend_window: 63
+    trend_threshold: 0.05
+    vol_window: 21
+    vol_high_percentile: 0.75
+    vol_low_percentile: 0.25
+    known_events_path: "config/known_events.yaml"
+    output_report_path: "reports/eda/statistics/regime_report.md"
+    output_chart_path: "reports/eda/figures/regime_timeline.png"

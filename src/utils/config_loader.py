@@ -63,6 +63,29 @@ class EdaOutliersConfig(BaseModel):
     def get_known_events_path(self) -> Path:
         return PROJECT_ROOT / self.known_events_path
 
+class EdaRegimeConfig(BaseModel):
+    input_file: str
+    trend_window: int
+    trend_threshold: float
+    vol_window: int
+    vol_high_percentile: float
+    vol_low_percentile: float
+    known_events_path: str
+    output_report_path: str
+    output_chart_path: str
+
+    def get_input_file_path(self) -> Path:
+        return PROJECT_ROOT / self.input_file
+
+    def get_known_events_path(self) -> Path:
+        return PROJECT_ROOT / self.known_events_path
+
+    def get_output_report_path(self) -> Path:
+        return PROJECT_ROOT / self.output_report_path
+
+    def get_output_chart_path(self) -> Path:
+        return PROJECT_ROOT / self.output_chart_path
+
 class EdaConfig(BaseModel):
     input_files: EdaInputFiles
     output_dir: str
@@ -71,6 +94,7 @@ class EdaConfig(BaseModel):
     figures: EdaFiguresConfig
     correlation: EdaCorrelationConfig
     outliers: EdaOutliersConfig
+    regime: EdaRegimeConfig
 
     def get_clean_input_path(self) -> Path:
         return PROJECT_ROOT / self.input_files.clean
