@@ -219,6 +219,10 @@ class RegimeAnalyzer:
             avg_trading_days = r_periods["trading_days"].mean() if period_count > 0 else 0.0
             avg_calendar_days = r_periods["calendar_days"].mean() if period_count > 0 else 0.0
             
+            min_days = r_periods["trading_days"].min() if period_count > 0 else 0.0
+            max_days = r_periods["trading_days"].max() if period_count > 0 else 0.0
+            median_days = r_periods["trading_days"].median() if period_count > 0 else 0.0
+            
             stats.append({
                 "Regime": r,
                 "Period Count": period_count,
@@ -227,10 +231,48 @@ class RegimeAnalyzer:
                 "Median Return (%)": median_ret * 100.0,
                 "Volatility (%)": vol_ret * 100.0,
                 "Avg Trading Days": avg_trading_days,
-                "Avg Calendar Days": avg_calendar_days
+                "Avg Calendar Days": avg_calendar_days,
+                "Min Duration": min_days,
+                "Max Duration": max_days,
+                "Median Duration": median_days
             })
             
         return pd.DataFrame(stats)
+
+    def regime_distribution(self, regime_type: str = "trend") -> pd.DataFrame:
+        """Computes counts and percentages of trading days across all regimes (including Insufficient Data)."""
+        col = "Trend_Regime" if regime_type.lower() == "trend" else "Volatility_Regime"
+        counts = self.data[col].value_counts()
+        total = len(self.data)
+        
+        dist = []
+        for name in ["Bull", "Bear", "Sideways", "High", "Normal", "Low", "Insufficient Data"]:
+            if name in counts.index:
+                cnt = counts[name]
+                dist.append({
+                    "Regime": name,
+                    "Trading Days": cnt,
+                    "Percentage": (cnt / total) * 100.0
+                })
+        return pd.DataFrame(dist)
+
+    def trend_regime_transitions(self) -> pd.DataFrame:
+        """Computes transition count matrix between trend regimes (descriptive only)."""
+        periods = self.regime_periods("trend")
+        valid_periods = periods[periods["regime"] != "Insufficient Data"].reset_index(drop=True)
+        
+        regimes = ["Bull", "Bear", "Sideways"]
+        # Initialize matrix with index as 'From' and columns as 'To'
+        matrix = {from_r: {to_r: 0 for to_r in regimes} for from_r in regimes}
+        
+        for i in range(len(valid_periods) - 1):
+            from_r = valid_periods.loc[i, "regime"]
+            to_r = valid_periods.loc[i + 1, "regime"]
+            if from_r in matrix and to_r in matrix:
+                matrix[from_r][to_r] += 1
+                
+        df_transitions = pd.DataFrame(matrix).T  # rows are 'From', columns are 'To'
+        return df_transitions
 
     def cross_tabulation(self) -> pd.DataFrame:
         """Computes co-occurrence frequencies between trend and volatility regimes."""
@@ -306,6 +348,10 @@ class RegimeAnalyzer:
         stats_trend = self.regime_statistics("trend")
         stats_vol = self.regime_statistics("volatility")
         
+        dist_trend = self.regime_distribution("trend")
+        dist_vol = self.regime_distribution("volatility")
+        
+        transitions = self.trend_regime_transitions()
         crosstab = self.cross_tabulation()
         
         md = []
@@ -318,9 +364,48 @@ class RegimeAnalyzer:
             f"- Trend Threshold: ±{self.trend_threshold * 100:.1f}%\n"
             f"- Volatility Window: {self.vol_window} sessions\n"
             f"- High Volatility Cutoff: {self.vol_high_percentile * 100:.0f}th percentile of history ({self.vol_high_cutoff:.6f})\n"
-            f"- Low Volatility Cutoff: {self.vol_low_percentile * 100:.0f}th percentile of history ({self.vol_low_cutoff:.6f})\n"
+            f"- Volatility Percentile Thresholds: Low = {self.vol_low_percentile * 100:.0f}th, High = {self.vol_high_percentile * 100:.0f}th\n"
         )
         
+        # Methodology Section
+        md.append("## Methodology: Formal Definitions")
+        md.append(
+            "This module evaluates market behavior across two independent dimensions: direction (Trend) and dispersion (Volatility).\n\n"
+            "**1. Rolling Return Formula** (used for trend classification):\n"
+            "```\n"
+            "RollingReturn_t = (Close_t - Close_(t - trend_window)) / Close_(t - trend_window)\n"
+            "```\n"
+            "**2. Rolling Volatility Formula** (used for volatility classification):\n"
+            "```\n"
+            "RollingVolatility_t = StdDev(DailyReturn_(t-vol_window+1), ..., DailyReturn_t)\n"
+            "```\n"
+            "**3. Trend Regime Assignment Rules**:\n"
+            "```\n"
+            "Bull:      Close_t > SMA_200_t   AND   RollingReturn_t > +trend_threshold\n"
+            "Bear:      Close_t < SMA_200_t   AND   RollingReturn_t < -trend_threshold\n"
+            "Sideways:  |RollingReturn_t| <= trend_threshold  (regardless of SMA_200 position)\n"
+            "```\n"
+            "*Note: Conflicts where Close price relative to SMA_200 contradicts the trailing return direction are classified under the Sideways category to maintain high rigor for Bull and Bear definitions.*\n\n"
+            "**4. Volatility Regime Assignment Rules**:\n"
+            "```\n"
+            "High:    RollingVolatility_t > P75(RollingVolatility, full history)\n"
+            "Low:     RollingVolatility_t < P25(RollingVolatility, full history)\n"
+            "Normal:  otherwise\n"
+            "```\n"
+        )
+        
+        md.append("## Design Decision: Two Independent Dimensions")
+        md.append(
+            "Trend and volatility are modeled as two independent labels rather than one combined regime "
+            "because they describe different dimensions of market behavior: trend describes *direction* "
+            "(is price rising, falling, or flat), while volatility describes *dispersion* (how much day-to-day "
+            "movement is occurring, independent of direction). A market can be simultaneously trending "
+            "upward and highly volatile (e.g. a sharp V-shaped recovery) or trending upward calmly. "
+            "Collapsing these into a single mutually-exclusive category would discard information "
+            "relevant to later use cases such as position sizing, where a calm bull market and a volatile "
+            "bull market warrant different risk treatment even though both are 'Bull' by trend.\n"
+        )
+
         # 1. Structural Warning / Lookahead Lag Caveat (Section 7 Compliance)
         md.append("## 1. Important Caveat & Structural Warning")
         md.append(
@@ -344,33 +429,54 @@ class RegimeAnalyzer:
             "not `Volume`. Hence, historical zero-volume years have zero distortion effect on the volatility classifications below.\n"
         )
         
-        # 2. Per-Regime Summary Stats
-        md.append("## 2. Per-Regime Statistics")
+        # 1.1 Regime Distribution Summary (New Section)
+        md.append("## 2. Regime Distribution Summaries")
         
-        md.append("### Trend Regime Performance Metrics")
-        md.append("| Regime | Period Count | Total Trading Days | Mean Daily Return | Median Daily Return | Volatility (Std Dev) | Avg Trading Days per Period | Avg Calendar Days |")
-        md.append("| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |")
+        md.append("### Trend Regime Distribution")
+        md.append("| Regime | Trading Days | Percentage of Dataset |")
+        md.append("| :--- | :--- | :--- |")
+        tot_days_t = 0
+        for _, row in dist_trend.iterrows():
+            tot_days_t += int(row['Trading Days'])
+            md.append(f"| {row['Regime']} | {int(row['Trading Days'])} | {row['Percentage']:.2f}% |")
+        md.append(f"| **Total** | {tot_days_t} | 100.00% |\n")
+        
+        md.append("### Volatility Regime Distribution")
+        md.append("| Regime | Trading Days | Percentage of Dataset |")
+        md.append("| :--- | :--- | :--- |")
+        tot_days_v = 0
+        for _, row in dist_vol.iterrows():
+            tot_days_v += int(row['Trading Days'])
+            md.append(f"| {row['Regime']} | {int(row['Trading Days'])} | {row['Percentage']:.2f}% |")
+        md.append(f"| **Total** | {tot_days_v} | 100.00% |\n")
+        
+        # 2. Per-Regime Summary Stats
+        md.append("## 3. Per-Regime Performance & Persistence Statistics")
+        
+        md.append("### Trend Regime Performance & Persistence Metrics")
+        md.append("| Regime | Period Count | Total Trading Days | Mean Daily Return | Median Daily Return | Volatility (Std Dev) | Avg Trading Days per Period | Min Duration | Max Duration | Median Duration | Avg Calendar Days |")
+        md.append("| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |")
         for _, row in stats_trend.iterrows():
             md.append(
                 f"| **{row['Regime']}** | {int(row['Period Count'])} | {int(row['Total Trading Days'])} | "
                 f"{row['Mean Return (%)']:+.4f}% | {row['Median Return (%)']:+.4f}% | {row['Volatility (%)']:.4f}% | "
-                f"{row['Avg Trading Days']:.1f} | {row['Avg Calendar Days']:.1f} |"
+                f"{row['Avg Trading Days']:.1f} | {int(row['Min Duration'])} | {int(row['Max Duration'])} | {int(row['Median Duration'])} | {row['Avg Calendar Days']:.1f} |"
             )
         md.append("")
         
-        md.append("### Volatility Regime Performance Metrics")
-        md.append("| Regime | Period Count | Total Trading Days | Mean Daily Return | Median Daily Return | Volatility (Std Dev) | Avg Trading Days per Period | Avg Calendar Days |")
-        md.append("| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |")
+        md.append("### Volatility Regime Performance & Persistence Metrics")
+        md.append("| Regime | Period Count | Total Trading Days | Mean Daily Return | Median Daily Return | Volatility (Std Dev) | Avg Trading Days per Period | Min Duration | Max Duration | Median Duration | Avg Calendar Days |")
+        md.append("| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |")
         for _, row in stats_vol.iterrows():
             md.append(
                 f"| **{row['Regime']}** | {int(row['Period Count'])} | {int(row['Total Trading Days'])} | "
                 f"{row['Mean Return (%)']:+.4f}% | {row['Median Return (%)']:+.4f}% | {row['Volatility (%)']:.4f}% | "
-                f"{row['Avg Trading Days']:.1f} | {row['Avg Calendar Days']:.1f} |"
+                f"{row['Avg Trading Days']:.1f} | {int(row['Min Duration'])} | {int(row['Max Duration'])} | {int(row['Median Duration'])} | {row['Avg Calendar Days']:.1f} |"
             )
         md.append("")
         
         # 3. Two-Dimensional Cross-Tabulation
-        md.append("## 3. Two-Dimensional Cross-Tabulation Matrix (Trend × Volatility)")
+        md.append("## 4. Two-Dimensional Cross-Tabulation Matrix (Trend × Volatility)")
         md.append("Co-occurrence of trend and volatility dimensions (counts in trading days):")
         
         headers = ["Trend Regime / Volatility"] + crosstab.columns.tolist()
@@ -381,13 +487,38 @@ class RegimeAnalyzer:
             md.append("| " + " | ".join(line) + " |")
         md.append("")
         
+        # 3a. Regime Transition Summary (New Section)
+        md.append("## 5. Trend Regime Transitions Matrix")
+        md.append(
+            "> [!IMPORTANT]\n"
+            "> **Descriptive-Only Framing Disclaimer:**\n"
+            "> The table below shows the absolute count of historical transitions between contiguous periods "
+            "of different trend regimes in the dataset. This analysis is strictly **descriptive and historical**; "
+            "it is not a predictive Markov transition model and cannot be used to forecast the probability "
+            "of future regime changes.\n"
+        )
+        md.append("| From \\ To | Bull | Bear | Sideways |")
+        md.append("| :--- | :--- | :--- | :--- |")
+        for name in ["Bull", "Bear", "Sideways"]:
+            row = transitions.loc[name]
+            bull_cnt = int(row["Bull"]) if "Bull" in row else 0
+            bear_cnt = int(row["Bear"]) if "Bear" in row else 0
+            side_cnt = int(row["Sideways"]) if "Sideways" in row else 0
+            
+            bull_str = "—" if name == "Bull" else str(bull_cnt)
+            bear_str = "—" if name == "Bear" else str(bear_cnt)
+            side_str = "—" if name == "Sideways" else str(side_cnt)
+            
+            md.append(f"| **{name}** | {bull_str} | {bear_str} | {side_str} |")
+        md.append("")
+
         # 4. Timeline plot reference
-        md.append("## 4. Regime Timeline Visualization")
+        md.append("## 6. Regime Timeline Visualization")
         md.append("The timeline below plots the Close price overlaying colored bands representing trend regimes:")
         md.append("![Regime Timeline Timeline](../figures/regime_timeline.png)\n")
         
         # 5. Chronological period list (with Known Event cross-references)
-        md.append("## 5. Contiguous Trend Regime Period Timeline")
+        md.append("## 7. Contiguous Trend Regime Period Timeline")
         md.append("| Period Rank | Start Date | End Date | Trend Regime | Trading Days | Calendar Days | Start Price | End Price | Overlapping Known Market Events |")
         md.append("| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |")
         for idx, row in periods_trend.iterrows():
@@ -399,7 +530,7 @@ class RegimeAnalyzer:
             )
         md.append("")
         
-        md.append("## 6. Contiguous Volatility Regime Period Timeline")
+        md.append("## 8. Contiguous Volatility Regime Period Timeline")
         md.append("| Period Rank | Start Date | End Date | Volatility Regime | Trading Days | Calendar Days | Start Price | End Price | Overlapping Known Market Events |")
         md.append("| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |")
         for idx, row in periods_vol.iterrows():

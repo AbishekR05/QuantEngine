@@ -1,12 +1,41 @@
 # QuantEngine: Market Regime Analysis Report
-**Report Generated At**: 2026-07-15 23:10:06
+**Report Generated At**: 2026-07-16 22:49:53
 **Source Dataset**: `nifty_features`
 **Configuration Parameters**:
 - Trend Lookback Window: 63 sessions (approx. 1 quarter)
 - Trend Threshold: ±5.0%
 - Volatility Window: 21 sessions
 - High Volatility Cutoff: 75th percentile of history (0.012251)
-- Low Volatility Cutoff: 25th percentile of history (0.006827)
+- Volatility Percentile Thresholds: Low = 25th, High = 75th
+
+## Methodology: Formal Definitions
+This module evaluates market behavior across two independent dimensions: direction (Trend) and dispersion (Volatility).
+
+**1. Rolling Return Formula** (used for trend classification):
+```
+RollingReturn_t = (Close_t - Close_(t - trend_window)) / Close_(t - trend_window)
+```
+**2. Rolling Volatility Formula** (used for volatility classification):
+```
+RollingVolatility_t = StdDev(DailyReturn_(t-vol_window+1), ..., DailyReturn_t)
+```
+**3. Trend Regime Assignment Rules**:
+```
+Bull:      Close_t > SMA_200_t   AND   RollingReturn_t > +trend_threshold
+Bear:      Close_t < SMA_200_t   AND   RollingReturn_t < -trend_threshold
+Sideways:  |RollingReturn_t| <= trend_threshold  (regardless of SMA_200 position)
+```
+*Note: Conflicts where Close price relative to SMA_200 contradicts the trailing return direction are classified under the Sideways category to maintain high rigor for Bull and Bear definitions.*
+
+**4. Volatility Regime Assignment Rules**:
+```
+High:    RollingVolatility_t > P75(RollingVolatility, full history)
+Low:     RollingVolatility_t < P25(RollingVolatility, full history)
+Normal:  otherwise
+```
+
+## Design Decision: Two Independent Dimensions
+Trend and volatility are modeled as two independent labels rather than one combined regime because they describe different dimensions of market behavior: trend describes *direction* (is price rising, falling, or flat), while volatility describes *dispersion* (how much day-to-day movement is occurring, independent of direction). A market can be simultaneously trending upward and highly volatile (e.g. a sharp V-shaped recovery) or trending upward calmly. Collapsing these into a single mutually-exclusive category would discard information relevant to later use cases such as position sizing, where a calm bull market and a volatile bull market warrant different risk treatment even though both are 'Bull' by trend.
 
 ## 1. Important Caveat & Structural Warning
 > [!WARNING]
@@ -19,22 +48,41 @@
 > **Zero-Volume Limitation Validation:**
 > The Nifty zero-volume limitation period (2007–2013) identified in Step 5 does **not** distort the volatility regimes. Volatility regimes are computed entirely using standard deviation of returns (`Daily_Return`) derived from price Close series, not `Volume`. Hence, historical zero-volume years have zero distortion effect on the volatility classifications below.
 
-## 2. Per-Regime Statistics
-### Trend Regime Performance Metrics
-| Regime | Period Count | Total Trading Days | Mean Daily Return | Median Daily Return | Volatility (Std Dev) | Avg Trading Days per Period | Avg Calendar Days |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Bear** | 71 | 719 | -0.1838% | -0.1426% | 2.0149% | 10.1 | 13.7 |
-| **Sideways** | 194 | 1978 | +0.0275% | +0.0209% | 1.0045% | 10.2 | 13.7 |
-| **Bull** | 123 | 1716 | +0.1688% | +0.1519% | 1.0164% | 14.0 | 19.2 |
+## 2. Regime Distribution Summaries
+### Trend Regime Distribution
+| Regime | Trading Days | Percentage of Dataset |
+| :--- | :--- | :--- |
+| Bull | 1716 | 37.20% |
+| Bear | 719 | 15.59% |
+| Sideways | 1978 | 42.88% |
+| Insufficient Data | 200 | 4.34% |
+| **Total** | 4613 | 100.00% |
 
-### Volatility Regime Performance Metrics
-| Regime | Period Count | Total Trading Days | Mean Daily Return | Median Daily Return | Volatility (Std Dev) | Avg Trading Days per Period | Avg Calendar Days |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **High** | 48 | 1148 | +0.0687% | +0.1130% | 2.1461% | 23.9 | 34.5 |
-| **Normal** | 119 | 2296 | +0.0195% | +0.0436% | 0.9335% | 19.3 | 27.2 |
-| **Low** | 71 | 1148 | +0.0514% | +0.0596% | 0.5893% | 16.2 | 22.4 |
+### Volatility Regime Distribution
+| Regime | Trading Days | Percentage of Dataset |
+| :--- | :--- | :--- |
+| High | 1148 | 24.89% |
+| Normal | 2296 | 49.77% |
+| Low | 1148 | 24.89% |
+| Insufficient Data | 21 | 0.46% |
+| **Total** | 4613 | 100.00% |
 
-## 3. Two-Dimensional Cross-Tabulation Matrix (Trend × Volatility)
+## 3. Per-Regime Performance & Persistence Statistics
+### Trend Regime Performance & Persistence Metrics
+| Regime | Period Count | Total Trading Days | Mean Daily Return | Median Daily Return | Volatility (Std Dev) | Avg Trading Days per Period | Min Duration | Max Duration | Median Duration | Avg Calendar Days |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Bear** | 71 | 719 | -0.1838% | -0.1426% | 2.0149% | 10.1 | 1 | 76 | 3 | 13.7 |
+| **Sideways** | 194 | 1978 | +0.0275% | +0.0209% | 1.0045% | 10.2 | 1 | 84 | 5 | 13.7 |
+| **Bull** | 123 | 1716 | +0.1688% | +0.1519% | 1.0164% | 14.0 | 1 | 122 | 3 | 19.2 |
+
+### Volatility Regime Performance & Persistence Metrics
+| Regime | Period Count | Total Trading Days | Mean Daily Return | Median Daily Return | Volatility (Std Dev) | Avg Trading Days per Period | Min Duration | Max Duration | Median Duration | Avg Calendar Days |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **High** | 48 | 1148 | +0.0687% | +0.1130% | 2.1461% | 23.9 | 1 | 314 | 8 | 34.5 |
+| **Normal** | 119 | 2296 | +0.0195% | +0.0436% | 0.9335% | 19.3 | 1 | 96 | 11 | 27.2 |
+| **Low** | 71 | 1148 | +0.0514% | +0.0596% | 0.5893% | 16.2 | 1 | 159 | 4 | 22.4 |
+
+## 4. Two-Dimensional Cross-Tabulation Matrix (Trend × Volatility)
 Co-occurrence of trend and volatility dimensions (counts in trading days):
 | Trend Regime / Volatility | High | Insufficient Data | Low | Normal | All |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -44,11 +92,22 @@ Co-occurrence of trend and volatility dimensions (counts in trading days):
 | **Sideways** | 352 | 0 | 451 | 1175 | 1978 |
 | **All** | 1148 | 21 | 1148 | 2296 | 4613 |
 
-## 4. Regime Timeline Visualization
+## 5. Trend Regime Transitions Matrix
+> [!IMPORTANT]
+> **Descriptive-Only Framing Disclaimer:**
+> The table below shows the absolute count of historical transitions between contiguous periods of different trend regimes in the dataset. This analysis is strictly **descriptive and historical**; it is not a predictive Markov transition model and cannot be used to forecast the probability of future regime changes.
+
+| From \ To | Bull | Bear | Sideways |
+| :--- | :--- | :--- | :--- |
+| **Bull** | — | 0 | 123 |
+| **Bear** | 0 | — | 71 |
+| **Sideways** | 123 | 70 | — |
+
+## 6. Regime Timeline Visualization
 The timeline below plots the Close price overlaying colored bands representing trend regimes:
 ![Regime Timeline Timeline](../figures/regime_timeline.png)
 
-## 5. Contiguous Trend Regime Period Timeline
+## 7. Contiguous Trend Regime Period Timeline
 | Period Rank | Start Date | End Date | Trend Regime | Trading Days | Calendar Days | Start Price | End Price | Overlapping Known Market Events |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | 1 | `2007-09-17` | `2008-07-07` | **Insufficient Data** | 200 | 294 | 4494.65 | 4030.00 | Global Financial Crisis, RSI Warm-Up Boundary Artifact, Volume Index Feed Limitation |
@@ -441,7 +500,7 @@ The timeline below plots the Close price overlaying colored bands representing t
 | 388 | `2026-05-11` | `2026-06-11` | **Bear** | 23 | 31 | 23815.85 | 23161.60 | None |
 | 389 | `2026-06-12` | `2026-07-09` | **Sideways** | 19 | 27 | 23622.90 | 23962.80 | None |
 
-## 6. Contiguous Volatility Regime Period Timeline
+## 8. Contiguous Volatility Regime Period Timeline
 | Period Rank | Start Date | End Date | Volatility Regime | Trading Days | Calendar Days | Start Price | End Price | Overlapping Known Market Events |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | 1 | `2007-09-17` | `2007-10-16` | **Insufficient Data** | 21 | 29 | 4494.65 | 5668.05 | RSI Warm-Up Boundary Artifact, Volume Index Feed Limitation |
