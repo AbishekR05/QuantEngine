@@ -63,3 +63,10 @@ eda:
     known_events_path: "config/known_events.yaml"
     output_report_path: "reports/eda/statistics/regime_report.md"
     output_chart_path: "reports/eda/figures/regime_timeline.png"
+  feature_usefulness:
+    input_file: "data/features/nifty_features.csv"
+    exclude_columns:
+      - Date
+    correlation_report_source: "reports/eda/statistics/correlation_report.md"
+    mi_bins: 10
+    output_report_path: "reports/eda/statistics/feature_usefulness_report.md"

@@ -86,6 +86,19 @@ class EdaRegimeConfig(BaseModel):
     def get_output_chart_path(self) -> Path:
         return PROJECT_ROOT / self.output_chart_path
 
+class EdaFeatureUsefulnessConfig(BaseModel):
+    input_file: str
+    exclude_columns: List[str]
+    correlation_report_source: str
+    mi_bins: int
+    output_report_path: str
+
+    def get_input_file_path(self) -> Path:
+        return PROJECT_ROOT / self.input_file
+
+    def get_output_report_path(self) -> Path:
+        return PROJECT_ROOT / self.output_report_path
+
 class EdaConfig(BaseModel):
     input_files: EdaInputFiles
     output_dir: str
@@ -95,6 +108,7 @@ class EdaConfig(BaseModel):
     correlation: EdaCorrelationConfig
     outliers: EdaOutliersConfig
     regime: EdaRegimeConfig
+    feature_usefulness: EdaFeatureUsefulnessConfig
 
     def get_clean_input_path(self) -> Path:
         return PROJECT_ROOT / self.input_files.clean
