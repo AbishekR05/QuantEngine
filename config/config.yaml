@@ -70,3 +70,11 @@ eda:
     correlation_report_source: "reports/eda/statistics/correlation_report.md"
     mi_bins: 10
     output_report_path: "reports/eda/statistics/feature_usefulness_report.md"
+  label_engineering:
+    input_file: "data/features/nifty_features.csv"
+    close_column: "Close"
+    three_class_threshold: 0.005
+    output_dir: "data/labels/"
+    binary_output_filename: "nifty_labels_v1_binary.csv"
+    three_class_output_filename: "nifty_labels_v2_threeclass.csv"
+    report_output_path: "reports/eda/statistics/label_engineering_report.md"

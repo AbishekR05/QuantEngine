@@ -99,6 +99,30 @@ class EdaFeatureUsefulnessConfig(BaseModel):
     def get_output_report_path(self) -> Path:
         return PROJECT_ROOT / self.output_report_path
 
+class EdaLabelEngineeringConfig(BaseModel):
+    input_file: str
+    close_column: str
+    three_class_threshold: float
+    output_dir: str
+    binary_output_filename: str
+    three_class_output_filename: str
+    report_output_path: str
+
+    def get_input_file_path(self) -> Path:
+        return PROJECT_ROOT / self.input_file
+
+    def get_output_dir_path(self) -> Path:
+        return PROJECT_ROOT / self.output_dir
+
+    def get_binary_output_path(self) -> Path:
+        return self.get_output_dir_path() / self.binary_output_filename
+
+    def get_three_class_output_path(self) -> Path:
+        return self.get_output_dir_path() / self.three_class_output_filename
+
+    def get_report_output_path(self) -> Path:
+        return PROJECT_ROOT / self.report_output_path
+
 class EdaConfig(BaseModel):
     input_files: EdaInputFiles
     output_dir: str
@@ -109,6 +133,7 @@ class EdaConfig(BaseModel):
     outliers: EdaOutliersConfig
     regime: EdaRegimeConfig
     feature_usefulness: EdaFeatureUsefulnessConfig
+    label_engineering: EdaLabelEngineeringConfig
 
     def get_clean_input_path(self) -> Path:
         return PROJECT_ROOT / self.input_files.clean
