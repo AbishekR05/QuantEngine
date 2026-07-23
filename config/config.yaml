@@ -78,3 +78,7 @@ eda:
     binary_output_filename: "nifty_labels_v1_binary.csv"
     three_class_output_filename: "nifty_labels_v2_threeclass.csv"
     report_output_path: "reports/eda/statistics/label_engineering_report.md"
+  scaling:
+    bounded_columns:
+      - RSI_14
+    output_report_path: "reports/eda/statistics/scaling_recommendation_report.md"
