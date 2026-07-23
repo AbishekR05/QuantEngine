@@ -82,3 +82,5 @@ eda:
     bounded_columns:
       - RSI_14
     output_report_path: "reports/eda/statistics/scaling_recommendation_report.md"
+  final_report:
+    output_report_path: "reports/eda/EDA_REPORT.md"
