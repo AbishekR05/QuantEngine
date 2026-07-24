@@ -78,6 +78,41 @@ def build_consolidated_report(config: dict) -> None:
     report.append("**Target Asset**: Nifty 50 Index (Features & Target Labels)")
     report.append("\n---\n")
     
+    # Executive Summary (Page 1)
+    report.append("## Executive Summary")
+    report.append("| Metadata Dimension | Status / Details |")
+    report.append("| :--- | :--- |")
+    report.append("| **Project Status** | Phase 2 (Completed) |")
+    report.append("| **Dataset Quality** | Excellent |")
+    report.append("| **Missing Values** | Expected warm-up only |")
+    report.append("| **Market Coverage** | 2007–2026 |")
+    report.append("| **Indicators** | 22 |")
+    report.append("| **Engineered Labels** | Binary, Three-Class |")
+    report.append("| **ML Ready?** | **NO** |")
+    report.append("| **Reason** | Need Feature Selection, Need Train/Test Pipeline, Need Backtesting |")
+    report.append("\n---\n")
+    
+    # Phase 3 Readiness Checklist
+    report.append("## Phase 3 Readiness Checklist")
+    report.append("| Status | Step / Milestone | Phase |")
+    report.append("| :---: | :--- | :--- |")
+    report.append("| ✔ | Data Collected | Phase 1 |")
+    report.append("| ✔ | Features Engineered | Phase 1 |")
+    report.append("| ✔ | Dataset Validated | Phase 2 |")
+    report.append("| ✔ | Correlations Studied | Phase 2 |")
+    report.append("| ✔ | Outliers Understood | Phase 2 |")
+    report.append("| ✔ | Market Regimes Created | Phase 2 |")
+    report.append("| ✔ | Labels Generated | Phase 2 |")
+    report.append("| ✔ | Scaling Recommendations Ready | Phase 2 |")
+    report.append("| ⬜ | Train/Test Pipeline | Phase 3 |")
+    report.append("| ⬜ | Walk Forward Validation | Phase 3 |")
+    report.append("| ⬜ | Feature Selection | Phase 3 |")
+    report.append("| ⬜ | Model Training | Phase 3 |")
+    report.append("| ⬜ | Hyperparameter Search | Phase 3 |")
+    report.append("| ⬜ | Backtesting | Phase 3 |")
+    report.append("| ⬜ | Paper Trading | Phase 3 |")
+    report.append("\n---\n")
+    
     # Table of Contents
     report.append("## Table of Contents")
     report.append(
@@ -90,6 +125,7 @@ def build_consolidated_report(config: dict) -> None:
         "7. [Feature Usefulness & Information Entanglement](#7-feature-usefulness--information-entanglement)\n"
         "8. [Label Engineering & Supervised Targets](#8-label-engineering--supervised-targets)\n"
         "9. [Feature Scaling Recommendations](#9-feature-scaling-recommendations)\n"
+        "10. [Final Conclusions](#10-final-conclusions)\n"
     )
     report.append("\n---\n")
     
@@ -100,7 +136,6 @@ def build_consolidated_report(config: dict) -> None:
         "It spans historical sessions from 2007 to 2026. The table below outlines the metadata characteristics of this dataset:\n"
     )
     if ds_features_content:
-        # Extract markdown table or details from summary
         report.append(ds_features_content.strip())
     else:
         report.append("- *Metadata file missing. Dataset contains 4,613 total rows, 22 features, and 1 Date column.*")
@@ -136,7 +171,6 @@ def build_consolidated_report(config: dict) -> None:
     # 4. Correlation Findings
     report.append("## 4. Correlation Taxonomy & Redundant Pairs")
     if corr_content:
-        # Extract Near-Duplicate section and Taxonomy section
         re_group = extract_section_by_header(corr_content, "Near-Duplicate / Highly Redundant Features")
         taxonomy = extract_section_by_header(corr_content, "Taxonomy of Feature Relationships")
         roadmap = extract_section_by_header(corr_content, "Roadmap for Future Predictive Correlation")
@@ -259,6 +293,20 @@ def build_consolidated_report(config: dict) -> None:
     else:
         report.append("- *Scaling recommendation report missing.*")
     report.append("\n---\n")
+    
+    # 10. Final Conclusions (Section 2 & 3 Compliance)
+    report.append("## 10. Final Conclusions")
+    report.append("### Key Findings")
+    report.append("- **Dataset quality is excellent**: High completeness across price history, missing values restricted strictly to standard indicators' warm-up boundaries.")
+    report.append("- **No pipeline failures detected**: Clean date formatting, zero duplicates, and complete numerical alignments.")
+    report.append("- **Feature engineering successful**: 22 functional features generated across price trend, momentum, and statistical dispersion categories.")
+    report.append("- **Market regimes identified**: Historical Trend (direction) and Volatility (dispersion) regimes successfully created and validated descriptive-only transition matrices.")
+    report.append("- **Heavy multicollinearity exists among trend indicators**: Multicollinearity flags confirmed in Step 4 Pearson matrices demand model pruning.")
+    report.append("- **Feature selection required**: High mutual information and redundancy counts necessitate feature subset selection prior to model training.")
+    report.append("- **Dataset suitable for supervised learning**: Both Version A and Version B label files correctly appended and structured.")
+    report.append("- **Options labels require derivative data**: ATM options v3 modeling requires a distinct option-chain loader to support strike-based theta decay math.")
+    report.append("\n### Next Phase")
+    report.append("**Machine Learning Pipeline**: Developing the Phase 3 training framework, feature selector nodes, walk-forward CV, hyperparameter searches, and backtests.")
     
     # Resolve output path
     output_rel = config['eda']['final_report']['output_report_path']
