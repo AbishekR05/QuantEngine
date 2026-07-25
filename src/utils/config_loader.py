@@ -136,6 +136,15 @@ class EdaFinalReportConfig(BaseModel):
     def get_output_report_path(self) -> Path:
         return PROJECT_ROOT / self.output_report_path
 
+class EdaFeatureStoreConfig(BaseModel):
+    output_dir: str
+    version: int
+    format: str
+    validation_level: str
+
+    def get_output_dir_path(self) -> Path:
+        return PROJECT_ROOT / self.output_dir
+
 class EdaConfig(BaseModel):
     input_files: EdaInputFiles
     output_dir: str
@@ -149,6 +158,7 @@ class EdaConfig(BaseModel):
     label_engineering: EdaLabelEngineeringConfig
     scaling: EdaScalingConfig
     final_report: EdaFinalReportConfig
+    feature_store: EdaFeatureStoreConfig
 
     def get_clean_input_path(self) -> Path:
         return PROJECT_ROOT / self.input_files.clean

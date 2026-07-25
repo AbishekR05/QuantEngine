@@ -84,3 +84,8 @@ eda:
     output_report_path: "reports/eda/statistics/scaling_recommendation_report.md"
   final_report:
     output_report_path: "reports/eda/EDA_REPORT.md"
+  feature_store:
+    output_dir: "data/feature_store/"
+    version: 1
+    format: "parquet"
+    validation_level: "warn_non_critical"

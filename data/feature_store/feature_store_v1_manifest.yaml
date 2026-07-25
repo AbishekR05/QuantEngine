@@ -1,0 +1,251 @@
+end_date: '2026-07-09'
+features:
+  ATR_14:
+    dtype: float64
+    feature_group: indicator
+    formula: 14-day Average True Range
+    lag: 0
+    name: ATR_14
+    nullability: Nullable during warm-up (first 14 rows)
+    rolling_window: 14
+    scaler_recommendation: RobustScaler
+    source: derived
+    units: INR
+  Adj Close:
+    dtype: float64
+    feature_group: structural
+    formula: raw passthrough
+    lag: 0
+    name: Adj Close
+    nullability: Non-nullable
+    rolling_window: null
+    scaler_recommendation: StandardScaler
+    source: raw
+    units: INR
+  BB_Lower:
+    dtype: float64
+    feature_group: indicator
+    formula: BB_Middle - (2 * 20-day standard deviation)
+    lag: 0
+    name: BB_Lower
+    nullability: Nullable during warm-up (first 19 rows)
+    rolling_window: 20
+    scaler_recommendation: StandardScaler
+    source: derived
+    units: INR
+  BB_Middle:
+    dtype: float64
+    feature_group: indicator
+    formula: 20-day Simple Moving Average
+    lag: 0
+    name: BB_Middle
+    nullability: Nullable during warm-up (first 19 rows)
+    rolling_window: 20
+    scaler_recommendation: StandardScaler
+    source: derived
+    units: INR
+  BB_Upper:
+    dtype: float64
+    feature_group: indicator
+    formula: BB_Middle + (2 * 20-day standard deviation)
+    lag: 0
+    name: BB_Upper
+    nullability: Nullable during warm-up (first 19 rows)
+    rolling_window: 20
+    scaler_recommendation: StandardScaler
+    source: derived
+    units: INR
+  Close:
+    dtype: float64
+    feature_group: structural
+    formula: raw passthrough
+    lag: 0
+    name: Close
+    nullability: Non-nullable
+    rolling_window: null
+    scaler_recommendation: StandardScaler
+    source: raw
+    units: INR
+  Daily_Return:
+    dtype: float64
+    feature_group: derived
+    formula: (Close_t - Close_{t-1}) / Close_{t-1}
+    lag: 1
+    name: Daily_Return
+    nullability: Nullable during warm-up (first 1 row)
+    rolling_window: null
+    scaler_recommendation: RobustScaler
+    source: derived
+    units: '%'
+  EMA_20:
+    dtype: float64
+    feature_group: indicator
+    formula: 20-day Exponential Moving Average
+    lag: 0
+    name: EMA_20
+    nullability: Nullable during warm-up (first 19 rows)
+    rolling_window: 20
+    scaler_recommendation: StandardScaler
+    source: derived
+    units: INR
+  EMA_200:
+    dtype: float64
+    feature_group: indicator
+    formula: 200-day Exponential Moving Average
+    lag: 0
+    name: EMA_200
+    nullability: Nullable during warm-up (first 199 rows)
+    rolling_window: 200
+    scaler_recommendation: StandardScaler
+    source: derived
+    units: INR
+  EMA_50:
+    dtype: float64
+    feature_group: indicator
+    formula: 50-day Exponential Moving Average
+    lag: 0
+    name: EMA_50
+    nullability: Nullable during warm-up (first 49 rows)
+    rolling_window: 50
+    scaler_recommendation: StandardScaler
+    source: derived
+    units: INR
+  High:
+    dtype: float64
+    feature_group: structural
+    formula: raw passthrough
+    lag: 0
+    name: High
+    nullability: Non-nullable
+    rolling_window: null
+    scaler_recommendation: StandardScaler
+    source: raw
+    units: INR
+  Log_Return:
+    dtype: float64
+    feature_group: derived
+    formula: ln(Close_t / Close_{t-1})
+    lag: 1
+    name: Log_Return
+    nullability: Nullable during warm-up (first 1 row)
+    rolling_window: null
+    scaler_recommendation: RobustScaler
+    source: derived
+    units: '%'
+  Low:
+    dtype: float64
+    feature_group: structural
+    formula: raw passthrough
+    lag: 0
+    name: Low
+    nullability: Non-nullable
+    rolling_window: null
+    scaler_recommendation: StandardScaler
+    source: raw
+    units: INR
+  MACD:
+    dtype: float64
+    feature_group: indicator
+    formula: EMA_12 - EMA_26
+    lag: 0
+    name: MACD
+    nullability: Nullable during warm-up (first 25 rows)
+    rolling_window: 26
+    scaler_recommendation: RobustScaler
+    source: derived
+    units: dimensionless
+  MACD_Hist:
+    dtype: float64
+    feature_group: indicator
+    formula: MACD - MACD_Signal
+    lag: 0
+    name: MACD_Hist
+    nullability: Nullable during warm-up (first 33 rows)
+    rolling_window: 9
+    scaler_recommendation: RobustScaler
+    source: derived
+    units: dimensionless
+  MACD_Signal:
+    dtype: float64
+    feature_group: indicator
+    formula: 9-day EMA of MACD
+    lag: 0
+    name: MACD_Signal
+    nullability: Nullable during warm-up (first 33 rows)
+    rolling_window: 9
+    scaler_recommendation: RobustScaler
+    source: derived
+    units: dimensionless
+  Open:
+    dtype: float64
+    feature_group: structural
+    formula: raw passthrough
+    lag: 0
+    name: Open
+    nullability: Non-nullable
+    rolling_window: null
+    scaler_recommendation: StandardScaler
+    source: raw
+    units: INR
+  RSI_14:
+    dtype: float64
+    feature_group: indicator
+    formula: 14-day Relative Strength Index
+    lag: 0
+    name: RSI_14
+    nullability: Nullable during warm-up (first 1 row), artifact 100.0 first 13 rows
+    rolling_window: 14
+    scaler_recommendation: MinMaxScaler
+    source: derived
+    units: dimensionless
+  SMA_20:
+    dtype: float64
+    feature_group: indicator
+    formula: 20-day Simple Moving Average
+    lag: 0
+    name: SMA_20
+    nullability: Nullable during warm-up (first 19 rows)
+    rolling_window: 20
+    scaler_recommendation: StandardScaler
+    source: derived
+    units: INR
+  SMA_200:
+    dtype: float64
+    feature_group: indicator
+    formula: 200-day Simple Moving Average
+    lag: 0
+    name: SMA_200
+    nullability: Nullable during warm-up (first 199 rows)
+    rolling_window: 200
+    scaler_recommendation: StandardScaler
+    source: derived
+    units: INR
+  SMA_50:
+    dtype: float64
+    feature_group: indicator
+    formula: 50-day Simple Moving Average
+    lag: 0
+    name: SMA_50
+    nullability: Nullable during warm-up (first 49 rows)
+    rolling_window: 50
+    scaler_recommendation: StandardScaler
+    source: derived
+    units: INR
+  Volume:
+    dtype: int64
+    feature_group: structural
+    formula: raw passthrough
+    lag: 0
+    name: Volume
+    nullability: Non-nullable, zero-inflation present 2007-2013
+    rolling_window: null
+    scaler_recommendation: RobustScaler
+    source: raw
+    units: index points
+generation_timestamp: '2026-07-25 11:10:40'
+row_count: 4613
+schema_checksum: 788c0fbdef69cda8541b7fdd501ed5161fb17fde4e40a07942504d8ea7fa2626
+source_file: data/features/nifty_features.csv
+source_hash: 3ea0f22f6724bfe4361fe4d626a813ea9ffe249b9a28702d7ed07d856c540434
+start_date: '2007-09-17'
+version: 1
