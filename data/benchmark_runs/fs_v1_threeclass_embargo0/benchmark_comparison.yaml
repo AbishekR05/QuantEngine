@@ -1,0 +1,333 @@
+models_comparison:
+  decision_tree:
+    folds:
+      1:
+        calibrated_f1: 0.2153558052434457
+        is_partial_test_year: false
+        margin_over_naive: 0.0
+        naive_baseline_f1: 0.2153558052434457
+        raw_f1: 0.278572863899611
+        viability_gate_pass: false
+      2:
+        calibrated_f1: 0.16616616616616617
+        is_partial_test_year: false
+        margin_over_naive: 0.0
+        naive_baseline_f1: 0.16616616616616617
+        raw_f1: 0.2910512426641459
+        viability_gate_pass: false
+      3:
+        calibrated_f1: 0.20093896713615023
+        is_partial_test_year: false
+        margin_over_naive: 0.0
+        naive_baseline_f1: 0.20093896713615023
+        raw_f1: 0.24657424779375994
+        viability_gate_pass: false
+      4:
+        calibrated_f1: 0.19157088122605362
+        is_partial_test_year: false
+        margin_over_naive: 0.0
+        naive_baseline_f1: 0.19157088122605362
+        raw_f1: 0.39316796675902177
+        viability_gate_pass: false
+      5:
+        calibrated_f1: 0.2467866323907455
+        is_partial_test_year: false
+        margin_over_naive: 0.0
+        naive_baseline_f1: 0.2467866323907455
+        raw_f1: 0.30463522974620294
+        viability_gate_pass: false
+      6:
+        calibrated_f1: 0.2339489885664028
+        is_partial_test_year: false
+        margin_over_naive: 0.0
+        naive_baseline_f1: 0.2339489885664028
+        raw_f1: 0.34596180005124433
+        viability_gate_pass: false
+      7:
+        calibrated_f1: 0.24534686971235195
+        is_partial_test_year: false
+        margin_over_naive: 0.0
+        naive_baseline_f1: 0.24534686971235195
+        raw_f1: 0.4007106911779809
+        viability_gate_pass: false
+      8:
+        calibrated_f1: 0.1931818181818182
+        is_partial_test_year: true
+        margin_over_naive: 0.0
+        naive_baseline_f1: 0.1931818181818182
+        raw_f1: 0.4134936321314557
+        viability_gate_pass: false
+    full_year_f1_mean: 0.2143020443487594
+    overall_viability_pass: false
+    passing_folds_count: 0
+    required_passing_folds: 5
+    stability_indicator:
+      allowed_threshold: 0.1
+      max_deviation: 0.04813587818259324
+      stable: true
+  lightgbm:
+    folds:
+      1:
+        calibrated_f1: 0.2153558052434457
+        is_partial_test_year: false
+        margin_over_naive: 0.0
+        naive_baseline_f1: 0.2153558052434457
+        raw_f1: 0.23750379557611004
+        viability_gate_pass: false
+      2:
+        calibrated_f1: 0.16616616616616617
+        is_partial_test_year: false
+        margin_over_naive: 0.0
+        naive_baseline_f1: 0.16616616616616617
+        raw_f1: 0.29749239453461584
+        viability_gate_pass: false
+      3:
+        calibrated_f1: 0.20093896713615023
+        is_partial_test_year: false
+        margin_over_naive: 0.0
+        naive_baseline_f1: 0.20093896713615023
+        raw_f1: 0.38306421218253867
+        viability_gate_pass: false
+      4:
+        calibrated_f1: 0.19157088122605362
+        is_partial_test_year: false
+        margin_over_naive: 0.0
+        naive_baseline_f1: 0.19157088122605362
+        raw_f1: 0.3712440507489652
+        viability_gate_pass: false
+      5:
+        calibrated_f1: 0.24978923946542833
+        is_partial_test_year: false
+        margin_over_naive: 0.0030026070746828337
+        naive_baseline_f1: 0.2467866323907455
+        raw_f1: 0.31669916803753456
+        viability_gate_pass: false
+      6:
+        calibrated_f1: 0.2339489885664028
+        is_partial_test_year: false
+        margin_over_naive: 0.0
+        naive_baseline_f1: 0.2339489885664028
+        raw_f1: 0.3104303874743734
+        viability_gate_pass: false
+      7:
+        calibrated_f1: 0.24534686971235195
+        is_partial_test_year: false
+        margin_over_naive: 0.0
+        naive_baseline_f1: 0.24534686971235195
+        raw_f1: 0.36600023755524047
+        viability_gate_pass: false
+      8:
+        calibrated_f1: 0.1931818181818182
+        is_partial_test_year: true
+        margin_over_naive: 0.0
+        naive_baseline_f1: 0.1931818181818182
+        raw_f1: 0.2902618309944718
+        viability_gate_pass: false
+    full_year_f1_mean: 0.21473098821657127
+    overall_viability_pass: false
+    passing_folds_count: 0
+    required_passing_folds: 5
+    stability_indicator:
+      allowed_threshold: 0.1
+      max_deviation: 0.048564822050405104
+      stable: true
+  logistic_regression:
+    folds:
+      1:
+        calibrated_f1: 0.2833550340943067
+        is_partial_test_year: false
+        margin_over_naive: 0.06799922885086099
+        naive_baseline_f1: 0.2153558052434457
+        raw_f1: 0.32905102636919575
+        viability_gate_pass: true
+      2:
+        calibrated_f1: 0.30795526996339356
+        is_partial_test_year: false
+        margin_over_naive: 0.1417891037972274
+        naive_baseline_f1: 0.16616616616616617
+        raw_f1: 0.32518344316196574
+        viability_gate_pass: true
+      3:
+        calibrated_f1: 0.3870543459584555
+        is_partial_test_year: false
+        margin_over_naive: 0.18611537882230528
+        naive_baseline_f1: 0.20093896713615023
+        raw_f1: 0.3381223190670468
+        viability_gate_pass: true
+      4:
+        calibrated_f1: 0.3078885070637648
+        is_partial_test_year: false
+        margin_over_naive: 0.11631762583771119
+        naive_baseline_f1: 0.19157088122605362
+        raw_f1: 0.29625136139406755
+        viability_gate_pass: true
+      5:
+        calibrated_f1: 0.24742268041237114
+        is_partial_test_year: false
+        margin_over_naive: 0.0006360480216256459
+        naive_baseline_f1: 0.2467866323907455
+        raw_f1: 0.3067610062893082
+        viability_gate_pass: false
+      6:
+        calibrated_f1: 0.29495421780635106
+        is_partial_test_year: false
+        margin_over_naive: 0.06100522923994825
+        naive_baseline_f1: 0.2339489885664028
+        raw_f1: 0.3852370689655172
+        viability_gate_pass: true
+      7:
+        calibrated_f1: 0.3140033124966608
+        is_partial_test_year: false
+        margin_over_naive: 0.06865644278430885
+        naive_baseline_f1: 0.24534686971235195
+        raw_f1: 0.3900334168755221
+        viability_gate_pass: true
+      8:
+        calibrated_f1: 0.3383626177743824
+        is_partial_test_year: true
+        margin_over_naive: 0.14518079959256422
+        naive_baseline_f1: 0.1931818181818182
+        raw_f1: 0.34599469851030373
+        viability_gate_pass: true
+    full_year_f1_mean: 0.3060904811136148
+    overall_viability_pass: true
+    passing_folds_count: 7
+    required_passing_folds: 5
+    stability_indicator:
+      allowed_threshold: 0.1
+      max_deviation: 0.0809638648448407
+      stable: true
+  random_forest:
+    folds:
+      1:
+        calibrated_f1: 0.2153558052434457
+        is_partial_test_year: false
+        margin_over_naive: 0.0
+        naive_baseline_f1: 0.2153558052434457
+        raw_f1: 0.2588757010564758
+        viability_gate_pass: false
+      2:
+        calibrated_f1: 0.16616616616616617
+        is_partial_test_year: false
+        margin_over_naive: 0.0
+        naive_baseline_f1: 0.16616616616616617
+        raw_f1: 0.3166164356037774
+        viability_gate_pass: false
+      3:
+        calibrated_f1: 0.20093896713615023
+        is_partial_test_year: false
+        margin_over_naive: 0.0
+        naive_baseline_f1: 0.20093896713615023
+        raw_f1: 0.24008121490873682
+        viability_gate_pass: false
+      4:
+        calibrated_f1: 0.2002530399943769
+        is_partial_test_year: false
+        margin_over_naive: 0.00868215876832329
+        naive_baseline_f1: 0.19157088122605362
+        raw_f1: 0.34942635383038034
+        viability_gate_pass: false
+      5:
+        calibrated_f1: 0.2467866323907455
+        is_partial_test_year: false
+        margin_over_naive: 0.0
+        naive_baseline_f1: 0.2467866323907455
+        raw_f1: 0.34850228039523073
+        viability_gate_pass: false
+      6:
+        calibrated_f1: 0.2339489885664028
+        is_partial_test_year: false
+        margin_over_naive: 0.0
+        naive_baseline_f1: 0.2339489885664028
+        raw_f1: 0.24252591380250954
+        viability_gate_pass: false
+      7:
+        calibrated_f1: 0.24534686971235195
+        is_partial_test_year: false
+        margin_over_naive: 0.0
+        naive_baseline_f1: 0.24534686971235195
+        raw_f1: 0.32942696458428333
+        viability_gate_pass: false
+      8:
+        calibrated_f1: 0.1931818181818182
+        is_partial_test_year: true
+        margin_over_naive: 0.0
+        naive_baseline_f1: 0.1931818181818182
+        raw_f1: 0.30847953216374263
+        viability_gate_pass: false
+    full_year_f1_mean: 0.2155423527442342
+    overall_viability_pass: false
+    passing_folds_count: 0
+    required_passing_folds: 5
+    stability_indicator:
+      allowed_threshold: 0.1
+      max_deviation: 0.049376186578068026
+      stable: true
+  xgboost:
+    folds:
+      1:
+        calibrated_f1: 0.35260871432488594
+        is_partial_test_year: false
+        margin_over_naive: 0.13725290908144025
+        naive_baseline_f1: 0.2153558052434457
+        raw_f1: 0.21290991606781082
+        viability_gate_pass: true
+      2:
+        calibrated_f1: 0.2257012582593978
+        is_partial_test_year: false
+        margin_over_naive: 0.05953509209323163
+        naive_baseline_f1: 0.16616616616616617
+        raw_f1: 0.3195418207670607
+        viability_gate_pass: true
+      3:
+        calibrated_f1: 0.24820538522299485
+        is_partial_test_year: false
+        margin_over_naive: 0.04726641808684462
+        naive_baseline_f1: 0.20093896713615023
+        raw_f1: 0.3615571480437482
+        viability_gate_pass: false
+      4:
+        calibrated_f1: 0.2310219648929326
+        is_partial_test_year: false
+        margin_over_naive: 0.039451083666878994
+        naive_baseline_f1: 0.19157088122605362
+        raw_f1: 0.311505871645873
+        viability_gate_pass: false
+      5:
+        calibrated_f1: 0.19187527448397013
+        is_partial_test_year: false
+        margin_over_naive: -0.05491135790677537
+        naive_baseline_f1: 0.2467866323907455
+        raw_f1: 0.27414987688859443
+        viability_gate_pass: false
+      6:
+        calibrated_f1: 0.22604955769512733
+        is_partial_test_year: false
+        margin_over_naive: -0.007899430871275481
+        naive_baseline_f1: 0.2339489885664028
+        raw_f1: 0.28930843706777315
+        viability_gate_pass: false
+      7:
+        calibrated_f1: 0.1842435655994978
+        is_partial_test_year: false
+        margin_over_naive: -0.06110330411285414
+        naive_baseline_f1: 0.24534686971235195
+        raw_f1: 0.37408395939043754
+        viability_gate_pass: false
+      8:
+        calibrated_f1: 0.31030195857782067
+        is_partial_test_year: true
+        margin_over_naive: 0.11712014039600246
+        naive_baseline_f1: 0.1931818181818182
+        raw_f1: 0.2888681987464802
+        viability_gate_pass: true
+    full_year_f1_mean: 0.23710081721125806
+    overall_viability_pass: false
+    passing_folds_count: 3
+    required_passing_folds: 5
+    stability_indicator:
+      allowed_threshold: 0.1
+      max_deviation: 0.11550789711362788
+      stable: false
+run_id: fs_v1_threeclass_embargo0
+timestamp: '2026-07-25 12:31:35'

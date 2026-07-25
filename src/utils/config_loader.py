@@ -159,6 +159,61 @@ class EdaWalkForwardConfig(BaseModel):
     label_version: str
     persist_fold_artifacts: bool
 
+class EdaLogisticRegressionConfig(BaseModel):
+    seed: int
+    class_weight: str
+    calibration_method: str
+    calibration_cv: int
+
+class EdaDecisionTreeConfig(BaseModel):
+    seed: int
+    class_weight: str
+    calibration_method: str
+    calibration_cv: int
+
+class EdaRandomForestConfig(BaseModel):
+    seed: int
+    n_estimators: int
+    class_weight: str
+    calibration_method: str
+    calibration_cv: int
+
+class EdaXGBoostConfig(BaseModel):
+    seed: int
+    n_estimators: int
+    learning_rate: float
+    scale_pos_weight_mode: str
+    calibration_method: str
+    calibration_cv: int
+
+class EdaLightGBMConfig(BaseModel):
+    seed: int
+    n_estimators: int
+    learning_rate: float
+    class_weight: str
+    calibration_method: str
+    calibration_cv: int
+
+class EdaBaselineModelsConfig(BaseModel):
+    logistic_regression: EdaLogisticRegressionConfig
+    decision_tree: EdaDecisionTreeConfig
+    random_forest: EdaRandomForestConfig
+    xgboost: EdaXGBoostConfig
+    lightgbm: EdaLightGBMConfig
+
+class EdaViabilityGateConfig(BaseModel):
+    metric: str
+    min_margin_over_naive_baseline: float
+    min_passing_folds: int
+
+class EdaBaselineBenchmarkingConfig(BaseModel):
+    models: EdaBaselineModelsConfig
+    viability_gate: EdaViabilityGateConfig
+    stability_threshold: float
+    feature_store_version: int
+    label_version: str
+    walk_forward_run_id: str
+
 class EdaConfig(BaseModel):
     input_files: EdaInputFiles
     output_dir: str
@@ -174,6 +229,7 @@ class EdaConfig(BaseModel):
     final_report: EdaFinalReportConfig
     feature_store: EdaFeatureStoreConfig
     walk_forward: EdaWalkForwardConfig
+    baseline_benchmarking: EdaBaselineBenchmarkingConfig
 
     def get_clean_input_path(self) -> Path:
         return PROJECT_ROOT / self.input_files.clean

@@ -1,0 +1,44 @@
+baseline_benchmarking:
+  feature_store_version: 1
+  label_version: threeclass
+  models:
+    decision_tree:
+      calibration_cv: 5
+      calibration_method: isotonic
+      class_weight: balanced
+      seed: 42
+    lightgbm:
+      calibration_cv: 5
+      calibration_method: platt
+      class_weight: balanced
+      learning_rate: 0.1
+      n_estimators: 100
+      seed: 42
+    logistic_regression:
+      calibration_cv: 5
+      calibration_method: platt
+      class_weight: balanced
+      seed: 42
+    random_forest:
+      calibration_cv: 5
+      calibration_method: isotonic
+      class_weight: balanced
+      n_estimators: 100
+      seed: 42
+    xgboost:
+      calibration_cv: 5
+      calibration_method: platt
+      learning_rate: 0.1
+      n_estimators: 100
+      scale_pos_weight_mode: balanced
+      seed: 42
+  stability_threshold: 0.1
+  viability_gate:
+    metric: macro_f1
+    min_margin_over_naive_baseline: 0.05
+    min_passing_folds: 5
+  walk_forward_run_id: fs_v1_threeclass_embargo0
+library_versions:
+  lightgbm: 4.7.0
+  scikit-learn: 1.8.0
+  xgboost: 3.2.0

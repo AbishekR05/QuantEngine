@@ -1,0 +1,92 @@
+calibrated:
+  accuracy: 0.540650406504065
+  brier_score: 0.6063831003978314
+  class_metrics:
+    BUY:
+      f1: 0.0
+      precision: 0.0
+      recall: 0.0
+    HOLD:
+      f1: 0.7018469656992085
+      precision: 0.540650406504065
+      recall: 1.0
+    SELL:
+      f1: 0.0
+      precision: 0.0
+      recall: 0.0
+  confusion_matrix:
+  - - 0
+    - 62
+    - 0
+  - - 0
+    - 133
+    - 0
+  - - 0
+    - 51
+    - 0
+  macro_f1: 0.2339489885664028
+  reliability_diagram:
+    BUY:
+      prob_pred:
+      - 0.29247901739438587
+      prob_true:
+      - 0.25203252032520324
+    HOLD:
+      prob_pred:
+      - 0.4801274458423757
+      prob_true:
+      - 0.540650406504065
+    SELL:
+      prob_pred:
+      - 0.22739353676323731
+      prob_true:
+      - 0.2073170731707317
+raw:
+  accuracy: 0.45121951219512196
+  brier_score: 1.0975609756097562
+  class_metrics:
+    BUY:
+      f1: 0.24742268041237114
+      precision: 0.34285714285714286
+      recall: 0.1935483870967742
+    HOLD:
+      f1: 0.6122448979591837
+      precision: 0.5590062111801242
+      recall: 0.6766917293233082
+    SELL:
+      f1: 0.1782178217821782
+      precision: 0.18
+      recall: 0.17647058823529413
+  confusion_matrix:
+  - - 12
+    - 36
+    - 14
+  - - 16
+    - 90
+    - 27
+  - - 7
+    - 35
+    - 9
+  macro_f1: 0.34596180005124433
+  reliability_diagram:
+    BUY:
+      prob_pred:
+      - 0.0
+      - 1.0
+      prob_true:
+      - 0.23696682464454977
+      - 0.34285714285714286
+    HOLD:
+      prob_pred:
+      - 0.0
+      - 1.0
+      prob_true:
+      - 0.5058823529411764
+      - 0.5590062111801242
+    SELL:
+      prob_pred:
+      - 0.0
+      - 1.0
+      prob_true:
+      - 0.21428571428571427
+      - 0.18

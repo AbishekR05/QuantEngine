@@ -1,0 +1,16 @@
+full_year_aggregates:
+  calibrated_brier_mean: 0.6364690934060204
+  calibrated_brier_std: 0.048338469371652745
+  calibrated_macro_f1_mean: 0.2155423527442342
+  calibrated_macro_f1_std: 0.026961303066129372
+  raw_brier_mean: 0.6580121649487347
+  raw_brier_std: 0.04454993161434642
+  raw_macro_f1_mean: 0.2979221234544848
+  raw_macro_f1_std: 0.04550039904283378
+model_name: random_forest
+partial_year_folds:
+  8:
+    calibrated_brier_score: 0.6696234226313474
+    calibrated_macro_f1: 0.1931818181818182
+    raw_brier_score: 0.6729456
+    raw_macro_f1: 0.30847953216374263

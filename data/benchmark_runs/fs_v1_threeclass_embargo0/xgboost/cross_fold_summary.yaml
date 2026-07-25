@@ -1,0 +1,16 @@
+full_year_aggregates:
+  calibrated_brier_mean: 0.6783914896977937
+  calibrated_brier_std: 0.009730594805685173
+  calibrated_macro_f1_mean: 0.23710081721125806
+  calibrated_macro_f1_std: 0.05153869172900828
+  raw_brier_mean: 0.7614734768867493
+  raw_brier_std: 0.10447582796652273
+  raw_macro_f1_mean: 0.3061510042673283
+  raw_macro_f1_std: 0.0505602335029569
+model_name: xgboost
+partial_year_folds:
+  8:
+    calibrated_brier_score: 0.6533972259477807
+    calibrated_macro_f1: 0.31030195857782067
+    raw_brier_score: 0.7478800415992737
+    raw_macro_f1: 0.2888681987464802

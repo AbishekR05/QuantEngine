@@ -1,0 +1,16 @@
+full_year_aggregates:
+  calibrated_brier_mean: 0.6200600271016058
+  calibrated_brier_std: 0.038007630567013166
+  calibrated_macro_f1_mean: 0.3060904811136148
+  calibrated_macro_f1_std: 0.039110280702903136
+  raw_brier_mean: 0.6681904565071587
+  raw_brier_std: 0.0364349984172324
+  raw_macro_f1_mean: 0.3386628060175176
+  raw_macro_f1_std: 0.03359193939700383
+model_name: logistic_regression
+partial_year_folds:
+  8:
+    calibrated_brier_score: 0.6425056611515496
+    calibrated_macro_f1: 0.3383626177743824
+    raw_brier_score: 0.6561563003067752
+    raw_macro_f1: 0.34599469851030373

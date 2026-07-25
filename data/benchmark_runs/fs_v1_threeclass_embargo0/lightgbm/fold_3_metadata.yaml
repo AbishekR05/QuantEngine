@@ -1,0 +1,25 @@
+feature_importance_exploratory_only:
+  ATR_14: 841
+  Adj Close: 0
+  BB_Lower: 323
+  BB_Middle: 0
+  BB_Upper: 312
+  Close: 188
+  Daily_Return: 1156
+  EMA_20: 169
+  EMA_200: 249
+  EMA_50: 199
+  High: 183
+  Log_Return: 0
+  Low: 231
+  MACD: 640
+  MACD_Hist: 886
+  MACD_Signal: 596
+  Open: 292
+  RSI_14: 901
+  SMA_20: 180
+  SMA_200: 361
+  SMA_50: 255
+  Volume: 1038
+is_partial_test_year: false
+naive_baseline_macro_f1: 0.20093896713615023

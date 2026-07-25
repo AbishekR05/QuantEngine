@@ -1,0 +1,16 @@
+full_year_aggregates:
+  calibrated_brier_mean: 0.6474256221955599
+  calibrated_brier_std: 0.036869309370921095
+  calibrated_macro_f1_mean: 0.21473098821657127
+  calibrated_macro_f1_std: 0.028337979200655252
+  raw_brier_mean: 0.7570935366415732
+  raw_brier_std: 0.0968653984159712
+  raw_macro_f1_mean: 0.32606203515848264
+  raw_macro_f1_std: 0.047624304392873185
+model_name: lightgbm
+partial_year_folds:
+  8:
+    calibrated_brier_score: 0.662872751756496
+    calibrated_macro_f1: 0.1931818181818182
+    raw_brier_score: 0.786784570650178
+    raw_macro_f1: 0.2902618309944718

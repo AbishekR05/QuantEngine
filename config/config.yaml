@@ -105,3 +105,43 @@ eda:
     feature_store_version: 1
     label_version: "threeclass"
     persist_fold_artifacts: true
+  baseline_benchmarking:
+    models:
+      logistic_regression:
+        seed: 42
+        class_weight: "balanced"
+        calibration_method: "platt"
+        calibration_cv: 5
+      decision_tree:
+        seed: 42
+        class_weight: "balanced"
+        calibration_method: "isotonic"
+        calibration_cv: 5
+      random_forest:
+        seed: 42
+        n_estimators: 100
+        class_weight: "balanced"
+        calibration_method: "isotonic"
+        calibration_cv: 5
+      xgboost:
+        seed: 42
+        n_estimators: 100
+        learning_rate: 0.1
+        scale_pos_weight_mode: "balanced"
+        calibration_method: "platt"
+        calibration_cv: 5
+      lightgbm:
+        seed: 42
+        n_estimators: 100
+        learning_rate: 0.1
+        class_weight: "balanced"
+        calibration_method: "platt"
+        calibration_cv: 5
+    viability_gate:
+      metric: "macro_f1"
+      min_margin_over_naive_baseline: 0.05
+      min_passing_folds: 5
+    stability_threshold: 0.10
+    feature_store_version: 1
+    label_version: "threeclass"
+    walk_forward_run_id: "fs_v1_threeclass_embargo0"

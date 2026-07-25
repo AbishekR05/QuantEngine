@@ -1,0 +1,16 @@
+full_year_aggregates:
+  calibrated_brier_mean: 0.6334170727028265
+  calibrated_brier_std: 0.041094438915336484
+  calibrated_macro_f1_mean: 0.2143020443487594
+  calibrated_macro_f1_std: 0.02782209514843126
+  raw_brier_mean: 1.2130582918207755
+  raw_brier_std: 0.13824218163761792
+  raw_macro_f1_mean: 0.32295343458456666
+  raw_macro_f1_std: 0.054330178498608675
+model_name: decision_tree
+partial_year_folds:
+  8:
+    calibrated_brier_score: 0.6707751858483442
+    calibrated_macro_f1: 0.1931818181818182
+    raw_brier_score: 1.136
+    raw_macro_f1: 0.4134936321314557
