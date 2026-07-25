@@ -179,6 +179,12 @@ class WalkForwardSplitter:
                 logger.error(f"Fold {fold_id} failed validation checks: {fold_errors}")
                 raise ValueError(f"Walk-forward validation check failed for Fold {fold_id}: {fold_errors}")
                 
+            # Calculate label distributions
+            train_labels = train_df[label_col].value_counts().to_dict()
+            test_labels = test_df[label_col].value_counts().to_dict()
+            train_dist = {str(k): int(v) for k, v in train_labels.items()}
+            test_dist = {str(k): int(v) for k, v in test_labels.items()}
+
             # Compile metadata
             metadata = {
                 "fold_id": fold_id,
@@ -190,6 +196,8 @@ class WalkForwardSplitter:
                 "is_partial_test_year": bool(is_partial),
                 "train_row_count": len(train_df),
                 "test_row_count": len(test_df),
+                "train_label_distribution": train_dist,
+                "test_label_distribution": test_dist,
                 "feature_store_version": str(self.feature_store_version),
                 "label_version": self.label_version,
                 "scaler_config_hash": scaler_hash
