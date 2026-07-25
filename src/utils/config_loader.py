@@ -145,6 +145,20 @@ class EdaFeatureStoreConfig(BaseModel):
     def get_output_dir_path(self) -> Path:
         return PROJECT_ROOT / self.output_dir
 
+class EdaWalkForwardFold(BaseModel):
+    train_end_year: int
+    test_year: int
+    partial: Optional[bool] = False
+
+class EdaWalkForwardConfig(BaseModel):
+    anchor_start_year: int
+    fold_schedule: str
+    folds: List[EdaWalkForwardFold]
+    embargo_days: int
+    feature_store_version: int
+    label_version: str
+    persist_fold_artifacts: bool
+
 class EdaConfig(BaseModel):
     input_files: EdaInputFiles
     output_dir: str
@@ -159,6 +173,7 @@ class EdaConfig(BaseModel):
     scaling: EdaScalingConfig
     final_report: EdaFinalReportConfig
     feature_store: EdaFeatureStoreConfig
+    walk_forward: EdaWalkForwardConfig
 
     def get_clean_input_path(self) -> Path:
         return PROJECT_ROOT / self.input_files.clean

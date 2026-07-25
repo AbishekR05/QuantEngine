@@ -1,0 +1,12 @@
+embargo_days: 0
+feature_store_version: '1'
+fold_id: 8
+is_partial_test_year: true
+label_version: threeclass
+scaler_config_hash: 2f68daa28d871961ec831994e0328e77f6688d1e9909b1e1b5135be9ff38e7f2
+test_end: '2026-07-09'
+test_row_count: 126
+test_start: '2026-01-01'
+train_end: '2025-12-31'
+train_row_count: 2948
+train_start: '2014-01-02'

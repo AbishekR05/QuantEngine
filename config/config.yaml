@@ -89,3 +89,19 @@ eda:
     version: 1
     format: "parquet"
     validation_level: "warn_non_critical"
+  walk_forward:
+    anchor_start_year: 2014
+    fold_schedule: "expanding"
+    folds:
+      - {train_end_year: 2018, test_year: 2019}
+      - {train_end_year: 2019, test_year: 2020}
+      - {train_end_year: 2020, test_year: 2021}
+      - {train_end_year: 2021, test_year: 2022}
+      - {train_end_year: 2022, test_year: 2023}
+      - {train_end_year: 2023, test_year: 2024}
+      - {train_end_year: 2024, test_year: 2025}
+      - {train_end_year: 2025, test_year: 2026, partial: true}
+    embargo_days: 0
+    feature_store_version: 1
+    label_version: "threeclass"
+    persist_fold_artifacts: true
