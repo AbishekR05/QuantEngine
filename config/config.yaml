@@ -145,3 +145,47 @@ eda:
     feature_store_version: 1
     label_version: "threeclass"
     walk_forward_run_id: "fs_v1_threeclass_embargo0"
+  hyperparameter_optimization:
+    eligible_models: ["logistic_regression", "xgboost"]
+    excluded_models:
+      decision_tree: "failed viability gate (0/8)"
+      random_forest: "failed viability gate (0/8)"
+      lightgbm: "failed viability gate (0/8)"
+    study:
+      sampler: "tpe"
+      sampler_seed: 123
+      n_trials: 50
+      timeout_seconds: null
+      pruner: "median"
+    objective:
+      primary_metric: "macro_f1_calibrated"
+      aggregate_folds: [1, 2, 3, 4, 5, 6, 7]
+      secondary_metric: "fold_stability_max_deviation"
+    search_spaces:
+      logistic_regression:
+        active: true
+        C: {type: "log_uniform", low: 0.0001, high: 100.0}
+        penalty: {type: "categorical", choices: ["l2", "l1", "elasticnet"]}
+        solver: {type: "categorical", choices: ["lbfgs", "saga"]}
+        l1_ratio: {type: "uniform", low: 0.0, high: 1.0}
+        max_iter: 1000
+        class_weight: "balanced"
+        random_state: 42
+        calibration_method: "platt"
+        n_trials: 50
+      xgboost:
+        active: true
+        learning_rate: {type: "log_uniform", low: 0.01, high: 0.3}
+        max_depth: {type: "int", low: 2, high: 10}
+        n_estimators: {type: "int", low: 50, high: 500}
+        subsample: {type: "uniform", low: 0.5, high: 1.0}
+        colsample_bytree: {type: "uniform", low: 0.5, high: 1.0}
+        min_child_weight: {type: "uniform", low: 1.0, high: 10.0}
+        reg_alpha: {type: "log_uniform", low: 1e-8, high: 1.0}
+        reg_lambda: {type: "log_uniform", low: 1e-8, high: 1.0}
+        random_state: 42
+        calibration_method: "platt"
+        n_trials: 20
+    feature_store_version: 1
+    label_version: "threeclass"
+    walk_forward_run_id: "fs_v1_threeclass_embargo0"

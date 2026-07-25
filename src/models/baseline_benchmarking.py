@@ -12,6 +12,11 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.calibration import CalibratedClassifierCV
+try:
+    from sklearn.frozen import FrozenEstimator
+    HAS_FROZEN = True
+except ImportError:
+    HAS_FROZEN = False
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 from sklearn.calibration import calibration_curve
 from sklearn.utils.class_weight import compute_sample_weight
@@ -219,7 +224,10 @@ class BaselineBenchmarker:
             
             # Perform calibration fitting on training window only
             if cv_val == "prefit":
-                calibrator = CalibratedClassifierCV(estimator=model, method=method_name, cv="prefit")
+                if HAS_FROZEN:
+                    calibrator = CalibratedClassifierCV(estimator=FrozenEstimator(model), method=method_name)
+                else:
+                    calibrator = CalibratedClassifierCV(estimator=model, method=method_name, cv="prefit")
                 calibrator.fit(X_train, y_train)
             else:
                 # Instantiate fresh model for internal cross-validation fitting

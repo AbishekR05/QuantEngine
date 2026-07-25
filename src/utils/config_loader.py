@@ -214,6 +214,77 @@ class EdaBaselineBenchmarkingConfig(BaseModel):
     label_version: str
     walk_forward_run_id: str
 
+class EdaHpoParamLogUniform(BaseModel):
+    type: str
+    low: float
+    high: float
+
+class EdaHpoParamCategorical(BaseModel):
+    type: str
+    choices: List[Any]
+
+class EdaHpoParamUniform(BaseModel):
+    type: str
+    low: float
+    high: float
+
+class EdaHpoParamInt(BaseModel):
+    type: str
+    low: int
+    high: int
+
+class EdaHpoLogisticRegressionSpace(BaseModel):
+    active: bool
+    C: EdaHpoParamLogUniform
+    penalty: EdaHpoParamCategorical
+    solver: EdaHpoParamCategorical
+    l1_ratio: EdaHpoParamUniform
+    max_iter: int
+    class_weight: str
+    random_state: int
+    calibration_method: str
+    n_trials: Optional[int] = None
+
+class EdaHpoXGBoostSpace(BaseModel):
+    active: bool
+    learning_rate: EdaHpoParamLogUniform
+    max_depth: EdaHpoParamInt
+    n_estimators: EdaHpoParamInt
+    subsample: EdaHpoParamUniform
+    colsample_bytree: EdaHpoParamUniform
+    min_child_weight: EdaHpoParamUniform
+    reg_alpha: EdaHpoParamLogUniform
+    reg_lambda: EdaHpoParamLogUniform
+    random_state: int
+    calibration_method: str
+    n_trials: Optional[int] = None
+
+class EdaHpoSearchSpaces(BaseModel):
+    logistic_regression: EdaHpoLogisticRegressionSpace
+    xgboost: EdaHpoXGBoostSpace
+
+class EdaHpoStudyConfig(BaseModel):
+    sampler: str
+    sampler_seed: int
+    n_trials: int
+    timeout_seconds: Optional[int] = None
+    pruner: str
+
+class EdaHpoObjectiveConfig(BaseModel):
+    primary_metric: str
+    aggregate_folds: List[int]
+    secondary_metric: str
+
+class EdaHyperparameterOptimizationConfig(BaseModel):
+    eligible_models: List[str]
+    excluded_models: Dict[str, str]
+    study: EdaHpoStudyConfig
+    objective: EdaHpoObjectiveConfig
+    search_spaces: EdaHpoSearchSpaces
+    feature_store_version: int
+    label_version: str
+    walk_forward_run_id: str
+
 class EdaConfig(BaseModel):
     input_files: EdaInputFiles
     output_dir: str
@@ -230,6 +301,7 @@ class EdaConfig(BaseModel):
     feature_store: EdaFeatureStoreConfig
     walk_forward: EdaWalkForwardConfig
     baseline_benchmarking: EdaBaselineBenchmarkingConfig
+    hyperparameter_optimization: EdaHyperparameterOptimizationConfig
 
     def get_clean_input_path(self) -> Path:
         return PROJECT_ROOT / self.input_files.clean

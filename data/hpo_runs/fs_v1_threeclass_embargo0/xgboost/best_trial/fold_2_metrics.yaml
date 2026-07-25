@@ -1,0 +1,8 @@
+calibrated:
+  accuracy: 0.36
+  brier_score: 0.7783980550906623
+  macro_f1: 0.3319961050307796
+raw:
+  accuracy: 0.356
+  brier_score: 0.6883686780929565
+  macro_f1: 0.3531199348454948

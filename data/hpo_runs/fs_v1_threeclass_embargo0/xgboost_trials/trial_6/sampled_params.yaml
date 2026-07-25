@@ -1,0 +1,10 @@
+colsample_bytree: 0.8015300642054637
+eval_metric: mlogloss
+learning_rate: 0.0585251467256356
+max_depth: 7
+min_child_weight: 5.905612058198185
+n_estimators: 104
+random_state: 42
+reg_alpha: 5.522181417431779e-06
+reg_lambda: 2.7099814132277906e-06
+subsample: 0.9131704002534167

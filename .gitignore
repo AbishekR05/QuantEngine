@@ -7,7 +7,7 @@ __pycache__/
 .pytest_cache/
 
 # SQLite databases
-database/*.db
+*.db
 
 # Logs
 *.log

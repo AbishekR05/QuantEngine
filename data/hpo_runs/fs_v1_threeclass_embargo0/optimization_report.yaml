@@ -1,0 +1,169 @@
+excluded_models:
+  decision_tree: failed viability gate (0/8)
+  lightgbm: failed viability gate (0/8)
+  random_forest: failed viability gate (0/8)
+feature_store_version: 1
+label_version: threeclass
+run_id: fs_v1_threeclass_embargo0
+study_details:
+  logistic_regression:
+    fold_by_fold_comparison:
+      1:
+        calibrated_improvement: -0.009236584915259582
+        default_calibrated_f1: 0.2833550340943067
+        default_raw_f1: 0.32905102636919575
+        is_partial_test_year: false
+        naive_baseline_f1: 0.2153558052434457
+        optimized_calibrated_f1: 0.2741184491790471
+        optimized_raw_f1: 0.32651074720040235
+      2:
+        calibrated_improvement: -0.00811828237087825
+        default_calibrated_f1: 0.30795526996339356
+        default_raw_f1: 0.32518344316196574
+        is_partial_test_year: false
+        naive_baseline_f1: 0.16616616616616617
+        optimized_calibrated_f1: 0.2998369875925153
+        optimized_raw_f1: 0.3335854220685681
+      3:
+        calibrated_improvement: 0.028266222166923538
+        default_calibrated_f1: 0.3870543459584555
+        default_raw_f1: 0.3381223190670468
+        is_partial_test_year: false
+        naive_baseline_f1: 0.20093896713615023
+        optimized_calibrated_f1: 0.41532056812537904
+        optimized_raw_f1: 0.31090593400136307
+      4:
+        calibrated_improvement: 0.004032066280965307
+        default_calibrated_f1: 0.3078885070637648
+        default_raw_f1: 0.29625136139406755
+        is_partial_test_year: false
+        naive_baseline_f1: 0.19157088122605362
+        optimized_calibrated_f1: 0.3119205733447301
+        optimized_raw_f1: 0.34566594483664953
+      5:
+        calibrated_improvement: 0.10426443160599042
+        default_calibrated_f1: 0.24742268041237114
+        default_raw_f1: 0.3067610062893082
+        is_partial_test_year: false
+        naive_baseline_f1: 0.2467866323907455
+        optimized_calibrated_f1: 0.35168711201836156
+        optimized_raw_f1: 0.25910849791446805
+      6:
+        calibrated_improvement: 0.021395292383942777
+        default_calibrated_f1: 0.29495421780635106
+        default_raw_f1: 0.3852370689655172
+        is_partial_test_year: false
+        naive_baseline_f1: 0.2339489885664028
+        optimized_calibrated_f1: 0.31634951019029384
+        optimized_raw_f1: 0.39543205280541516
+      7:
+        calibrated_improvement: -0.029443427936776234
+        default_calibrated_f1: 0.3140033124966608
+        default_raw_f1: 0.3900334168755221
+        is_partial_test_year: false
+        naive_baseline_f1: 0.24534686971235195
+        optimized_calibrated_f1: 0.28455988455988457
+        optimized_raw_f1: 0.35344314897030554
+      8:
+        calibrated_improvement: -0.00627662467144019
+        default_calibrated_f1: 0.3383626177743824
+        default_raw_f1: 0.34599469851030373
+        is_partial_test_year: true
+        naive_baseline_f1: 0.1931818181818182
+        optimized_calibrated_f1: 0.33208599310294223
+        optimized_raw_f1: 0.3601695227565875
+    optimized_best_score: 0.3371413313658825
+    optimized_parameters:
+      C: 0.0022967235384741555
+      class_weight: balanced
+      max_iter: 1000
+      penalty: l2
+      random_state: 42
+      solver: lbfgs
+  xgboost:
+    fold_by_fold_comparison:
+      1:
+        calibrated_improvement: -0.06187878901804528
+        default_calibrated_f1: 0.35260871432488594
+        default_raw_f1: 0.21290991606781082
+        is_partial_test_year: false
+        naive_baseline_f1: 0.2153558052434457
+        optimized_calibrated_f1: 0.29072992530684066
+        optimized_raw_f1: 0.24267288267288267
+      2:
+        calibrated_improvement: 0.10629484677138179
+        default_calibrated_f1: 0.2257012582593978
+        default_raw_f1: 0.3195418207670607
+        is_partial_test_year: false
+        naive_baseline_f1: 0.16616616616616617
+        optimized_calibrated_f1: 0.3319961050307796
+        optimized_raw_f1: 0.3531199348454948
+      3:
+        calibrated_improvement: 0.1609315838168588
+        default_calibrated_f1: 0.24820538522299485
+        default_raw_f1: 0.3615571480437482
+        is_partial_test_year: false
+        naive_baseline_f1: 0.20093896713615023
+        optimized_calibrated_f1: 0.40913696903985364
+        optimized_raw_f1: 0.39828938192315805
+      4:
+        calibrated_improvement: 0.13896018028560234
+        default_calibrated_f1: 0.2310219648929326
+        default_raw_f1: 0.311505871645873
+        is_partial_test_year: false
+        naive_baseline_f1: 0.19157088122605362
+        optimized_calibrated_f1: 0.36998214517853495
+        optimized_raw_f1: 0.35410793117420075
+      5:
+        calibrated_improvement: 0.14318625994912754
+        default_calibrated_f1: 0.19187527448397013
+        default_raw_f1: 0.27414987688859443
+        is_partial_test_year: false
+        naive_baseline_f1: 0.2467866323907455
+        optimized_calibrated_f1: 0.33506153443309766
+        optimized_raw_f1: 0.3425000328226135
+      6:
+        calibrated_improvement: 0.11487822497435449
+        default_calibrated_f1: 0.22604955769512733
+        default_raw_f1: 0.28930843706777315
+        is_partial_test_year: false
+        naive_baseline_f1: 0.2339489885664028
+        optimized_calibrated_f1: 0.3409277826694818
+        optimized_raw_f1: 0.41639262200842947
+      7:
+        calibrated_improvement: 0.18122608950383431
+        default_calibrated_f1: 0.1842435655994978
+        default_raw_f1: 0.37408395939043754
+        is_partial_test_year: false
+        naive_baseline_f1: 0.24534686971235195
+        optimized_calibrated_f1: 0.3654696551033321
+        optimized_raw_f1: 0.3608118454417106
+      8:
+        calibrated_improvement: 0.03470942003039584
+        default_calibrated_f1: 0.31030195857782067
+        default_raw_f1: 0.2888681987464802
+        is_partial_test_year: true
+        naive_baseline_f1: 0.1931818181818182
+        optimized_calibrated_f1: 0.3450113786082165
+        optimized_raw_f1: 0.3121222893707785
+    optimized_best_score: 0.28850231693847694
+    optimized_parameters:
+      colsample_bytree: 0.985893469228301
+      learning_rate: 0.0254284351170093
+      max_depth: 2
+      min_child_weight: 7.635900975977116
+      n_estimators: 368
+      random_state: 42
+      reg_alpha: 2.719582821243097e-06
+      reg_lambda: 2.005804490377508e-05
+      subsample: 0.5603106413091039
+timestamp: '2026-07-25 13:45:37'
+viability_gate_acceptances:
+  logistic_regression:
+    passed_viability: true
+    passing_folds: 7
+    required_folds: 5
+  xgboost:
+    passed_viability: true
+    passing_folds: 8
+    required_folds: 5

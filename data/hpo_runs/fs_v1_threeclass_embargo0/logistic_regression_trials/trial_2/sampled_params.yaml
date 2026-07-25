@@ -1,0 +1,6 @@
+C: 2.36754501036887
+class_weight: balanced
+max_iter: 1000
+penalty: l2
+random_state: 42
+solver: lbfgs

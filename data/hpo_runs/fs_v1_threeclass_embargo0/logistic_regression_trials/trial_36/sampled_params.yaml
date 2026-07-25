@@ -1,0 +1,6 @@
+C: 0.0008961695425857789
+class_weight: balanced
+max_iter: 1000
+penalty: l2
+random_state: 42
+solver: saga

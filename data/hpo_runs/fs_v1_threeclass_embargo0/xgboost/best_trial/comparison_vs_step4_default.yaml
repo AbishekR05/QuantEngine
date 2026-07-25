@@ -1,0 +1,64 @@
+1:
+  calibrated_improvement: -0.06187878901804528
+  default_calibrated_f1: 0.35260871432488594
+  default_raw_f1: 0.21290991606781082
+  is_partial_test_year: false
+  naive_baseline_f1: 0.2153558052434457
+  optimized_calibrated_f1: 0.29072992530684066
+  optimized_raw_f1: 0.24267288267288267
+2:
+  calibrated_improvement: 0.10629484677138179
+  default_calibrated_f1: 0.2257012582593978
+  default_raw_f1: 0.3195418207670607
+  is_partial_test_year: false
+  naive_baseline_f1: 0.16616616616616617
+  optimized_calibrated_f1: 0.3319961050307796
+  optimized_raw_f1: 0.3531199348454948
+3:
+  calibrated_improvement: 0.1609315838168588
+  default_calibrated_f1: 0.24820538522299485
+  default_raw_f1: 0.3615571480437482
+  is_partial_test_year: false
+  naive_baseline_f1: 0.20093896713615023
+  optimized_calibrated_f1: 0.40913696903985364
+  optimized_raw_f1: 0.39828938192315805
+4:
+  calibrated_improvement: 0.13896018028560234
+  default_calibrated_f1: 0.2310219648929326
+  default_raw_f1: 0.311505871645873
+  is_partial_test_year: false
+  naive_baseline_f1: 0.19157088122605362
+  optimized_calibrated_f1: 0.36998214517853495
+  optimized_raw_f1: 0.35410793117420075
+5:
+  calibrated_improvement: 0.14318625994912754
+  default_calibrated_f1: 0.19187527448397013
+  default_raw_f1: 0.27414987688859443
+  is_partial_test_year: false
+  naive_baseline_f1: 0.2467866323907455
+  optimized_calibrated_f1: 0.33506153443309766
+  optimized_raw_f1: 0.3425000328226135
+6:
+  calibrated_improvement: 0.11487822497435449
+  default_calibrated_f1: 0.22604955769512733
+  default_raw_f1: 0.28930843706777315
+  is_partial_test_year: false
+  naive_baseline_f1: 0.2339489885664028
+  optimized_calibrated_f1: 0.3409277826694818
+  optimized_raw_f1: 0.41639262200842947
+7:
+  calibrated_improvement: 0.18122608950383431
+  default_calibrated_f1: 0.1842435655994978
+  default_raw_f1: 0.37408395939043754
+  is_partial_test_year: false
+  naive_baseline_f1: 0.24534686971235195
+  optimized_calibrated_f1: 0.3654696551033321
+  optimized_raw_f1: 0.3608118454417106
+8:
+  calibrated_improvement: 0.03470942003039584
+  default_calibrated_f1: 0.31030195857782067
+  default_raw_f1: 0.2888681987464802
+  is_partial_test_year: true
+  naive_baseline_f1: 0.1931818181818182
+  optimized_calibrated_f1: 0.3450113786082165
+  optimized_raw_f1: 0.3121222893707785

@@ -1,0 +1,96 @@
+hyperparameter_optimization:
+  eligible_models:
+  - logistic_regression
+  - xgboost
+  excluded_models:
+    decision_tree: failed viability gate (0/8)
+    lightgbm: failed viability gate (0/8)
+    random_forest: failed viability gate (0/8)
+  feature_store_version: 1
+  label_version: threeclass
+  objective:
+    aggregate_folds:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    primary_metric: macro_f1_calibrated
+    secondary_metric: fold_stability_max_deviation
+  search_spaces:
+    logistic_regression:
+      C:
+        high: 100.0
+        low: 0.0001
+        type: log_uniform
+      active: true
+      calibration_method: platt
+      class_weight: balanced
+      l1_ratio:
+        high: 1.0
+        low: 0.0
+        type: uniform
+      max_iter: 1000
+      n_trials: 50
+      penalty:
+        choices:
+        - l2
+        - l1
+        - elasticnet
+        type: categorical
+      random_state: 42
+      solver:
+        choices:
+        - lbfgs
+        - saga
+        type: categorical
+    xgboost:
+      active: true
+      calibration_method: platt
+      colsample_bytree:
+        high: 1.0
+        low: 0.5
+        type: uniform
+      learning_rate:
+        high: 0.3
+        low: 0.01
+        type: log_uniform
+      max_depth:
+        high: 10
+        low: 2
+        type: int
+      min_child_weight:
+        high: 10.0
+        low: 1.0
+        type: uniform
+      n_estimators:
+        high: 500
+        low: 50
+        type: int
+      n_trials: 20
+      random_state: 42
+      reg_alpha:
+        high: 1.0
+        low: 1.0e-08
+        type: log_uniform
+      reg_lambda:
+        high: 1.0
+        low: 1.0e-08
+        type: log_uniform
+      subsample:
+        high: 1.0
+        low: 0.5
+        type: uniform
+  study:
+    n_trials: 50
+    pruner: median
+    sampler: tpe
+    sampler_seed: 123
+    timeout_seconds: null
+  walk_forward_run_id: fs_v1_threeclass_embargo0
+library_versions:
+  optuna: 4.9.0
+  scikit-learn: 1.8.0
+  xgboost: 3.2.0
