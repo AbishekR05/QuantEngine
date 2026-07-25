@@ -1,4 +1,4 @@
-# QuantEngine: Phase 3 (Machine Learning) - Feature Store Implementation Report
+# QuantEngine: Phase 3 (Machine Learning) - Feature Store & Walk-Forward Split Report
 
 This report outlines the implementation details and outputs generated during the initial steps of **Phase 3 (Machine Learning Pipeline)**.
 
@@ -32,36 +32,42 @@ Step 2 implements a canonical, model-agnostic **Feature Store** designed to deco
 
 ---
 
-## 4. Technical Implementation & Formats
-1. **Parquet Format**: The Feature Store is saved as a Parquet file (`feature_store_v1.parquet`) using the `pyarrow` engine. Columnar storage ensures native data type conservation and fast partial reads during fold-level training.
-2. **YAML Manifest**: A sidecar manifest metadata sheet (`feature_store_v1_manifest.yaml`) details the file checksum, record counts, date ranges, and a feature catalog mapping every column's formula, rolling window, lag index, and scaling recommendation.
-3. **Automated Validation Report**: Every feature store build runs a validation suite (`feature_store_v1_validation_report.yaml`) enforcing:
-    - **Schema Integrity**: Validates actual columns against manifest metadata.
-    - **Dtype Alignment**: Enforces strict casts for float64 and int64 values.
-    - **Uniqueness Check**: Assures `Date` values contain no duplicates.
-    - **Post-2014 Null Check**: Asserts that all indicators are fully warmed up (contain zero nulls) within the training/validation boundaries.
+## 4. Walk-Forward Slicing & Validation Slices (Step 3)
+Step 3 implements the calendar-based expanding-window walk-forward validation splitter to divide the Training Dataset into fold-sliced files.
 
----
+### Slicing & Boundaries schedule:
+- **Anchored Start**: 2014-01-01.
+- **Schedule Strategy**: Expanding training window, rolling 1-year testing window.
 
-## 5. Generated Outputs & Metrics
-The pipeline was executed and generated the following outputs under `data/feature_store/`:
-
-| Output File Name | Format | Size / Rows | Purpose |
+| Fold | Training Window | Testing Window | Status |
 | :--- | :--- | :--- | :--- |
-| `feature_store_v1.parquet` | Parquet | 4,613 rows | Canonical feature dataset (22 indicators + Date) |
-| `feature_store_v1_manifest.yaml` | YAML | 252 lines | Sidecar manifest detailing schema checksum & column metadata |
-| `feature_store_v1_validation_report.yaml` | YAML | 34 lines | Run-time validation report showing PASS status |
+| **Fold 1** | 2014-01-02 to 2018-12-31 | 2019-01-02 to 2019-12-31 | **`PASS`** |
+| **Fold 2** | 2014-01-02 to 2019-12-31 | 2020-01-02 to 2020-12-31 | **`PASS`** |
+| **Fold 3** | 2014-01-02 to 2020-12-31 | 2021-01-01 to 2021-12-31 | **`PASS`** |
+| **Fold 4** | 2014-01-02 to 2021-12-31 | 2022-01-03 to 2022-12-30 | **`PASS`** |
+| **Fold 5** | 2014-01-02 to 2022-12-30 | 2023-01-02 to 2023-12-29 | **`PASS`** |
+| **Fold 6** | 2014-01-02 to 2023-12-29 | 2024-01-01 to 2024-12-31 | **`PASS`** |
+| **Fold 7** | 2014-01-02 to 2024-12-31 | 2025-01-01 to 2025-12-31 | **`PASS`** |
+| **Fold 8** | 2014-01-02 to 2025-12-31 | 2026-01-01 to 2026-07-09 | **`PASS`** *(Partial Year)* |
 
-### Audit Summary:
-- **Total Sessions**: 4,613 trading days (from `2007-09-17` to `2026-07-09`).
-- **Validation Status**: **`PASS`** (overall_pass: true).
-- **Post-2014 Warmup Null Count**: **`0`** (confirmed all indicators are fully computed).
-- **Schema Checksum**: Evaluated unique SHA-256 schema signature to check downstream readers' compatibility.
+### Preprocessing & Isolation:
+1. **Fit-Transform Isolation**: For each fold, scalers (StandardScaler, MinMaxScaler, RobustScaler) are fit strictly on the `Date` training boundaries, and then applied to transform both the train and test subsets. This prevents any forward leakage of distribution moments (means, standard deviations, percentiles) from the test period.
+2. **Purge/Embargo**: Configured with `embargo_days: 0` (default) since target return signals represent next-day $t+1$ transitions without overlap. The framework structurally supports adding embargo windows dynamically.
 
 ---
 
-## 6. Downstream Preprocessing & Leakage Checks
-The Feature Store Manager exposes `build_training_dataset` which compiles model-ready matrices:
-- Merges selected labels (`Label_ThreeClass` or `Label_Binary`).
-- Compresses Volume skewness using `log1p(Volume)`.
-- Performs a **hard validation check** asserting that no target column is present among feature inputs, raising an exception if lookahead indicators are detected.
+## 5. Leakage Prevention Checks
+Hard assertions are run at runtime to validate data safety. Any failure halts the pipeline:
+- **No Date Overlap**: Assures `max(train_df.Date) < min(test_df.Date) - embargo_days`.
+- **Set Intersection Empty**: Assures no date sessions exist in both splits.
+- **Label Exclusion**: Confirms target labels are separated from the feature input matrices.
+- **Fold Independence**: Assures fitted scaler models are not reused across subsequent folds.
+
+---
+
+## 6. Generated Outputs & Directories
+All artifacts are compiled under `data/walk_forward_runs/fs_v1_threeclass_embargo0/`:
+
+- `fold_{n}_train.parquet` & `fold_{n}_test.parquet`: Sliced, train-fit scaled datasets.
+- `fold_{n}_metadata.yaml`: Tracks date ranges, row counts, and config traceability hashes.
+- `walk_forward_validation_report.yaml`: Summary run verification validating all 8 folds successfully passed leakage checks.
