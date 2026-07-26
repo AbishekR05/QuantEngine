@@ -45,7 +45,7 @@ model_strategy:
   exposure_pct: 0.2897959183673469
   max_drawdown: -0.051557476177976236
   number_of_trades: 8
-  profit_factor: 0.08281300558530469
+  profit_factor: 0.01567490406960246
   sharpe_ratio: -1.98830190465673
   sortino_ratio: -1.5597381589686845
   total_return: -0.051557476177976236

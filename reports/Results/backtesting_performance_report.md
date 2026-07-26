@@ -10,13 +10,13 @@ Performance is split into two transaction cost structures:
 - **Idealized**: Zero transaction costs (slippage, brokerage, spread, taxes, commissions).
 - **Realistic**: Configured transaction costs applied at execution points.
 
-### Mean Aggregate Performance (Folds 1–7 Rollup)
+### Unified Aggregate Performance (Folds 1–7 Rollup)
 | Model | Cost Mode | Sharpe | Sortino | Max DD | Profit Factor | Expectancy | Exposure | CAGR |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **xgboost** | idealized | -0.09 | -0.04 | -4.09% | 1.11 | 146.64 | 32.5% | -0.38% |
-| **xgboost** | realistic | -0.77 | -0.67 | -5.58% | 1.11 | -2122.11 | 32.5% | -3.30% |
-| **logistic_regression** | idealized | 0.33 | 0.34 | -0.45% | 1.54 | 2171.66 | 1.4% | 1.48% |
-| **logistic_regression** | realistic | 0.24 | 0.18 | -0.55% | 1.54 | 1485.99 | 1.4% | 1.09% |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **xgboost** | idealized | -0.08 | -0.07 | -9.76% | 0.95 | ₹-265.88 | 32.5% | -0.42% |
+| **xgboost** | realistic | -0.76 | -0.68 | -22.67% | 0.62 | ₹-2,519.77 | 32.5% | -3.36% |
+| **logistic_regression** | idealized | 0.69 | 0.32 | -3.14% | 3.38 | ₹9,319.48 | 1.4% | 1.45% |
+| **logistic_regression** | realistic | 0.53 | 0.19 | -3.82% | 2.44 | ₹6,868.74 | 1.4% | 1.07% |
 
 ---
 
@@ -49,3 +49,26 @@ Fold 2 represents the volatile market regime of 2020 (containing the COVID crash
 ### Key Takeaways:
 1. **Alpha and Downside Protection**: The model strategy preserved capital exceptionally well during the March 2020 crash, limiting maximum drawdown to **`-3.83%`** (compared to **`-38.44%`** for Buy & Hold).
 2. **Superior Sharpe**: The model strategy achieved a Sharpe ratio of **`0.94`** vs. `0.60` for Buy & Hold, illustrating strong risk-adjusted returns.
+
+---
+
+## 4. Methodology Notes
+- **Execution Prices**: Sized, managed, and executed trades strictly on raw unscaled Close prices. Scaled z-score features are used solely for model inference signals.
+- **Expectancy**: Measured in absolute currency units (₹) per completed trade, reflecting the net average profit/loss including transaction costs.
+- **Global Profit Factor**: Computed as total net winnings over absolute total net losses across all folds combined, resolving zero-loss fold arithmetic averages.
+- **Unified Sharpe & Sortino**: Derived by concatenating daily portfolio returns across Folds 1–7 chronologically into a single returns series, preventing simple averages bias.
+- **Portfolio-level CAGR**: Calculated directly from the cumulative compounded returns of the stitched daily returns curve.
+- **Worst-Case Max Drawdown**: Reports the single largest peak-to-trough drop across the stitched walk-forward equity curve.
+- **Risk-Free Rate**: Assumed to be $0.0\%$ across all Sharpe/Sortino calculations.
+- **Confidence Threshold Status**: Categorized as a strategy/execution parameter (currently set to 0.55 default), which is kept isolated from classifier parameters.
+
+---
+
+## 5. Limitations
+- **Fixed Slippage Assumption**: Slippage is modeled as a constant multiplier ($0.05\%$). Real execution slippage varies dynamically based on volatility, order-book depth, and trade sizing.
+- **No Market Impact Modeling**: The simulation assumes that executing trades does not shift the underlying index price, which may overstate actual fills on large institutional orders.
+- **No Liquidity Constraints**: Assumes instant execution at daily Close prices on 100% of order sizing without any volume limitations.
+- **No Borrow/Funding Costs**: Margin funding and short borrow costs are not modeled, which would reduce profits on short trades.
+- **No Futures Roll Costs**: Since Nifty 50 is traded via monthly derivatives, rolling positions introduces execution slippage and rollover premiums that are not simulated.
+- **Single-Asset Evaluation**: The backtest is run strictly on `^NSEI` (Nifty 50), ignoring portfolio diversification benefits or multi-asset risk constraints.
+- **Threshold Sweeps are Exploratory**: Selecting `0.69` post-hoc across the test folds represents optimization bias. For production grade, thresholds must be optimized dynamically using inner validation loops.

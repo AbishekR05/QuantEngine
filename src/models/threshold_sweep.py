@@ -38,39 +38,73 @@ def main():
         # Override config thresholds temporarily
         engine.bt_config["signal_generation"]["confidence_thresholds"]["xgboost"]["buy_threshold"] = thresh
         engine.bt_config["signal_generation"]["confidence_thresholds"]["xgboost"]["sell_threshold"] = thresh
-        
-        fold_cagrs = []
-        fold_sharpes = []
-        fold_sortinos = []
-        fold_drawdowns = []
-        fold_pfs = []
-        fold_exps = []
+        all_returns = []
+        all_completed_trades = []
         fold_exposures = []
         fold_trades_count = []
         
         for fold_id in folds:
             history, trades = engine.run_backtest_on_fold("xgboost", fold_id, "realistic")
+            
+            # Daily returns
+            h_df = pd.DataFrame(history)
+            h_df["returns"] = h_df["portfolio_value"].pct_change().fillna(0.0)
+            all_returns.append(h_df["returns"])
+            
+            # Collect trades
+            all_completed_trades.extend(trades)
+            
+            # Fold level exposure
             metrics = engine._calculate_metrics(history, trades)
-            
-            fold_cagrs.append(metrics["annualized_return_cagr"])
-            fold_sharpes.append(metrics["sharpe_ratio"])
-            fold_sortinos.append(metrics["sortino_ratio"])
-            fold_drawdowns.append(metrics["max_drawdown"])
-            fold_pfs.append(metrics["profit_factor"])
-            fold_exps.append(metrics["expectancy"])
             fold_exposures.append(metrics["exposure_pct"])
-            fold_trades_count.append(metrics["number_of_trades"])
+            fold_trades_count.append(len(trades))
             
+        combined_returns = pd.concat(all_returns) if all_returns else pd.Series(dtype=float)
+        
+        # Unified Sharpe
+        std_ret = combined_returns.std(ddof=1)
+        mean_ret = combined_returns.mean()
+        unified_sharpe = (mean_ret / std_ret) * np.sqrt(252) if std_ret > 0 else 0.0
+        
+        # Unified Sortino
+        downside_returns = combined_returns[combined_returns < 0]
+        std_downside = downside_returns.std(ddof=1)
+        unified_sortino = (mean_ret / std_downside) * np.sqrt(252) if std_downside > 0 else 0.0
+        
+        # Unified CAGR
+        cumulative_return = np.prod(1.0 + combined_returns) - 1.0
+        n_days = len(combined_returns)
+        unified_cagr = (1.0 + cumulative_return) ** (252 / n_days) - 1.0 if n_days > 0 else 0.0
+        
+        # Unified Drawdown
+        cum_returns = (1.0 + combined_returns).cumprod()
+        peak = cum_returns.cummax()
+        drawdown = (cum_returns - peak) / peak if not cum_returns.empty else pd.Series(dtype=float)
+        unified_max_dd = drawdown.min() if not drawdown.empty else 0.0
+        
+        # Global Profit Factor & Expectancy
+        net_profits = sum([t["net_pnl"] for t in all_completed_trades if t["net_pnl"] > 0])
+        net_losses = sum([abs(t["net_pnl"]) for t in all_completed_trades if t["net_pnl"] < 0])
+        
+        if net_losses > 0:
+            global_pf = float(net_profits / net_losses)
+        else:
+            global_pf = float('inf') if net_profits > 0 else 1.0
+            
+        global_expectancy = np.mean([t["net_pnl"] for t in all_completed_trades]) if all_completed_trades else 0.0
+        mean_exposure = np.mean(fold_exposures)
+        mean_trades = np.mean(fold_trades_count)
+        
         sweep_results.append({
             "threshold": thresh,
-            "mean_sharpe": np.mean(fold_sharpes),
-            "mean_sortino": np.mean(fold_sortinos),
-            "mean_max_dd": np.mean(fold_drawdowns),
-            "mean_profit_factor": np.mean(fold_pfs),
-            "mean_expectancy": np.mean(fold_exps),
-            "mean_exposure": np.mean(fold_exposures),
-            "mean_trades": np.mean(fold_trades_count),
-            "mean_cagr": np.mean(fold_cagrs)
+            "mean_sharpe": unified_sharpe,
+            "mean_sortino": unified_sortino,
+            "mean_max_dd": unified_max_dd,
+            "mean_profit_factor": global_pf,
+            "mean_expectancy": global_expectancy,
+            "mean_exposure": mean_exposure,
+            "mean_trades": mean_trades,
+            "mean_cagr": unified_cagr
         })
         
     # Generate Markdown report

@@ -225,9 +225,9 @@ class BacktestEngine:
         wins = [t for t in trade_log if t["net_pnl"] > 0]
         win_rate = len(wins) / n_trades if n_trades > 0 else 0.0
         
-        gross_profits = sum([t["realized_pnl"] for t in trade_log if t["realized_pnl"] > 0])
-        gross_losses = sum([abs(t["realized_pnl"]) for t in trade_log if t["realized_pnl"] < 0])
-        profit_factor = gross_profits / gross_losses if gross_losses > 0 else (gross_profits if gross_profits > 0 else 1.0)
+        net_profits = sum([t["net_pnl"] for t in trade_log if t["net_pnl"] > 0])
+        net_losses = sum([abs(t["net_pnl"]) for t in trade_log if t["net_pnl"] < 0])
+        profit_factor = float(net_profits / net_losses) if net_losses > 0 else (float('inf') if net_profits > 0 else 1.0)
         
         avg_holding = np.mean([t["holding_days"] for t in trade_log]) if n_trades > 0 else 0.0
         
@@ -516,23 +516,83 @@ class BacktestEngine:
             yaml.safe_dump(comparisons, f, default_flow_style=False)
 
     def _compile_aggregate_reports(self, model_name: str, cost_mode: str,
-                                   fold_metrics: Dict[int, Dict[str, Any]], model_dir: Path) -> None:
-        """Rolls up mean/median performance metrics across folds 1-7."""
+                                   fold_metrics: Dict[int, Dict[str, Any]],
+                                   fold_histories: Dict[int, List[Dict[str, Any]]],
+                                   fold_trades: Dict[int, List[Dict[str, Any]]],
+                                   model_dir: Path) -> None:
+        """Rolls up performance metrics across folds 1-7 using unified statistics."""
         folds = self.wf_config['folds']
         full_year_folds = [idx + 1 for idx, f_cfg in enumerate(folds) if not f_cfg.get("partial", False)]
         partial_folds = [idx + 1 for idx, f_cfg in enumerate(folds) if f_cfg.get("partial", False)]
         
-        # Rollup Folds 1-7
-        agg = {}
-        metric_keys = ["total_return", "annualized_return_cagr", "max_drawdown", "sharpe_ratio",
-                       "sortino_ratio", "calmar_ratio", "win_rate", "profit_factor",
-                       "average_holding_period", "exposure_pct", "expectancy"]
-                       
-        for key in metric_keys:
-            vals = [fold_metrics[fid][key] for fid in full_year_folds]
-            agg[f"mean_{key}"] = float(np.mean(vals))
-            agg[f"median_{key}"] = float(np.median(vals))
+        # Stitched daily returns compilation
+        all_returns = []
+        for fid in full_year_folds:
+            h_df = pd.DataFrame(fold_histories[fid])
+            h_df["returns"] = h_df["portfolio_value"].pct_change().fillna(0.0)
+            all_returns.append(h_df["returns"])
             
+        combined_returns = pd.concat(all_returns) if all_returns else pd.Series(dtype=float)
+        
+        # Unified Sharpe
+        std_ret = combined_returns.std(ddof=1)
+        mean_ret = combined_returns.mean()
+        unified_sharpe = (mean_ret / std_ret) * np.sqrt(252) if std_ret > 0 else 0.0
+        
+        # Unified Sortino
+        downside_returns = combined_returns[combined_returns < 0]
+        std_downside = downside_returns.std(ddof=1)
+        unified_sortino = (mean_ret / std_downside) * np.sqrt(252) if std_downside > 0 else 0.0
+        
+        # Unified CAGR
+        cumulative_return = np.prod(1.0 + combined_returns) - 1.0
+        n_days = len(combined_returns)
+        unified_cagr = (1.0 + cumulative_return) ** (252 / n_days) - 1.0 if n_days > 0 else 0.0
+        
+        # Unified Drawdown
+        cum_returns = (1.0 + combined_returns).cumprod()
+        peak = cum_returns.cummax()
+        drawdown = (cum_returns - peak) / peak if not cum_returns.empty else pd.Series(dtype=float)
+        unified_max_dd = drawdown.min() if not drawdown.empty else 0.0
+        
+        # Global Profit Factor & Expectancy
+        all_completed_trades = []
+        for fid in full_year_folds:
+            all_completed_trades.extend(fold_trades[fid])
+            
+        n_total_trades = len(all_completed_trades)
+        
+        # Net-P&L based winning and losing sum
+        net_profits = sum([t["net_pnl"] for t in all_completed_trades if t["net_pnl"] > 0])
+        net_losses = sum([abs(t["net_pnl"]) for t in all_completed_trades if t["net_pnl"] < 0])
+        
+        if net_losses > 0:
+            global_profit_factor = float(net_profits / net_losses)
+        else:
+            global_profit_factor = "inf" if net_profits > 0 else 1.0
+            
+        global_expectancy = np.mean([t["net_pnl"] for t in all_completed_trades]) if n_total_trades > 0 else 0.0
+        global_win_rate = len([t for t in all_completed_trades if t["net_pnl"] > 0]) / n_total_trades if n_total_trades > 0 else 0.0
+        
+        # Exposure (simple arithmetic average of fold exposures is acceptable)
+        mean_exposure = np.mean([fold_metrics[fid]["exposure_pct"] for fid in full_year_folds])
+        
+        # Trade Count stats
+        mean_trades = np.mean([len(fold_trades[fid]) for fid in full_year_folds])
+        
+        agg = {
+            "mean_annualized_return_cagr": float(unified_cagr),
+            "mean_sharpe_ratio": float(unified_sharpe),
+            "mean_sortino_ratio": float(unified_sortino),
+            "mean_max_drawdown": float(unified_max_dd),
+            "global_profit_factor": global_profit_factor,
+            "mean_expectancy": float(global_expectancy),
+            "mean_win_rate": float(global_win_rate),
+            "mean_exposure_pct": float(mean_exposure),
+            "mean_trades_per_fold": float(mean_trades),
+            "total_trades_count": int(n_total_trades)
+        }
+        
         with open(model_dir / cost_mode / "aggregate_folds_1_7.yaml", "w", encoding="utf-8") as f:
             yaml.safe_dump(agg, f, default_flow_style=False)
             
@@ -566,6 +626,8 @@ class BacktestEngine:
                 cost_dir.mkdir(parents=True, exist_ok=True)
                 
                 fold_metrics = {}
+                fold_histories = {}
+                fold_trades = {}
                 folds = self.wf_config['folds']
                 
                 for idx, f_cfg in enumerate(folds):
@@ -575,6 +637,8 @@ class BacktestEngine:
                     
                     # Run simulated trades
                     history, trades = self.run_backtest_on_fold(m_name, fold_id, cost_mode)
+                    fold_histories[fold_id] = history
+                    fold_trades[fold_id] = trades
                     
                     # Compute statistics
                     metrics = self._calculate_metrics(history, trades)
@@ -602,7 +666,7 @@ class BacktestEngine:
                     self._compile_and_save_comparisons(m_name, fold_id, cost_mode, metrics, fold_dir)
                     
                 # Compile aggregations
-                self._compile_aggregate_reports(m_name, cost_mode, fold_metrics, model_dir)
+                self._compile_aggregate_reports(m_name, cost_mode, fold_metrics, fold_histories, fold_trades, model_dir)
                 
         logger.info("Backtesting Pipeline run completed successfully.")
 

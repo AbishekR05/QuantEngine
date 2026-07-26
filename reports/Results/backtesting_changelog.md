@@ -33,3 +33,33 @@ This changelog documents the material corrections made to resolve the divergence
 *   **Description**: Transaction cost deductions and risk-based sizing calculations were computed using z-score quantities. Sizing was highly distorted because a risk fraction of capital divided by a z-score denominator resulted in massive position sizes.
 *   **Correction**: Switched all risk capital and transaction cost calculations (brokerage, slippage, taxes) to consume raw prices.
 *   **Impact**: Trading metrics and transaction cost drag now reflect realistic transaction rules.
+
+---
+
+## Phase 3.5: Research Methodology Refinements
+
+This section documents the statistical methodology improvements implemented to upgrade the framework from **Research Grade** toward **Publication/Institutional Grade**.
+
+### 1. Unified Sharpe & Sortino Ratios
+*   **Previous Logic**: Simple arithmetic mean of fold Sharpe/Sortino ratios.
+*   **Correction**: Daily portfolio returns are now concatenated across all full-year folds (1-7) chronologically. A single unified Sharpe and Sortino ratio is computed from the concatenated returns series.
+*   **Impact**: Eliminates statistical distortion from averaging standard deviations of different periods.
+
+### 2. Worst-Case Drawdown
+*   **Previous Logic**: Simple arithmetic mean of fold maximum drawdowns.
+*   **Correction**: Stitches the daily returns curve into a single equity series and evaluates the absolute peak-to-trough drop over the entire 7-year history.
+*   **Impact**: Accurately reflects tail risk (e.g. XGBoost realistic worst-case drawdown corrected to a realistic `-22.67%` instead of `-5.58%`).
+
+### 3. Global Profit Factor & Expectancy
+*   **Previous Logic**: Fold-level Profit Factors calculated on gross returns and arithmetically averaged. Fallback of gross profit for zero-loss folds.
+*   **Correction**: Profit Factor is calculated using **net P&L** (after costs) with a `float('inf')` fallback. Rolled up globally by taking absolute total winnings over absolute total losses across all folds combined. Expectancy is aggregated directly across all executed trades to avoid fold-size bias.
+*   **Impact**: Restores realistic profit factor rollups (e.g. XGBoost realistic global profit factor is corrected to `0.62`, and Logistic Regression is `2.44`).
+
+---
+
+## Logic Validation & Integrity Check
+
+*   **Model Parameter Verification**: Verified that no model weights, hyperparameters, or training states were modified.
+*   **Feature Verification**: Verified that standardized parquet features (`Close`, `High`, `Low`) are passed exactly as before to `predict_proba`.
+*   **Trading Rule Verification**: Enforced that the signal generation logic (confidence threshold comparison, hold downgrades), position sizing rules, Stop-Loss/Take-Profit triggers, and transaction cost rates remain **100% identical**.
+*   **Conclusion**: **Only the statistical aggregator and reporting equations changed.** All underlying trade executions, fill prices, and portfolio equity series are unchanged.

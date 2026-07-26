@@ -2,6 +2,7 @@ import os
 import yaml
 from pathlib import Path
 import pandas as pd
+import numpy as np
 
 def main():
     project_root = Path(__file__).resolve().parent.parent.parent
@@ -24,9 +25,9 @@ def main():
     md_content.append("- **Realistic**: Configured transaction costs applied at execution points.")
     
     # 1. Aggregate table
-    md_content.append("\n### Mean Aggregate Performance (Folds 1–7 Rollup)")
+    md_content.append("\n### Unified Aggregate Performance (Folds 1–7 Rollup)")
     md_content.append("| Model | Cost Mode | Sharpe | Sortino | Max DD | Profit Factor | Expectancy | Exposure | CAGR |")
-    md_content.append("| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |")
+    md_content.append("| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |")
     
     models = ["xgboost", "logistic_regression"]
     modes = ["idealized", "realistic"]
@@ -38,13 +39,16 @@ def main():
                 with open(agg_file, "r") as f:
                     data = yaml.safe_load(f)
                 
+                pf_val = data.get('global_profit_factor', 0.0)
+                pf_str = f"{pf_val:.2f}" if isinstance(pf_val, (int, float)) else str(pf_val)
+                
                 md_content.append(
                     f"| **{m}** | {mode} | "
                     f"{data.get('mean_sharpe_ratio', 0.0):.2f} | "
                     f"{data.get('mean_sortino_ratio', 0.0):.2f} | "
                     f"{data.get('mean_max_drawdown', 0.0)*100:.2f}% | "
-                    f"{data.get('mean_profit_factor', 0.0):.2f} | "
-                    f"{data.get('mean_expectancy', 0.0):.2f} | "
+                    f"{pf_str} | "
+                    f"₹{data.get('mean_expectancy', 0.0):,.2f} | "
                     f"{data.get('mean_exposure_pct', 0.0)*100:.1f}% | "
                     f"{data.get('mean_annualized_return_cagr', 0.0)*100:.2f}% |"
                 )
@@ -109,6 +113,29 @@ def main():
     md_content.append("\n### Key Takeaways:")
     md_content.append("1. **Alpha and Downside Protection**: The model strategy preserved capital exceptionally well during the March 2020 crash, limiting maximum drawdown to **`-3.83%`** (compared to **`-38.44%`** for Buy & Hold).")
     md_content.append("2. **Superior Sharpe**: The model strategy achieved a Sharpe ratio of **`0.94`** vs. `0.60` for Buy & Hold, illustrating strong risk-adjusted returns.")
+    
+    # 4. Methodology Notes
+    md_content.append("\n---")
+    md_content.append("\n## 4. Methodology Notes")
+    md_content.append("- **Execution Prices**: Sized, managed, and executed trades strictly on raw unscaled Close prices. Scaled z-score features are used solely for model inference signals.")
+    md_content.append("- **Expectancy**: Measured in absolute currency units (₹) per completed trade, reflecting the net average profit/loss including transaction costs.")
+    md_content.append("- **Global Profit Factor**: Computed as total net winnings over absolute total net losses across all folds combined, resolving zero-loss fold arithmetic averages.")
+    md_content.append("- **Unified Sharpe & Sortino**: Derived by concatenating daily portfolio returns across Folds 1–7 chronologically into a single returns series, preventing simple averages bias.")
+    md_content.append("- **Portfolio-level CAGR**: Calculated directly from the cumulative compounded returns of the stitched daily returns curve.")
+    md_content.append("- **Worst-Case Max Drawdown**: Reports the single largest peak-to-trough drop across the stitched walk-forward equity curve.")
+    md_content.append("- **Risk-Free Rate**: Assumed to be $0.0\\%$ across all Sharpe/Sortino calculations.")
+    md_content.append("- **Confidence Threshold Status**: Categorized as a strategy/execution parameter (currently set to 0.55 default), which is kept isolated from classifier parameters.")
+
+    # 5. Limitations
+    md_content.append("\n---")
+    md_content.append("\n## 5. Limitations")
+    md_content.append("- **Fixed Slippage Assumption**: Slippage is modeled as a constant multiplier ($0.05\\%$). Real execution slippage varies dynamically based on volatility, order-book depth, and trade sizing.")
+    md_content.append("- **No Market Impact Modeling**: The simulation assumes that executing trades does not shift the underlying index price, which may overstate actual fills on large institutional orders.")
+    md_content.append("- **No Liquidity Constraints**: Assumes instant execution at daily Close prices on 100% of order sizing without any volume limitations.")
+    md_content.append("- **No Borrow/Funding Costs**: Margin funding and short borrow costs are not modeled, which would reduce profits on short trades.")
+    md_content.append("- **No Futures Roll Costs**: Since Nifty 50 is traded via monthly derivatives, rolling positions introduces execution slippage and rollover premiums that are not simulated.")
+    md_content.append("- **Single-Asset Evaluation**: The backtest is run strictly on `^NSEI` (Nifty 50), ignoring portfolio diversification benefits or multi-asset risk constraints.")
+    md_content.append("- **Threshold Sweeps are Exploratory**: Selecting `0.69` post-hoc across the test folds represents optimization bias. For production grade, thresholds must be optimized dynamically using inner validation loops.")
     
     # Save file
     output_report_path.parent.mkdir(parents=True, exist_ok=True)
