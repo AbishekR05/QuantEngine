@@ -22,8 +22,8 @@ def main():
         output_dir=str(output_dir)
     )
     
-    # We will sweep buy/sell thresholds symmetrically from 0.50 to 0.90 (step 0.05)
-    thresholds = [0.50, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80, 0.85, 0.90]
+    # We will sweep buy/sell thresholds symmetrically from 0.66 to 0.74 (step 0.01)
+    thresholds = [0.66, 0.67, 0.68, 0.69, 0.70, 0.71, 0.72, 0.73, 0.74]
     
     sweep_results = []
     
