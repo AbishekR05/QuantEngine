@@ -285,6 +285,32 @@ class EdaHyperparameterOptimizationConfig(BaseModel):
     label_version: str
     walk_forward_run_id: str
 
+class EdaExplainabilityShapConfig(BaseModel):
+    background_sample_size: int
+    interaction_row_ceiling: int
+    seed: int
+
+class EdaExplainabilityLocalConfig(BaseModel):
+    n_correct_samples_per_class: int
+    n_misclassified_samples: int
+    seed: int
+
+class EdaExplainabilityStabilityConfig(BaseModel):
+    top_k: int
+
+class EdaExplainabilityVersioningConfig(BaseModel):
+    feature_store_version: int
+    label_version: str
+    walk_forward_run_id: str
+
+class EdaExplainabilityConfig(BaseModel):
+    enabled_methods: Dict[str, List[str]]
+    shap: EdaExplainabilityShapConfig
+    local_explanations: EdaExplainabilityLocalConfig
+    stability: EdaExplainabilityStabilityConfig
+    output: Dict[str, str]
+    versioning: EdaExplainabilityVersioningConfig
+
 class EdaConfig(BaseModel):
     input_files: EdaInputFiles
     output_dir: str
@@ -302,6 +328,7 @@ class EdaConfig(BaseModel):
     walk_forward: EdaWalkForwardConfig
     baseline_benchmarking: EdaBaselineBenchmarkingConfig
     hyperparameter_optimization: EdaHyperparameterOptimizationConfig
+    explainability: EdaExplainabilityConfig
 
     def get_clean_input_path(self) -> Path:
         return PROJECT_ROOT / self.input_files.clean

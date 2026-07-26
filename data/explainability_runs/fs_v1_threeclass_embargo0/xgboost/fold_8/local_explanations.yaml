@@ -1,0 +1,975 @@
+correct_predictions:
+  BUY:
+  - actual_label: BUY
+    feature_contributions:
+    - feature: RSI_14
+      shap_contribution: 0.27995930570643396
+    - feature: MACD_Hist
+      shap_contribution: 0.24876822640071622
+    - feature: ATR_14
+      shap_contribution: 0.1729329767136369
+    - feature: Volume
+      shap_contribution: 0.13107231009053066
+    - feature: Daily_Return
+      shap_contribution: 0.10995724642125423
+    - feature: SMA_200
+      shap_contribution: 0.10663175229448825
+    - feature: MACD_Signal
+      shap_contribution: 0.05096724729621201
+    - feature: MACD
+      shap_contribution: -0.04462995938374661
+    - feature: BB_Upper
+      shap_contribution: -0.042529419269412755
+    - feature: EMA_50
+      shap_contribution: -0.03342143305577338
+    - feature: SMA_50
+      shap_contribution: -0.027227634276496247
+    - feature: BB_Lower
+      shap_contribution: -0.019834738860372455
+    - feature: EMA_20
+      shap_contribution: -0.016083673251559957
+    - feature: Log_Return
+      shap_contribution: 0.010464025703258812
+    - feature: SMA_20
+      shap_contribution: 0.009145583736244588
+    - feature: Close
+      shap_contribution: 0.008170629916712642
+    - feature: EMA_200
+      shap_contribution: 0.004617195564787835
+    - feature: Open
+      shap_contribution: 0.0034452919708564877
+    - feature: Adj Close
+      shap_contribution: -0.0016136071551591158
+    - feature: BB_Middle
+      shap_contribution: -0.0015620483318343759
+    - feature: Low
+      shap_contribution: -0.0010263403318822384
+    - feature: High
+      shap_contribution: -0.0005874505708925427
+    prediction_probability: 0.6332728266716003
+    test_row_index: 54
+  - actual_label: BUY
+    feature_contributions:
+    - feature: RSI_14
+      shap_contribution: 0.3015563719568308
+    - feature: MACD_Hist
+      shap_contribution: 0.2511831356782932
+    - feature: ATR_14
+      shap_contribution: 0.1625362311268691
+    - feature: Volume
+      shap_contribution: 0.10937956432811916
+    - feature: SMA_200
+      shap_contribution: 0.10502962822443805
+    - feature: Daily_Return
+      shap_contribution: 0.09611700270033907
+    - feature: MACD_Signal
+      shap_contribution: -0.0838457751432361
+    - feature: BB_Lower
+      shap_contribution: 0.0769679732224904
+    - feature: Low
+      shap_contribution: -0.06381494538858533
+    - feature: BB_Upper
+      shap_contribution: -0.058668237905949355
+    - feature: SMA_20
+      shap_contribution: 0.041678541528526694
+    - feature: SMA_50
+      shap_contribution: -0.037372855754802
+    - feature: EMA_50
+      shap_contribution: -0.03681652055121958
+    - feature: MACD
+      shap_contribution: -0.024400261774426325
+    - feature: EMA_20
+      shap_contribution: -0.016083673251559957
+    - feature: Log_Return
+      shap_contribution: 0.013426887444220484
+    - feature: Close
+      shap_contribution: 0.012754749204032124
+    - feature: EMA_200
+      shap_contribution: 0.0063725407212041315
+    - feature: Adj Close
+      shap_contribution: 0.0042839369853027165
+    - feature: Open
+      shap_contribution: -0.004043477443046868
+    - feature: BB_Middle
+      shap_contribution: -0.0015620483318343759
+    - feature: High
+      shap_contribution: -0.00037562072044238447
+    prediction_probability: 0.6001335382461548
+    test_row_index: 41
+  - actual_label: BUY
+    feature_contributions:
+    - feature: RSI_14
+      shap_contribution: 0.28594921563751996
+    - feature: MACD_Hist
+      shap_contribution: 0.249271329640178
+    - feature: ATR_14
+      shap_contribution: 0.1661621544288937
+    - feature: Volume
+      shap_contribution: 0.12633534227497875
+    - feature: BB_Upper
+      shap_contribution: -0.12543745200615375
+    - feature: SMA_200
+      shap_contribution: 0.09692170419264584
+    - feature: Daily_Return
+      shap_contribution: 0.05482612214924302
+    - feature: SMA_20
+      shap_contribution: 0.041678541528526694
+    - feature: Close
+      shap_contribution: 0.03967013348825276
+    - feature: EMA_50
+      shap_contribution: -0.039247443131171164
+    - feature: MACD
+      shap_contribution: -0.03750673674396239
+    - feature: SMA_50
+      shap_contribution: -0.027873507203767075
+    - feature: EMA_20
+      shap_contribution: -0.016083673251559957
+    - feature: MACD_Signal
+      shap_contribution: -0.010924837935162942
+    - feature: Log_Return
+      shap_contribution: 0.010464025703258812
+    - feature: EMA_200
+      shap_contribution: 0.01011678615352139
+    - feature: Adj Close
+      shap_contribution: 0.0042839369853027165
+    - feature: BB_Lower
+      shap_contribution: -0.003611512465868145
+    - feature: BB_Middle
+      shap_contribution: -0.0015620483318343759
+    - feature: Open
+      shap_contribution: 0.0010031147906556725
+    - feature: High
+      shap_contribution: 0.00030410653213039043
+    - feature: Low
+      shap_contribution: -5.212880671024322e-05
+    prediction_probability: 0.5917704701423645
+    test_row_index: 44
+  - actual_label: BUY
+    feature_contributions:
+    - feature: RSI_14
+      shap_contribution: 0.28322162132244555
+    - feature: MACD_Hist
+      shap_contribution: 0.2603785922320094
+    - feature: ATR_14
+      shap_contribution: 0.1661621544288937
+    - feature: BB_Upper
+      shap_contribution: -0.12578069529030472
+    - feature: Volume
+      shap_contribution: 0.1229667994286865
+    - feature: SMA_200
+      shap_contribution: 0.09692170419264584
+    - feature: Daily_Return
+      shap_contribution: 0.05500397481198888
+    - feature: MACD_Signal
+      shap_contribution: 0.051220813755498966
+    - feature: MACD
+      shap_contribution: -0.04462995938374661
+    - feature: SMA_20
+      shap_contribution: 0.041678541528526694
+    - feature: EMA_50
+      shap_contribution: -0.039247443131171164
+    - feature: SMA_50
+      shap_contribution: -0.027873507203767075
+    - feature: BB_Lower
+      shap_contribution: -0.019834738860372455
+    - feature: EMA_20
+      shap_contribution: -0.016083673251559957
+    - feature: Log_Return
+      shap_contribution: 0.010464025703258812
+    - feature: EMA_200
+      shap_contribution: 0.01011678615352139
+    - feature: Close
+      shap_contribution: 0.008170629916712642
+    - feature: Open
+      shap_contribution: 0.003730709464289248
+    - feature: Adj Close
+      shap_contribution: -0.0016136071551591158
+    - feature: BB_Middle
+      shap_contribution: -0.0015620483318343759
+    - feature: Low
+      shap_contribution: -0.0010263403318822384
+    - feature: High
+      shap_contribution: -0.00011187365045771002
+    prediction_probability: 0.5821701288223267
+    test_row_index: 48
+  - actual_label: BUY
+    feature_contributions:
+    - feature: RSI_14
+      shap_contribution: 0.2463353141513653
+    - feature: Volume
+      shap_contribution: 0.22058921487652697
+    - feature: ATR_14
+      shap_contribution: 0.16290843589929863
+    - feature: MACD_Hist
+      shap_contribution: 0.10295220223197248
+    - feature: SMA_200
+      shap_contribution: 0.06959376357961446
+    - feature: Daily_Return
+      shap_contribution: 0.06491780814889353
+    - feature: MACD
+      shap_contribution: -0.045719057794776745
+    - feature: MACD_Signal
+      shap_contribution: 0.04076817883280455
+    - feature: BB_Upper
+      shap_contribution: -0.036412847032770514
+    - feature: EMA_50
+      shap_contribution: -0.03488186408765614
+    - feature: SMA_50
+      shap_contribution: -0.023885835820110515
+    - feature: BB_Lower
+      shap_contribution: -0.020222467377316207
+    - feature: EMA_20
+      shap_contribution: -0.016083673251559957
+    - feature: SMA_20
+      shap_contribution: 0.009145583736244588
+    - feature: Close
+      shap_contribution: 0.008170629916712642
+    - feature: Low
+      shap_contribution: -0.005591684499813709
+    - feature: Log_Return
+      shap_contribution: 0.004203115082345903
+    - feature: Open
+      shap_contribution: 0.0034452919708564877
+    - feature: Adj Close
+      shap_contribution: -0.0016136071551591158
+    - feature: BB_Middle
+      shap_contribution: -0.0015620483318343759
+    - feature: EMA_200
+      shap_contribution: 0.000872950132470578
+    - feature: High
+      shap_contribution: -0.0005780174932442605
+    prediction_probability: 0.5762333273887634
+    test_row_index: 58
+  HOLD:
+  - actual_label: HOLD
+    feature_contributions:
+    - feature: RSI_14
+      shap_contribution: 0.1644702073931694
+    - feature: Close
+      shap_contribution: 0.13047812823089772
+    - feature: Open
+      shap_contribution: 0.10425362307345494
+    - feature: EMA_200
+      shap_contribution: 0.09412081327842316
+    - feature: SMA_200
+      shap_contribution: 0.0919344434933737
+    - feature: ATR_14
+      shap_contribution: -0.06606636286829598
+    - feature: Daily_Return
+      shap_contribution: 0.06086823245219421
+    - feature: EMA_20
+      shap_contribution: 0.05606537031126209
+    - feature: MACD_Hist
+      shap_contribution: 0.0560118476205389
+    - feature: Volume
+      shap_contribution: -0.05350667089340277
+    - feature: SMA_50
+      shap_contribution: 0.040158934616483746
+    - feature: BB_Upper
+      shap_contribution: -0.039098488717572766
+    - feature: BB_Lower
+      shap_contribution: 0.03382649812614545
+    - feature: Low
+      shap_contribution: 0.025746378889307378
+    - feature: SMA_20
+      shap_contribution: 0.020747927884804084
+    - feature: MACD_Signal
+      shap_contribution: 0.020679843085235915
+    - feature: EMA_50
+      shap_contribution: -0.019527436231728642
+    - feature: Log_Return
+      shap_contribution: 0.00504251554259099
+    - feature: High
+      shap_contribution: -0.002297204410424456
+    - feature: MACD
+      shap_contribution: 0.0022084730211645366
+    - feature: Adj Close
+      shap_contribution: 0.0016058352310210466
+    - feature: BB_Middle
+      shap_contribution: 0.0
+    prediction_probability: 0.5955018401145935
+    test_row_index: 1
+  - actual_label: HOLD
+    feature_contributions:
+    - feature: Close
+      shap_contribution: 0.1297685855726013
+    - feature: RSI_14
+      shap_contribution: -0.1196169963129796
+    - feature: ATR_14
+      shap_contribution: -0.11453125982428901
+    - feature: SMA_200
+      shap_contribution: 0.10565127142937854
+    - feature: EMA_200
+      shap_contribution: 0.10378669749101391
+    - feature: Open
+      shap_contribution: 0.09869524658075533
+    - feature: EMA_20
+      shap_contribution: 0.06360234798514285
+    - feature: Daily_Return
+      shap_contribution: 0.06155117628310108
+    - feature: MACD_Hist
+      shap_contribution: 0.04830335802282207
+    - feature: SMA_50
+      shap_contribution: 0.037303436845541
+    - feature: MACD_Signal
+      shap_contribution: 0.03702768621849827
+    - feature: BB_Lower
+      shap_contribution: 0.03617491422453895
+    - feature: Low
+      shap_contribution: 0.03513088309206069
+    - feature: High
+      shap_contribution: 0.023925055293366315
+    - feature: EMA_50
+      shap_contribution: -0.012611877480521798
+    - feature: BB_Upper
+      shap_contribution: -0.011430966086918489
+    - feature: Volume
+      shap_contribution: 0.01136470822035335
+    - feature: SMA_20
+      shap_contribution: 0.009696033374639227
+    - feature: Log_Return
+      shap_contribution: 0.006008165708044544
+    - feature: MACD
+      shap_contribution: 0.0027690157119650395
+    - feature: Adj Close
+      shap_contribution: 0.0016058352310210466
+    - feature: BB_Middle
+      shap_contribution: 0.0
+    prediction_probability: 0.54963219165802
+    test_row_index: 30
+  - actual_label: HOLD
+    feature_contributions:
+    - feature: RSI_14
+      shap_contribution: 0.1570465878036339
+    - feature: ATR_14
+      shap_contribution: -0.12407183685339987
+    - feature: EMA_200
+      shap_contribution: 0.10519245944335126
+    - feature: SMA_200
+      shap_contribution: 0.09947460762690753
+    - feature: Daily_Return
+      shap_contribution: 0.07198420633736533
+    - feature: Volume
+      shap_contribution: -0.0520698675327003
+    - feature: MACD_Hist
+      shap_contribution: 0.0517357620736584
+    - feature: Close
+      shap_contribution: 0.04817468945751898
+    - feature: SMA_50
+      shap_contribution: 0.03787645421922207
+    - feature: BB_Lower
+      shap_contribution: 0.03599304713541642
+    - feature: EMA_20
+      shap_contribution: 0.024641129182418807
+    - feature: EMA_50
+      shap_contribution: 0.020439368456136434
+    - feature: Open
+      shap_contribution: 0.020332744033075868
+    - feature: MACD
+      shap_contribution: -0.013214651327580214
+    - feature: Low
+      shap_contribution: 0.009858607286587358
+    - feature: High
+      shap_contribution: 0.005942892488092184
+    - feature: SMA_20
+      shap_contribution: 0.00557939838967286
+    - feature: Log_Return
+      shap_contribution: 0.0024088574817869813
+    - feature: MACD_Signal
+      shap_contribution: -0.0017721408169018105
+    - feature: Adj Close
+      shap_contribution: 0.0016058352310210466
+    - feature: BB_Upper
+      shap_contribution: -0.0002581493405159563
+    - feature: BB_Middle
+      shap_contribution: 0.0
+    prediction_probability: 0.5274447202682495
+    test_row_index: 122
+  - actual_label: HOLD
+    feature_contributions:
+    - feature: ATR_14
+      shap_contribution: -0.13895827797008678
+    - feature: Close
+      shap_contribution: 0.1133976185839856
+    - feature: EMA_200
+      shap_contribution: 0.10455129194626352
+    - feature: SMA_200
+      shap_contribution: 0.10268880184274166
+    - feature: Open
+      shap_contribution: 0.09089926529093645
+    - feature: EMA_20
+      shap_contribution: 0.06360234798514285
+    - feature: Volume
+      shap_contribution: -0.05633219358860515
+    - feature: Daily_Return
+      shap_contribution: 0.047243232603068466
+    - feature: MACD_Hist
+      shap_contribution: 0.041866745033767076
+    - feature: BB_Lower
+      shap_contribution: 0.04056733217323199
+    - feature: SMA_50
+      shap_contribution: 0.03267423083772883
+    - feature: Low
+      shap_contribution: 0.031382211092859505
+    - feature: RSI_14
+      shap_contribution: -0.019995690159266815
+    - feature: MACD
+      shap_contribution: 0.015911713205859997
+    - feature: EMA_50
+      shap_contribution: -0.013031806896906346
+    - feature: MACD_Signal
+      shap_contribution: 0.012955877523636446
+    - feature: BB_Upper
+      shap_contribution: -0.011467612885171547
+    - feature: High
+      shap_contribution: 0.010741680613718926
+    - feature: SMA_20
+      shap_contribution: 0.009696033374639227
+    - feature: Log_Return
+      shap_contribution: 0.00504251554259099
+    - feature: Adj Close
+      shap_contribution: 0.0016058352310210466
+    - feature: BB_Middle
+      shap_contribution: 0.0
+    prediction_probability: 0.5221707820892334
+    test_row_index: 25
+  - actual_label: HOLD
+    feature_contributions:
+    - feature: ATR_14
+      shap_contribution: -0.128257512380369
+    - feature: EMA_200
+      shap_contribution: 0.10729830486117863
+    - feature: SMA_200
+      shap_contribution: 0.10391837083967402
+    - feature: RSI_14
+      shap_contribution: 0.09437471853918396
+    - feature: Volume
+      shap_contribution: -0.050816730723017824
+    - feature: Daily_Return
+      shap_contribution: 0.046154889342724346
+    - feature: MACD_Hist
+      shap_contribution: 0.04277770526474342
+    - feature: BB_Lower
+      shap_contribution: 0.04038546508410946
+    - feature: Close
+      shap_contribution: 0.040191747889039106
+    - feature: SMA_50
+      shap_contribution: 0.03440451852744445
+    - feature: EMA_50
+      shap_contribution: 0.023886275903787463
+    - feature: EMA_20
+      shap_contribution: 0.02372683397610672
+    - feature: Open
+      shap_contribution: 0.018112548623466864
+    - feature: MACD
+      shap_contribution: 0.017056106450618246
+    - feature: MACD_Signal
+      shap_contribution: 0.01302118950872682
+    - feature: Low
+      shap_contribution: 0.009858607286587358
+    - feature: SMA_20
+      shap_contribution: 0.0076617566787172105
+    - feature: High
+      shap_contribution: 0.005942892488092184
+    - feature: Log_Return
+      shap_contribution: 0.0017555856856051833
+    - feature: Adj Close
+      shap_contribution: 0.0016058352310210466
+    - feature: BB_Upper
+      shap_contribution: 0.0009274856850970537
+    - feature: BB_Middle
+      shap_contribution: 0.0
+    prediction_probability: 0.4852825701236725
+    test_row_index: 110
+  SELL: []
+misclassified_predictions:
+- actual_label: SELL
+  feature_contributions_to_prediction:
+  - feature: RSI_14
+    shap_contribution: 0.29668439316097645
+  - feature: MACD_Hist
+    shap_contribution: 0.25944279579794965
+  - feature: ATR_14
+    shap_contribution: 0.1479575325420592
+  - feature: Daily_Return
+    shap_contribution: 0.14028277232253458
+  - feature: BB_Upper
+    shap_contribution: -0.12578069529030472
+  - feature: Volume
+    shap_contribution: 0.12184242945862934
+  - feature: SMA_200
+    shap_contribution: 0.09613693462102674
+  - feature: MACD_Signal
+    shap_contribution: 0.051220813755498966
+  - feature: MACD
+    shap_contribution: -0.04462995938374661
+  - feature: SMA_20
+    shap_contribution: 0.041678541528526694
+  - feature: EMA_50
+    shap_contribution: -0.039247443131171164
+  - feature: SMA_50
+    shap_contribution: -0.027873507203767075
+  - feature: BB_Lower
+    shap_contribution: -0.019834738860372455
+  - feature: EMA_20
+    shap_contribution: -0.016083673251559957
+  - feature: Log_Return
+    shap_contribution: 0.013426887444220484
+  - feature: EMA_200
+    shap_contribution: 0.01011678615352139
+  - feature: Close
+    shap_contribution: 0.008170629916712642
+  - feature: Open
+    shap_contribution: -0.0033965512132272126
+  - feature: Adj Close
+    shap_contribution: -0.0016136071551591158
+  - feature: BB_Middle
+    shap_contribution: -0.0015620483318343759
+  - feature: Low
+    shap_contribution: -0.0010263403318822384
+  - feature: High
+    shap_contribution: -0.00011187365045771002
+  predicted_label: BUY
+  prediction_probability: 0.6314141750335693
+  test_row_index: 47
+- actual_label: HOLD
+  feature_contributions_to_prediction:
+  - feature: RSI_14
+    shap_contribution: 0.29140393344685434
+  - feature: MACD_Hist
+    shap_contribution: 0.24876822640071622
+  - feature: ATR_14
+    shap_contribution: 0.1729329767136369
+  - feature: Volume
+    shap_contribution: 0.13098209850722925
+  - feature: Daily_Return
+    shap_contribution: 0.12222163604048547
+  - feature: SMA_200
+    shap_contribution: 0.10663175229448825
+  - feature: BB_Upper
+    shap_contribution: -0.054557410781271756
+  - feature: MACD_Signal
+    shap_contribution: 0.05096724729621201
+  - feature: MACD
+    shap_contribution: -0.0444431920198258
+  - feature: EMA_50
+    shap_contribution: -0.039247443131171164
+  - feature: SMA_50
+    shap_contribution: -0.027227634276496247
+  - feature: BB_Lower
+    shap_contribution: -0.019834738860372455
+  - feature: EMA_20
+    shap_contribution: -0.016083673251559957
+  - feature: Log_Return
+    shap_contribution: 0.010464025703258812
+  - feature: EMA_200
+    shap_contribution: 0.01011678615352139
+  - feature: SMA_20
+    shap_contribution: 0.009145583736244588
+  - feature: Close
+    shap_contribution: 0.008170629916712642
+  - feature: Open
+    shap_contribution: 0.0034452919708564877
+  - feature: Adj Close
+    shap_contribution: -0.0016136071551591158
+  - feature: BB_Middle
+    shap_contribution: -0.0015620483318343759
+  - feature: Low
+    shap_contribution: -0.0010263403318822384
+  - feature: High
+    shap_contribution: -0.0005874505708925427
+  predicted_label: BUY
+  prediction_probability: 0.6302614808082581
+  test_row_index: 52
+- actual_label: SELL
+  feature_contributions_to_prediction:
+  - feature: RSI_14
+    shap_contribution: 0.31099034667480735
+  - feature: MACD_Hist
+    shap_contribution: 0.2702520225686021
+  - feature: ATR_14
+    shap_contribution: 0.1626510226877872
+  - feature: BB_Upper
+    shap_contribution: -0.12578069529030472
+  - feature: Volume
+    shap_contribution: 0.1137395070400089
+  - feature: SMA_200
+    shap_contribution: 0.09613693462102674
+  - feature: Daily_Return
+    shap_contribution: 0.08396267438482027
+  - feature: MACD_Signal
+    shap_contribution: 0.05491359589024796
+  - feature: SMA_20
+    shap_contribution: 0.041678541528526694
+  - feature: EMA_50
+    shap_contribution: -0.039247443131171164
+  - feature: MACD
+    shap_contribution: -0.03877412541187368
+  - feature: SMA_50
+    shap_contribution: -0.027873507203767075
+  - feature: BB_Lower
+    shap_contribution: -0.019834738860372455
+  - feature: EMA_20
+    shap_contribution: -0.016083673251559957
+  - feature: Log_Return
+    shap_contribution: 0.013426887444220484
+  - feature: EMA_200
+    shap_contribution: 0.01011678615352139
+  - feature: Close
+    shap_contribution: 0.008170629916712642
+  - feature: Open
+    shap_contribution: -0.0033965512132272126
+  - feature: Adj Close
+    shap_contribution: -0.0016136071551591158
+  - feature: BB_Middle
+    shap_contribution: -0.0015620483318343759
+  - feature: Low
+    shap_contribution: -0.0010263403318822384
+  - feature: High
+    shap_contribution: -0.00011187365045771002
+  predicted_label: BUY
+  prediction_probability: 0.6052643656730652
+  test_row_index: 46
+- actual_label: SELL
+  feature_contributions_to_prediction:
+  - feature: MACD_Hist
+    shap_contribution: 0.25885352965793573
+  - feature: RSI_14
+    shap_contribution: 0.20790508700418286
+  - feature: ATR_14
+    shap_contribution: 0.16074669813388026
+  - feature: Volume
+    shap_contribution: 0.13752119086217135
+  - feature: BB_Upper
+    shap_contribution: -0.12986884285695852
+  - feature: Daily_Return
+    shap_contribution: 0.12422318316472229
+  - feature: SMA_200
+    shap_contribution: 0.09613693462102674
+  - feature: MACD_Signal
+    shap_contribution: -0.08040671308655874
+  - feature: BB_Lower
+    shap_contribution: 0.05805633200099692
+  - feature: MACD
+    shap_contribution: -0.051426498449291105
+  - feature: Open
+    shap_contribution: 0.05087888794019818
+  - feature: SMA_20
+    shap_contribution: 0.041678541528526694
+  - feature: Low
+    shap_contribution: -0.040854917842953004
+  - feature: SMA_50
+    shap_contribution: -0.037372855754802
+  - feature: EMA_50
+    shap_contribution: -0.03681652055121958
+  - feature: Close
+    shap_contribution: 0.024799542194232346
+  - feature: EMA_20
+    shap_contribution: -0.016083673251559957
+  - feature: Log_Return
+    shap_contribution: 0.010576284911949188
+  - feature: EMA_200
+    shap_contribution: 0.01011678615352139
+  - feature: Adj Close
+    shap_contribution: 0.0042839369853027165
+  - feature: BB_Middle
+    shap_contribution: -0.0015620483318343759
+  - feature: High
+    shap_contribution: 0.0009175265789963305
+  predicted_label: BUY
+  prediction_probability: 0.5946294069290161
+  test_row_index: 43
+- actual_label: HOLD
+  feature_contributions_to_prediction:
+  - feature: MACD_Hist
+    shap_contribution: 0.2126269627994043
+  - feature: ATR_14
+    shap_contribution: 0.1267419003532268
+  - feature: Volume
+    shap_contribution: 0.12530904315703084
+  - feature: SMA_200
+    shap_contribution: 0.1066434181376826
+  - feature: RSI_14
+    shap_contribution: 0.07869381441967561
+  - feature: Daily_Return
+    shap_contribution: 0.06762599469686392
+  - feature: MACD
+    shap_contribution: 0.0543492001487175
+  - feature: EMA_50
+    shap_contribution: -0.041704349112696944
+  - feature: SMA_50
+    shap_contribution: -0.019045954745961352
+  - feature: EMA_200
+    shap_contribution: -0.01693948590196669
+  - feature: BB_Lower
+    shap_contribution: -0.01484531668073032
+  - feature: EMA_20
+    shap_contribution: -0.014434296239633113
+  - feature: BB_Upper
+    shap_contribution: -0.014312617524992674
+  - feature: SMA_20
+    shap_contribution: 0.012349136781413108
+  - feature: Low
+    shap_contribution: -0.009883220190240537
+  - feature: Close
+    shap_contribution: 0.003030757666565478
+  - feature: Adj Close
+    shap_contribution: -0.0017413985170423984
+  - feature: BB_Middle
+    shap_contribution: -0.0015620483318343759
+  - feature: High
+    shap_contribution: -0.001416881054174155
+  - feature: MACD_Signal
+    shap_contribution: 0.0013831628293337417
+  - feature: Log_Return
+    shap_contribution: 0.0008855352853424847
+  - feature: Open
+    shap_contribution: 0.00043603929691016674
+  predicted_label: BUY
+  prediction_probability: 0.5717716813087463
+  test_row_index: 87
+- actual_label: HOLD
+  feature_contributions_to_prediction:
+  - feature: MACD_Hist
+    shap_contribution: 0.23371521309047238
+  - feature: ATR_14
+    shap_contribution: 0.13110546083538793
+  - feature: Volume
+    shap_contribution: 0.11972769533284008
+  - feature: SMA_200
+    shap_contribution: 0.10442711261450313
+  - feature: RSI_14
+    shap_contribution: 0.0847349612461403
+  - feature: MACD
+    shap_contribution: 0.04798410772404168
+  - feature: EMA_50
+    shap_contribution: -0.0323663792014122
+  - feature: Daily_Return
+    shap_contribution: -0.02658571172913071
+  - feature: SMA_50
+    shap_contribution: -0.019045954745961352
+  - feature: BB_Lower
+    shap_contribution: -0.01573048333928455
+  - feature: EMA_20
+    shap_contribution: -0.014434296239633113
+  - feature: BB_Upper
+    shap_contribution: -0.01233389601809904
+  - feature: SMA_20
+    shap_contribution: 0.009145583736244588
+  - feature: Open
+    shap_contribution: -0.006640241164714098
+  - feature: Low
+    shap_contribution: -0.004536958657263312
+  - feature: Log_Return
+    shap_contribution: -0.004112508024554699
+  - feature: EMA_200
+    shap_contribution: -0.004029864403419197
+  - feature: Close
+    shap_contribution: 0.0035561898443847895
+  - feature: Adj Close
+    shap_contribution: -0.0017413985170423984
+  - feature: BB_Middle
+    shap_contribution: -0.0015620483318343759
+  - feature: High
+    shap_contribution: -0.0011224608565680682
+  - feature: MACD_Signal
+    shap_contribution: -1.3310331378306727e-05
+  predicted_label: BUY
+  prediction_probability: 0.542052149772644
+  test_row_index: 88
+- actual_label: SELL
+  feature_contributions_to_prediction:
+  - feature: ATR_14
+    shap_contribution: -0.12592671449296178
+  - feature: EMA_200
+    shap_contribution: 0.10259282182320022
+  - feature: SMA_200
+    shap_contribution: 0.09523020792752504
+  - feature: RSI_14
+    shap_contribution: 0.084524922844721
+  - feature: Volume
+    shap_contribution: 0.08262031312566251
+  - feature: Close
+    shap_contribution: 0.05435431681864429
+  - feature: SMA_50
+    shap_contribution: 0.05073813087772578
+  - feature: MACD_Hist
+    shap_contribution: 0.04501221447892021
+  - feature: BB_Lower
+    shap_contribution: 0.04038546508410946
+  - feature: Daily_Return
+    shap_contribution: 0.03843237504304852
+  - feature: MACD_Signal
+    shap_contribution: 0.03333495526458137
+  - feature: EMA_20
+    shap_contribution: 0.02372683397610672
+  - feature: EMA_50
+    shap_contribution: 0.023004290107637645
+  - feature: Open
+    shap_contribution: 0.016951733409659938
+  - feature: SMA_20
+    shap_contribution: 0.01071409574127756
+  - feature: Low
+    shap_contribution: 0.009858607286587358
+  - feature: MACD
+    shap_contribution: -0.009619984496384858
+  - feature: High
+    shap_contribution: 0.008723549365531652
+  - feature: Log_Return
+    shap_contribution: 0.0017555856856051833
+  - feature: Adj Close
+    shap_contribution: 0.0016058352310210466
+  - feature: BB_Upper
+    shap_contribution: 0.0009274856850970537
+  - feature: BB_Middle
+    shap_contribution: 0.0
+  predicted_label: HOLD
+  prediction_probability: 0.5340705513954163
+  test_row_index: 113
+- actual_label: BUY
+  feature_contributions_to_prediction:
+  - feature: RSI_14
+    shap_contribution: 0.1272760959714651
+  - feature: ATR_14
+    shap_contribution: -0.12214121222496033
+  - feature: EMA_200
+    shap_contribution: 0.10259282182320022
+  - feature: SMA_200
+    shap_contribution: 0.09533514708513394
+  - feature: MACD_Hist
+    shap_contribution: 0.06026336120907217
+  - feature: Volume
+    shap_contribution: -0.05231587049784139
+  - feature: Open
+    shap_contribution: 0.051221037819050255
+  - feature: Daily_Return
+    shap_contribution: 0.049884529781411405
+  - feature: Close
+    shap_contribution: 0.039764542847988193
+  - feature: SMA_50
+    shap_contribution: 0.03765751235187054
+  - feature: BB_Lower
+    shap_contribution: 0.03599304713541642
+  - feature: EMA_20
+    shap_contribution: 0.023265533599769697
+  - feature: EMA_50
+    shap_contribution: 0.020580508827697484
+  - feature: MACD
+    shap_contribution: -0.0123691337229684
+  - feature: Low
+    shap_contribution: 0.009858607286587358
+  - feature: High
+    shap_contribution: 0.005942892488092184
+  - feature: MACD_Signal
+    shap_contribution: 0.0058809830149402845
+  - feature: SMA_20
+    shap_contribution: 0.00557939838967286
+  - feature: Log_Return
+    shap_contribution: 0.0017555856856051833
+  - feature: Adj Close
+    shap_contribution: 0.0016058352310210466
+  - feature: BB_Upper
+    shap_contribution: -0.0002581493405159563
+  - feature: BB_Middle
+    shap_contribution: 0.0
+  predicted_label: HOLD
+  prediction_probability: 0.5194828510284424
+  test_row_index: 121
+- actual_label: SELL
+  feature_contributions_to_prediction:
+  - feature: Close
+    shap_contribution: 0.14531748730049002
+  - feature: ATR_14
+    shap_contribution: -0.11553422387223691
+  - feature: EMA_200
+    shap_contribution: 0.09960151598410448
+  - feature: SMA_200
+    shap_contribution: 0.09503721446963027
+  - feature: Open
+    shap_contribution: 0.09089926529093645
+  - feature: MACD_Signal
+    shap_contribution: 0.06751472307660152
+  - feature: EMA_20
+    shap_contribution: 0.0635507932829205
+  - feature: Volume
+    shap_contribution: -0.04580319475731812
+  - feature: BB_Lower
+    shap_contribution: 0.04056733217323199
+  - feature: MACD_Hist
+    shap_contribution: 0.03750600500090513
+  - feature: SMA_50
+    shap_contribution: 0.035927224662154915
+  - feature: Low
+    shap_contribution: 0.031382211092859505
+  - feature: Daily_Return
+    shap_contribution: 0.014934625031310133
+  - feature: RSI_14
+    shap_contribution: -0.01402175178634934
+  - feature: EMA_50
+    shap_contribution: -0.013031806896906346
+  - feature: BB_Upper
+    shap_contribution: -0.011430966086918489
+  - feature: High
+    shap_contribution: 0.010741680613718926
+  - feature: SMA_20
+    shap_contribution: 0.009696033374639227
+  - feature: Log_Return
+    shap_contribution: 0.004389243746409192
+  - feature: MACD
+    shap_contribution: -0.002331503750756383
+  - feature: Adj Close
+    shap_contribution: 0.0016058352310210466
+  - feature: BB_Middle
+    shap_contribution: 0.0
+  predicted_label: HOLD
+  prediction_probability: 0.516987144947052
+  test_row_index: 27
+- actual_label: SELL
+  feature_contributions_to_prediction:
+  - feature: RSI_14
+    shap_contribution: 0.14001998879830352
+  - feature: ATR_14
+    shap_contribution: -0.13473878654418514
+  - feature: EMA_200
+    shap_contribution: 0.10729830486117863
+  - feature: SMA_200
+    shap_contribution: 0.10216895220568403
+  - feature: MACD_Hist
+    shap_contribution: 0.06374268098792527
+  - feature: MACD_Signal
+    shap_contribution: 0.0624545861419756
+  - feature: Volume
+    shap_contribution: -0.050641610290622335
+  - feature: BB_Lower
+    shap_contribution: 0.04038546508410946
+  - feature: Close
+    shap_contribution: 0.039122920836089176
+  - feature: SMA_50
+    shap_contribution: 0.03787645421922207
+  - feature: Daily_Return
+    shap_contribution: 0.03631230726779904
+  - feature: EMA_50
+    shap_contribution: 0.023886275903787463
+  - feature: EMA_20
+    shap_contribution: 0.02372683397610672
+  - feature: Open
+    shap_contribution: 0.020140526663744822
+  - feature: Low
+    shap_contribution: 0.009858607286587358
+  - feature: High
+    shap_contribution: 0.005942892488092184
+  - feature: SMA_20
+    shap_contribution: 0.00557939838967286
+  - feature: MACD
+    shap_contribution: 0.0018373952875845134
+  - feature: Log_Return
+    shap_contribution: 0.0017555856856051833
+  - feature: Adj Close
+    shap_contribution: 0.0016058352310210466
+  - feature: BB_Upper
+    shap_contribution: 0.0009274856850970537
+  - feature: BB_Middle
+    shap_contribution: 0.0
+  predicted_label: HOLD
+  prediction_probability: 0.5145806670188904
+  test_row_index: 111

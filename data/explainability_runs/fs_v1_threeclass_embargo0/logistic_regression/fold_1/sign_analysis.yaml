@@ -1,0 +1,69 @@
+BUY:
+  ATR_14: positive
+  Adj Close: negative
+  BB_Lower: negative
+  BB_Middle: positive
+  BB_Upper: positive
+  Close: negative
+  Daily_Return: positive
+  EMA_20: negative
+  EMA_200: positive
+  EMA_50: positive
+  High: negative
+  Log_Return: positive
+  Low: negative
+  MACD: negative
+  MACD_Hist: negative
+  MACD_Signal: negative
+  Open: negative
+  RSI_14: negative
+  SMA_20: positive
+  SMA_200: positive
+  SMA_50: positive
+  Volume: negative
+HOLD:
+  ATR_14: negative
+  Adj Close: positive
+  BB_Lower: negative
+  BB_Middle: negative
+  BB_Upper: negative
+  Close: positive
+  Daily_Return: positive
+  EMA_20: negative
+  EMA_200: negative
+  EMA_50: negative
+  High: positive
+  Log_Return: positive
+  Low: positive
+  MACD: positive
+  MACD_Hist: positive
+  MACD_Signal: positive
+  Open: positive
+  RSI_14: positive
+  SMA_20: negative
+  SMA_200: negative
+  SMA_50: negative
+  Volume: positive
+SELL:
+  ATR_14: positive
+  Adj Close: negative
+  BB_Lower: positive
+  BB_Middle: positive
+  BB_Upper: positive
+  Close: negative
+  Daily_Return: negative
+  EMA_20: positive
+  EMA_200: positive
+  EMA_50: positive
+  High: negative
+  Log_Return: negative
+  Low: negative
+  MACD: negative
+  MACD_Hist: negative
+  MACD_Signal: negative
+  Open: negative
+  RSI_14: negative
+  SMA_20: positive
+  SMA_200: positive
+  SMA_50: positive
+  Volume: negative

@@ -1,0 +1,354 @@
+rank_correlation_matrix:
+  BUY:
+    1:
+      1: 1.0
+      2: 0.9017504234895539
+      3: 0.6363636363636365
+      4: 0.5381140598531904
+      5: 0.6849237718802937
+      6: 0.7763975155279503
+      7: 0.5765104460756635
+      8: 0.4138904573687183
+    2:
+      1: 0.9017504234895539
+      2: 1.0
+      3: 0.7560700169395823
+      4: 0.6566911349520046
+      5: 0.795595708639187
+      6: 0.8486730660643705
+      7: 0.8080180688876343
+      8: 0.699604743083004
+    3:
+      1: 0.6363636363636365
+      2: 0.7560700169395823
+      3: 1.0
+      4: 0.7447769621682666
+      5: 0.8565782044042916
+      6: 0.8001129305477132
+      7: 0.7131564088085828
+      8: 0.5064935064935067
+    4:
+      1: 0.5381140598531904
+      2: 0.6566911349520046
+      3: 0.7447769621682666
+      4: 1.0
+      5: 0.8317334839073971
+      6: 0.7967250141163186
+      7: 0.7481648785996614
+      8: 0.5686053077357426
+    5:
+      1: 0.6849237718802937
+      2: 0.795595708639187
+      3: 0.8565782044042916
+      4: 0.8317334839073971
+      5: 1.0
+      6: 0.9028797289666857
+      7: 0.8080180688876343
+      8: 0.593450028232637
+    6:
+      1: 0.7763975155279503
+      2: 0.8486730660643705
+      3: 0.8001129305477132
+      4: 0.7967250141163186
+      5: 0.9028797289666857
+      6: 1.0
+      7: 0.8836815358554491
+      8: 0.6691134952004518
+    7:
+      1: 0.5765104460756635
+      2: 0.8080180688876343
+      3: 0.7131564088085828
+      4: 0.7481648785996614
+      5: 0.8080180688876343
+      6: 0.8836815358554491
+      7: 1.0
+      8: 0.9141727837380011
+    8:
+      1: 0.4138904573687183
+      2: 0.699604743083004
+      3: 0.5064935064935067
+      4: 0.5686053077357426
+      5: 0.593450028232637
+      6: 0.6691134952004518
+      7: 0.9141727837380011
+      8: 1.0
+  HOLD:
+    1:
+      1: 1.0
+      2: 0.9887069452286844
+      3: 0.8385093167701864
+      4: 0.9186900056465275
+      5: 0.8633540372670809
+      6: 0.8012422360248449
+      7: 0.7481648785996614
+      8: 0.6510446075663467
+    2:
+      1: 0.9887069452286844
+      2: 1.0
+      3: 0.8848108413325806
+      4: 0.9299830604178432
+      5: 0.8780350084697911
+      6: 0.805759457933371
+      7: 0.7526821005081875
+      8: 0.6487859966120837
+    3:
+      1: 0.8385093167701864
+      2: 0.8848108413325806
+      3: 1.0
+      4: 0.9153020892151329
+      5: 0.8814229249011858
+      6: 0.7651044607566347
+      7: 0.6725014116318464
+      8: 0.5448898927159798
+    4:
+      1: 0.9186900056465275
+      2: 0.9299830604178432
+      3: 0.9153020892151329
+      4: 1.0
+      5: 0.9785431959345003
+      6: 0.8994918125352909
+      7: 0.7910784867306607
+      8: 0.6600790513833994
+    5:
+      1: 0.8633540372670809
+      2: 0.8780350084697911
+      3: 0.8814229249011858
+      4: 0.9785431959345003
+      5: 1.0
+      6: 0.8599661208356861
+      7: 0.7312252964426879
+      8: 0.6036137775268211
+    6:
+      1: 0.8012422360248449
+      2: 0.805759457933371
+      3: 0.7651044607566347
+      4: 0.8994918125352909
+      5: 0.8599661208356861
+      6: 1.0
+      7: 0.9638622247317901
+      8: 0.8836815358554491
+    7:
+      1: 0.7481648785996614
+      2: 0.7526821005081875
+      3: 0.6725014116318464
+      4: 0.7910784867306607
+      5: 0.7312252964426879
+      6: 0.9638622247317901
+      7: 1.0
+      8: 0.9559570863918693
+    8:
+      1: 0.6510446075663467
+      2: 0.6487859966120837
+      3: 0.5448898927159798
+      4: 0.6600790513833994
+      5: 0.6036137775268211
+      6: 0.8836815358554491
+      7: 0.9559570863918693
+      8: 1.0
+  SELL:
+    1:
+      1: 1.0
+      2: 0.8283455674760022
+      3: 0.7086391869000566
+      4: 0.8418972332015812
+      5: 0.8452851496329757
+      6: 0.5640880858272164
+      7: 0.6126482213438735
+      8: 0.6092603049124788
+    2:
+      1: 0.8283455674760022
+      2: 1.0
+      3: 0.8159232072275552
+      4: 0.9446640316205535
+      5: 0.9841897233201583
+      6: 0.39582156973461324
+      7: 0.44325239977413894
+      8: 0.4635798983625071
+    3:
+      1: 0.7086391869000566
+      2: 0.8159232072275552
+      3: 1.0
+      4: 0.8385093167701864
+      5: 0.8170525127046867
+      6: 0.4985883681535856
+      7: 0.3608130999435348
+      8: 0.32128740824393004
+    4:
+      1: 0.8418972332015812
+      2: 0.9446640316205535
+      3: 0.8385093167701864
+      4: 1.0
+      5: 0.9480519480519483
+      6: 0.5324675324675326
+      7: 0.5324675324675326
+      8: 0.5053642010163749
+    5:
+      1: 0.8452851496329757
+      2: 0.9841897233201583
+      3: 0.8170525127046867
+      4: 0.9480519480519483
+      5: 1.0
+      6: 0.409373235460192
+      7: 0.4726143421795596
+      8: 0.4522868435911915
+    6:
+      1: 0.5640880858272164
+      2: 0.39582156973461324
+      3: 0.4985883681535856
+      4: 0.5324675324675326
+      5: 0.409373235460192
+      6: 1.0
+      7: 0.8814229249011858
+      8: 0.8486730660643705
+    7:
+      1: 0.6126482213438735
+      2: 0.44325239977413894
+      3: 0.3608130999435348
+      4: 0.5324675324675326
+      5: 0.4726143421795596
+      6: 0.8814229249011858
+      7: 1.0
+      8: 0.9446640316205535
+    8:
+      1: 0.6092603049124788
+      2: 0.4635798983625071
+      3: 0.32128740824393004
+      4: 0.5053642010163749
+      5: 0.4522868435911915
+      6: 0.8486730660643705
+      7: 0.9446640316205535
+      8: 1.0
+sign_consistency:
+  BUY:
+    ATR_14: consistent_positive
+    Adj Close: consistent_negative
+    BB_Lower: consistent_negative
+    BB_Middle: 'unstable (flips: negative, positive)'
+    BB_Upper: 'unstable (flips: negative, positive)'
+    Close: consistent_negative
+    Daily_Return: 'unstable (flips: negative, positive)'
+    EMA_20: consistent_negative
+    EMA_200: consistent_positive
+    EMA_50: 'unstable (flips: negative, positive)'
+    High: consistent_negative
+    Log_Return: 'unstable (flips: negative, positive)'
+    Low: consistent_negative
+    MACD: consistent_negative
+    MACD_Hist: consistent_negative
+    MACD_Signal: 'unstable (flips: negative, positive)'
+    Open: consistent_negative
+    RSI_14: consistent_negative
+    SMA_20: 'unstable (flips: negative, positive)'
+    SMA_200: consistent_positive
+    SMA_50: 'unstable (flips: negative, positive)'
+    Volume: 'unstable (flips: negative, positive)'
+  HOLD:
+    ATR_14: consistent_negative
+    Adj Close: consistent_positive
+    BB_Lower: 'unstable (flips: negative, positive)'
+    BB_Middle: 'unstable (flips: negative, positive)'
+    BB_Upper: 'unstable (flips: negative, positive)'
+    Close: consistent_positive
+    Daily_Return: consistent_positive
+    EMA_20: 'unstable (flips: negative, positive)'
+    EMA_200: 'unstable (flips: negative, positive)'
+    EMA_50: 'unstable (flips: negative, positive)'
+    High: consistent_positive
+    Log_Return: consistent_positive
+    Low: consistent_positive
+    MACD: consistent_positive
+    MACD_Hist: consistent_positive
+    MACD_Signal: consistent_positive
+    Open: consistent_positive
+    RSI_14: consistent_positive
+    SMA_20: 'unstable (flips: negative, positive)'
+    SMA_200: consistent_negative
+    SMA_50: 'unstable (flips: negative, positive)'
+    Volume: 'unstable (flips: negative, positive)'
+  SELL:
+    ATR_14: consistent_positive
+    Adj Close: consistent_negative
+    BB_Lower: 'unstable (flips: negative, positive)'
+    BB_Middle: 'unstable (flips: negative, positive)'
+    BB_Upper: consistent_positive
+    Close: consistent_negative
+    Daily_Return: consistent_negative
+    EMA_20: 'unstable (flips: negative, positive)'
+    EMA_200: 'unstable (flips: negative, positive)'
+    EMA_50: 'unstable (flips: negative, positive)'
+    High: consistent_negative
+    Log_Return: consistent_negative
+    Low: consistent_negative
+    MACD: consistent_negative
+    MACD_Hist: consistent_negative
+    MACD_Signal: consistent_negative
+    Open: 'unstable (flips: negative, positive)'
+    RSI_14: consistent_negative
+    SMA_20: 'unstable (flips: negative, positive)'
+    SMA_200: 'unstable (flips: negative, positive)'
+    SMA_50: 'unstable (flips: negative, positive)'
+    Volume: 'unstable (flips: negative, positive)'
+top_k_features_stability:
+  BUY:
+    ATR_14: 1.0
+    Adj Close: 1.0
+    BB_Lower: 0.8571428571428571
+    Close: 1.0
+    Daily_Return: 0.8571428571428571
+    EMA_20: 0.2857142857142857
+    EMA_200: 1.0
+    High: 1.0
+    Log_Return: 0.5714285714285714
+    Low: 1.0
+    MACD: 1.0
+    MACD_Hist: 1.0
+    MACD_Signal: 0.8571428571428571
+    Open: 1.0
+    RSI_14: 0.2857142857142857
+    SMA_20: 0.14285714285714285
+    SMA_200: 1.0
+    SMA_50: 0.14285714285714285
+    Volume: 1.0
+  HOLD:
+    ATR_14: 1.0
+    Adj Close: 1.0
+    BB_Lower: 0.5714285714285714
+    BB_Upper: 0.42857142857142855
+    Close: 1.0
+    Daily_Return: 1.0
+    EMA_200: 0.8571428571428571
+    EMA_50: 0.14285714285714285
+    High: 0.7142857142857143
+    Log_Return: 1.0
+    Low: 1.0
+    MACD: 1.0
+    MACD_Hist: 1.0
+    MACD_Signal: 1.0
+    Open: 1.0
+    RSI_14: 0.14285714285714285
+    SMA_200: 1.0
+    SMA_50: 0.2857142857142857
+    Volume: 0.8571428571428571
+  SELL:
+    ATR_14: 1.0
+    Adj Close: 0.42857142857142855
+    BB_Lower: 0.2857142857142857
+    BB_Middle: 0.42857142857142855
+    BB_Upper: 1.0
+    Close: 0.42857142857142855
+    Daily_Return: 1.0
+    EMA_20: 0.5714285714285714
+    EMA_200: 0.8571428571428571
+    EMA_50: 0.7142857142857143
+    High: 0.2857142857142857
+    Log_Return: 1.0
+    Low: 0.7142857142857143
+    MACD: 1.0
+    MACD_Hist: 1.0
+    MACD_Signal: 1.0
+    Open: 0.2857142857142857
+    RSI_14: 0.42857142857142855
+    SMA_20: 0.5714285714285714
+    SMA_200: 0.7142857142857143
+    SMA_50: 0.5714285714285714
+    Volume: 0.7142857142857143

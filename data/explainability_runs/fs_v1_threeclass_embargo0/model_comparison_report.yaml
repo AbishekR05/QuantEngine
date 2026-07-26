@@ -1,0 +1,47 @@
+features_overlap_jaccard:
+  BUY:
+    jaccard_similarity: 0.5789473684210527
+    shared_features:
+    - MACD_Hist
+    - High
+    - Open
+    - Daily_Return
+    - MACD_Signal
+    - MACD
+    - EMA_200
+    - Volume
+    - ATR_14
+    - BB_Lower
+    - SMA_200
+  HOLD:
+    jaccard_similarity: 0.6666666666666666
+    shared_features:
+    - MACD_Hist
+    - Close
+    - Open
+    - Daily_Return
+    - MACD_Signal
+    - MACD
+    - EMA_200
+    - Low
+    - Volume
+    - ATR_14
+    - BB_Lower
+    - SMA_200
+  SELL:
+    jaccard_similarity: 0.5789473684210527
+    shared_features:
+    - MACD_Hist
+    - Close
+    - Daily_Return
+    - MACD
+    - MACD_Signal
+    - EMA_200
+    - Volume
+    - BB_Upper
+    - ATR_14
+    - SMA_50
+    - SMA_200
+run_id: fs_v1_threeclass_embargo0
+timestamp: '2026-07-26 21:20:27'
+top_k_value: 15
