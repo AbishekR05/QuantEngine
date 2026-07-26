@@ -11,12 +11,12 @@ Performance is split into two transaction cost structures:
 - **Realistic**: Configured transaction costs applied at execution points.
 
 ### Mean Aggregate Performance (Folds 1–7 Rollup)
-| Model Name | Cost Mode | Mean CAGR | Mean Max DD | Mean Sharpe | Median CAGR | Median Max DD | Median Sharpe |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **xgboost** | idealized | -0.38% | -4.09% | -0.09 | 1.61% | -3.38% | 0.49 |
-| **xgboost** | realistic | -3.30% | -5.58% | -0.77 | -1.44% | -4.34% | -0.26 |
-| **logistic_regression** | idealized | 1.48% | -0.45% | 0.33 | 0.00% | 0.00% | 0.00 |
-| **logistic_regression** | realistic | 1.09% | -0.55% | 0.24 | 0.00% | 0.00% | 0.00 |
+| Model | Cost Mode | Sharpe | Sortino | Max DD | Profit Factor | Expectancy | Exposure | CAGR |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **xgboost** | idealized | -0.09 | -0.04 | -4.09% | 1.11 | 146.64 | 32.5% | -0.38% |
+| **xgboost** | realistic | -0.77 | -0.67 | -5.58% | 1.11 | -2122.11 | 32.5% | -3.30% |
+| **logistic_regression** | idealized | 0.33 | 0.34 | -0.45% | 1.54 | 2171.66 | 1.4% | 1.48% |
+| **logistic_regression** | realistic | 0.24 | 0.18 | -0.55% | 1.54 | 1485.99 | 1.4% | 1.09% |
 
 ---
 

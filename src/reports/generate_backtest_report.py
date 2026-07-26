@@ -25,8 +25,8 @@ def main():
     
     # 1. Aggregate table
     md_content.append("\n### Mean Aggregate Performance (Folds 1–7 Rollup)")
-    md_content.append("| Model Name | Cost Mode | Mean CAGR | Mean Max DD | Mean Sharpe | Median CAGR | Median Max DD | Median Sharpe |")
-    md_content.append("| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |")
+    md_content.append("| Model | Cost Mode | Sharpe | Sortino | Max DD | Profit Factor | Expectancy | Exposure | CAGR |")
+    md_content.append("| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |")
     
     models = ["xgboost", "logistic_regression"]
     modes = ["idealized", "realistic"]
@@ -40,12 +40,13 @@ def main():
                 
                 md_content.append(
                     f"| **{m}** | {mode} | "
-                    f"{data.get('mean_annualized_return_cagr', 0.0)*100:.2f}% | "
-                    f"{data.get('mean_max_drawdown', 0.0)*100:.2f}% | "
                     f"{data.get('mean_sharpe_ratio', 0.0):.2f} | "
-                    f"{data.get('median_annualized_return_cagr', 0.0)*100:.2f}% | "
-                    f"{data.get('median_max_drawdown', 0.0)*100:.2f}% | "
-                    f"{data.get('median_sharpe_ratio', 0.0):.2f} |"
+                    f"{data.get('mean_sortino_ratio', 0.0):.2f} | "
+                    f"{data.get('mean_max_drawdown', 0.0)*100:.2f}% | "
+                    f"{data.get('mean_profit_factor', 0.0):.2f} | "
+                    f"{data.get('mean_expectancy', 0.0):.2f} | "
+                    f"{data.get('mean_exposure_pct', 0.0)*100:.1f}% | "
+                    f"{data.get('mean_annualized_return_cagr', 0.0)*100:.2f}% |"
                 )
                 
     # 2. Fold by Fold comparison for XGBoost (realistic)

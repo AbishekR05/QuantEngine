@@ -235,6 +235,10 @@ class BacktestEngine:
         exposure_days = sum([1 for h in history if h["open_position_value"] > 0])
         exposure_pct = exposure_days / n_days if n_days > 0 else 0.0
         
+        # Expectancy (average net P&L per trade)
+        net_pnls = [t["net_pnl"] for t in trade_log]
+        expectancy = np.mean(net_pnls) if n_trades > 0 else 0.0
+        
         return {
             "total_return": float(total_ret),
             "annualized_return_cagr": float(cagr),
@@ -246,7 +250,8 @@ class BacktestEngine:
             "win_rate": float(win_rate),
             "profit_factor": float(profit_factor),
             "average_holding_period": float(avg_holding),
-            "exposure_pct": float(exposure_pct)
+            "exposure_pct": float(exposure_pct),
+            "expectancy": float(expectancy)
         }
 
     def _generate_signals(self, model_name: str, y_probs: np.ndarray) -> List[str]:
@@ -521,7 +526,7 @@ class BacktestEngine:
         agg = {}
         metric_keys = ["total_return", "annualized_return_cagr", "max_drawdown", "sharpe_ratio",
                        "sortino_ratio", "calmar_ratio", "win_rate", "profit_factor",
-                       "average_holding_period", "exposure_pct"]
+                       "average_holding_period", "exposure_pct", "expectancy"]
                        
         for key in metric_keys:
             vals = [fold_metrics[fid][key] for fid in full_year_folds]

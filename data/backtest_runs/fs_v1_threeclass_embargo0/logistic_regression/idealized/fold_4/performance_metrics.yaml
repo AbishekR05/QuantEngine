@@ -1,6 +1,7 @@
 annualized_return_cagr: 0.009958849007248638
 average_holding_period: 3.5
 calmar_ratio: 0.9958849007248638
+expectancy: 4899.999999999986
 exposure_pct: 0.028225806451612902
 max_drawdown: -0.01
 number_of_trades: 2

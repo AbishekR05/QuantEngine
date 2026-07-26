@@ -2,6 +2,7 @@ always_flat:
   annualized_return_cagr: 0.0
   average_holding_period: 0.0
   calmar_ratio: 0.0
+  expectancy: 0.0
   exposure_pct: 0.0
   max_drawdown: 0.0
   number_of_trades: 0
@@ -14,6 +15,7 @@ always_long:
   annualized_return_cagr: 0.14895683574490848
   average_holding_period: 0.0
   calmar_ratio: 0.38750626300669544
+  expectancy: 0.0
   exposure_pct: 1.0
   max_drawdown: -0.384398524527421
   number_of_trades: 0
@@ -26,6 +28,7 @@ buy_and_hold:
   annualized_return_cagr: 0.14895683574490848
   average_holding_period: 0.0
   calmar_ratio: 0.38750626300669544
+  expectancy: 0.0
   exposure_pct: 1.0
   max_drawdown: -0.384398524527421
   number_of_trades: 0
@@ -38,6 +41,7 @@ model_strategy:
   annualized_return_cagr: 0.09348962615863554
   average_holding_period: 1.8888888888888888
   calmar_ratio: 4.317885240480078
+  expectancy: 10301.585472159988
   exposure_pct: 0.068
   max_drawdown: -0.02165171628050055
   number_of_trades: 9
@@ -50,6 +54,7 @@ naive_classifier:
   annualized_return_cagr: 0.0
   average_holding_period: 0.0
   calmar_ratio: 0.0
+  expectancy: 0.0
   exposure_pct: 0.0
   max_drawdown: 0.0
   number_of_trades: 0
@@ -62,6 +67,7 @@ previous_step_baseline:
   annualized_return_cagr: 0.01985516238158036
   average_holding_period: 1.0
   calmar_ratio: 1.985516238158036
+  expectancy: 4924.010000000013
   exposure_pct: 0.016
   max_drawdown: -0.01
   number_of_trades: 4

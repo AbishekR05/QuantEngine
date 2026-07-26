@@ -1,6 +1,7 @@
 annualized_return_cagr: 0.0
 average_holding_period: 0.0
 calmar_ratio: 0.0
+expectancy: 0.0
 exposure_pct: 0.0
 max_drawdown: 0.0
 number_of_trades: 0

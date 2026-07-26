@@ -1,6 +1,7 @@
 mean_annualized_return_cagr: -0.03296073795495017
 mean_average_holding_period: 6.924206349206349
 mean_calmar_ratio: -0.39014716901779495
+mean_expectancy: -2122.106983830331
 mean_exposure_pct: 0.3254523066916061
 mean_max_drawdown: -0.05578478878369752
 mean_profit_factor: 1.1080983502323813
@@ -11,6 +12,7 @@ mean_win_rate: 0.34384920634920635
 median_annualized_return_cagr: -0.014423524841196023
 median_average_holding_period: 6.666666666666667
 median_calmar_ratio: -0.33225431192628413
+median_expectancy: -890.8153617763837
 median_exposure_pct: 0.3373493975903614
 median_max_drawdown: -0.04341109903908819
 median_profit_factor: 1.2485353383302369
