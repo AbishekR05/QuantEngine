@@ -11,12 +11,12 @@ Performance is split into two transaction cost structures:
 - **Realistic**: Configured transaction costs applied at execution points.
 
 ### Unified Aggregate Performance (Folds 1–7 Rollup)
-| Model | Cost Mode | Sharpe | Sortino | Max DD | Profit Factor | Expectancy | Exposure | CAGR |
+| Model | Cost Mode | Sharpe [95% CI] | Sortino | Max DD | Profit Factor | Expectancy | Exposure | CAGR |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **xgboost** | idealized | -0.08 | -0.07 | -9.76% | 0.95 | ₹-265.88 | 32.5% | -0.42% |
-| **xgboost** | realistic | -0.76 | -0.68 | -22.67% | 0.62 | ₹-2,519.77 | 32.5% | -3.36% |
-| **logistic_regression** | idealized | 0.69 | 0.32 | -3.14% | 3.38 | ₹9,319.48 | 1.4% | 1.45% |
-| **logistic_regression** | realistic | 0.53 | 0.19 | -3.82% | 2.44 | ₹6,868.74 | 1.4% | 1.07% |
+| **xgboost** | idealized | -0.08 [-0.83, 0.67] | -0.07 | -9.76% | 0.95 | ₹-265.88 | 32.5% | -0.42% |
+| **xgboost** | realistic | -0.76 [-1.51, -0.02] | -0.68 | -22.67% | 0.62 | ₹-2,519.77 | 32.5% | -3.36% |
+| **logistic_regression** | idealized | 0.69 [-0.06, 1.44] | 0.32 | -3.14% | 3.38 | ₹9,319.48 | 1.4% | 1.45% |
+| **logistic_regression** | realistic | 0.53 [-0.22, 1.28] | 0.19 | -3.82% | 2.44 | ₹6,868.74 | 1.4% | 1.07% |
 
 ---
 

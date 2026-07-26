@@ -3,6 +3,8 @@ mean_annualized_return_cagr: 0.014464408392813155
 mean_expectancy: 9319.47902267635
 mean_exposure_pct: 0.013746543778801844
 mean_max_drawdown: -0.03143519911769559
+mean_sharpe_ci_lower: -0.056448945971850684
+mean_sharpe_ci_upper: 1.4416715733589847
 mean_sharpe_ratio: 0.692611313693567
 mean_sortino_ratio: 0.31788477390981423
 mean_trades_per_fold: 1.5714285714285714

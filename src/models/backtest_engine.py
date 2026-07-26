@@ -539,6 +539,15 @@ class BacktestEngine:
         mean_ret = combined_returns.mean()
         unified_sharpe = (mean_ret / std_ret) * np.sqrt(252) if std_ret > 0 else 0.0
         
+        # Annualized Sharpe standard error and 95% CI (Lo 2002)
+        n_obs = len(combined_returns)
+        if n_obs > 0 and std_ret > 0:
+            se_sharpe = np.sqrt((252 + 0.5 * (unified_sharpe ** 2)) / n_obs)
+            sharpe_ci_lower = unified_sharpe - 1.96 * se_sharpe
+            sharpe_ci_upper = unified_sharpe + 1.96 * se_sharpe
+        else:
+            sharpe_ci_lower, sharpe_ci_upper = 0.0, 0.0
+            
         # Unified Sortino
         downside_returns = combined_returns[combined_returns < 0]
         std_downside = downside_returns.std(ddof=1)
@@ -583,6 +592,8 @@ class BacktestEngine:
         agg = {
             "mean_annualized_return_cagr": float(unified_cagr),
             "mean_sharpe_ratio": float(unified_sharpe),
+            "mean_sharpe_ci_lower": float(sharpe_ci_lower),
+            "mean_sharpe_ci_upper": float(sharpe_ci_upper),
             "mean_sortino_ratio": float(unified_sortino),
             "mean_max_drawdown": float(unified_max_dd),
             "global_profit_factor": global_profit_factor,

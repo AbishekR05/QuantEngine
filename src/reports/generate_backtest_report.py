@@ -26,7 +26,7 @@ def main():
     
     # 1. Aggregate table
     md_content.append("\n### Unified Aggregate Performance (Folds 1–7 Rollup)")
-    md_content.append("| Model | Cost Mode | Sharpe | Sortino | Max DD | Profit Factor | Expectancy | Exposure | CAGR |")
+    md_content.append("| Model | Cost Mode | Sharpe [95% CI] | Sortino | Max DD | Profit Factor | Expectancy | Exposure | CAGR |")
     md_content.append("| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |")
     
     models = ["xgboost", "logistic_regression"]
@@ -42,9 +42,13 @@ def main():
                 pf_val = data.get('global_profit_factor', 0.0)
                 pf_str = f"{pf_val:.2f}" if isinstance(pf_val, (int, float)) else str(pf_val)
                 
+                sharpe = data.get('mean_sharpe_ratio', 0.0)
+                ci_lower = data.get('mean_sharpe_ci_lower', 0.0)
+                ci_upper = data.get('mean_sharpe_ci_upper', 0.0)
+                
                 md_content.append(
                     f"| **{m}** | {mode} | "
-                    f"{data.get('mean_sharpe_ratio', 0.0):.2f} | "
+                    f"{sharpe:.2f} [{ci_lower:.2f}, {ci_upper:.2f}] | "
                     f"{data.get('mean_sortino_ratio', 0.0):.2f} | "
                     f"{data.get('mean_max_drawdown', 0.0)*100:.2f}% | "
                     f"{pf_str} | "
