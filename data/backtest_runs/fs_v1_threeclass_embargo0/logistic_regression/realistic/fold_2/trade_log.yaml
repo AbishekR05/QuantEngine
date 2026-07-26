@@ -1,0 +1,11 @@
+- direction: SHORT
+  entry_cost: 1150.0
+  entry_date: '2020-03-11'
+  entry_price: 0.7717774657832875
+  exit_cost: 1104.0
+  exit_date: '2020-03-12'
+  exit_price: 0.740906367151956
+  exit_reason: TAKE_PROFIT
+  holding_days: 1
+  net_pnl: 17746.00000000002
+  realized_pnl: 20000.00000000002

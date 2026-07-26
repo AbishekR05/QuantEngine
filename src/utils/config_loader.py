@@ -311,6 +311,48 @@ class EdaExplainabilityConfig(BaseModel):
     output: Dict[str, str]
     versioning: EdaExplainabilityVersioningConfig
 
+class EdaBacktestThresholds(BaseModel):
+    buy_threshold: float
+    sell_threshold: float
+
+class EdaBacktestSignalGen(BaseModel):
+    thresholding_enabled: bool
+    confidence_thresholds: Dict[str, EdaBacktestThresholds]
+
+class EdaBacktestPositionConfig(BaseModel):
+    max_open_positions: int
+    allow_scaling_into_position: bool
+
+class EdaBacktestCostStructure(BaseModel):
+    brokerage: float
+    slippage: float
+    exchange_fees: float
+    taxes: float
+    spread: float
+    commission: float
+
+class EdaBacktestRiskConfig(BaseModel):
+    stop_loss: Dict[str, Any]
+    take_profit: Dict[str, Any]
+    trailing_stop: Dict[str, Any]
+    max_holding_days: int
+    risk_per_trade: float
+
+class EdaBacktestingVersioningConfig(BaseModel):
+    feature_store_version: int
+    label_version: str
+    walk_forward_run_id: str
+
+class EdaBacktestingConfig(BaseModel):
+    initial_capital: float
+    execution_lag_days: int
+    signal_generation: EdaBacktestSignalGen
+    position: EdaBacktestPositionConfig
+    transaction_costs: Dict[str, EdaBacktestCostStructure]
+    risk_management: EdaBacktestRiskConfig
+    benchmarks: List[str]
+    versioning: EdaBacktestingVersioningConfig
+
 class EdaConfig(BaseModel):
     input_files: EdaInputFiles
     output_dir: str
@@ -329,6 +371,7 @@ class EdaConfig(BaseModel):
     baseline_benchmarking: EdaBaselineBenchmarkingConfig
     hyperparameter_optimization: EdaHyperparameterOptimizationConfig
     explainability: EdaExplainabilityConfig
+    backtesting: EdaBacktestingConfig
 
     def get_clean_input_path(self) -> Path:
         return PROJECT_ROOT / self.input_files.clean

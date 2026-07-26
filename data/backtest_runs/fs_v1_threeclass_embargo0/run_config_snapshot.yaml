@@ -1,0 +1,52 @@
+backtesting:
+  benchmarks:
+  - buy_and_hold
+  - naive_classifier
+  - always_long
+  - always_flat
+  - previous_step_baseline
+  execution_lag_days: 1
+  initial_capital: 1000000.0
+  position:
+    allow_scaling_into_position: false
+    max_open_positions: 1
+  risk_management:
+    max_holding_days: 10
+    risk_per_trade: 0.01
+    stop_loss:
+      enabled: true
+      value: 0.02
+    take_profit:
+      enabled: true
+      value: 0.04
+    trailing_stop:
+      enabled: false
+      value: null
+  signal_generation:
+    confidence_thresholds:
+      logistic_regression:
+        buy_threshold: 0.55
+        sell_threshold: 0.55
+      xgboost:
+        buy_threshold: 0.55
+        sell_threshold: 0.55
+    thresholding_enabled: true
+  transaction_costs:
+    idealized:
+      brokerage: 0.0
+      commission: 0.0
+      exchange_fees: 0.0
+      slippage: 0.0
+      spread: 0.0
+      taxes: 0.0
+    realistic:
+      brokerage: 0.0003
+      commission: 0.0002
+      exchange_fees: 0.0001
+      slippage: 0.0005
+      spread: 0.0002
+      taxes: 0.001
+  versioning:
+    feature_store_version: 1
+    label_version: threeclass
+    walk_forward_run_id: fs_v1_threeclass_embargo0
