@@ -114,887 +114,887 @@
   date: '2020-02-10'
   open_position_value: 0.0
   portfolio_value: 1000000.0
-- cash: 500000.0
+- cash: 500000.00000000006
   date: '2020-02-11'
-  open_position_value: 500000.0
+  open_position_value: 499999.99999999994
   portfolio_value: 1000000.0
-- cash: 990000.0
+- cash: 500000.00000000006
   date: '2020-02-12'
-  open_position_value: 0.0
-  portfolio_value: 990000.0
-- cash: 990000.0
+  open_position_value: 496147.1517902583
+  portfolio_value: 996147.1517902584
+- cash: 500000.00000000006
   date: '2020-02-13'
-  open_position_value: 0.0
-  portfolio_value: 990000.0
-- cash: 990000.0
+  open_position_value: 497243.5353014762
+  portfolio_value: 997243.5353014763
+- cash: 500000.00000000006
   date: '2020-02-14'
-  open_position_value: 0.0
-  portfolio_value: 990000.0
-- cash: 990000.0
+  open_position_value: 499770.8188658457
+  portfolio_value: 999770.8188658457
+- cash: 500000.00000000006
   date: '2020-02-17'
-  open_position_value: 0.0
-  portfolio_value: 990000.0
-- cash: 990000.0
+  open_position_value: 502564.4655115259
+  portfolio_value: 1002564.465511526
+- cash: 500000.00000000006
   date: '2020-02-18'
-  open_position_value: 0.0
-  portfolio_value: 990000.0
-- cash: 990000.0
+  open_position_value: 504765.4996697178
+  portfolio_value: 1004765.4996697179
+- cash: 500000.00000000006
   date: '2020-02-19'
-  open_position_value: 0.0
-  portfolio_value: 990000.0
-- cash: 990000.0
+  open_position_value: 499256.6836768025
+  portfolio_value: 999256.6836768026
+- cash: 500000.00000000006
   date: '2020-02-20'
-  open_position_value: 0.0
-  portfolio_value: 990000.0
-- cash: 990000.0
+  open_position_value: 501117.0715143537
+  portfolio_value: 1001117.0715143537
+- cash: 500000.00000000006
   date: '2020-02-24'
-  open_position_value: 0.0
-  portfolio_value: 990000.0
-- cash: 990000.0
+  open_position_value: 511500.7553339156
+  portfolio_value: 1011500.7553339156
+- cash: 500000.00000000006
   date: '2020-02-25'
-  open_position_value: 0.0
-  portfolio_value: 990000.0
-- cash: 990000.0
+  open_position_value: 512801.5588995111
+  portfolio_value: 1012801.5588995111
+- cash: 1017732.239974384
   date: '2020-02-26'
   open_position_value: 0.0
-  portfolio_value: 990000.0
-- cash: 990000.0
+  portfolio_value: 1017732.239974384
+- cash: 1017732.239974384
   date: '2020-02-27'
   open_position_value: 0.0
-  portfolio_value: 990000.0
-- cash: 990000.0
+  portfolio_value: 1017732.239974384
+- cash: 1017732.239974384
   date: '2020-02-28'
   open_position_value: 0.0
-  portfolio_value: 990000.0
-- cash: 990000.0
+  portfolio_value: 1017732.239974384
+- cash: 1017732.239974384
   date: '2020-03-02'
   open_position_value: 0.0
-  portfolio_value: 990000.0
-- cash: 495000.0
+  portfolio_value: 1017732.239974384
+- cash: 508866.11998719204
   date: '2020-03-03'
-  open_position_value: 495000.0
-  portfolio_value: 990000.0
-- cash: 980100.0
+  open_position_value: 508866.1199871919
+  portfolio_value: 1017732.239974384
+- cash: 508866.11998719204
   date: '2020-03-04'
-  open_position_value: 0.0
-  portfolio_value: 980100.0
-- cash: 980100.0
+  open_position_value: 506511.6218187563
+  portfolio_value: 1015377.7418059483
+- cash: 508866.11998719204
   date: '2020-03-05'
-  open_position_value: 0.0
-  portfolio_value: 980100.0
-- cash: 490050.0
+  open_position_value: 507321.9683828606
+  portfolio_value: 1016188.0883700526
+- cash: 1007554.9175746401
   date: '2020-03-06'
-  open_position_value: 490050.0
-  portfolio_value: 980100.0
-- cash: 999702.0
+  open_position_value: 0.0
+  portfolio_value: 1007554.9175746401
+- cash: 1007554.9175746401
   date: '2020-03-09'
   open_position_value: 0.0
-  portfolio_value: 999702.0
-- cash: 999702.0
+  portfolio_value: 1007554.9175746401
+- cash: 1007554.9175746401
   date: '2020-03-11'
   open_position_value: 0.0
-  portfolio_value: 999702.0
-- cash: 999702.0
+  portfolio_value: 1007554.9175746401
+- cash: 1007554.9175746401
   date: '2020-03-12'
   open_position_value: 0.0
-  portfolio_value: 999702.0
-- cash: 999702.0
+  portfolio_value: 1007554.9175746401
+- cash: 1007554.9175746401
   date: '2020-03-13'
   open_position_value: 0.0
-  portfolio_value: 999702.0
-- cash: 999702.0
+  portfolio_value: 1007554.9175746401
+- cash: 1007554.9175746401
   date: '2020-03-16'
   open_position_value: 0.0
-  portfolio_value: 999702.0
-- cash: 999702.0
+  portfolio_value: 1007554.9175746401
+- cash: 1007554.9175746401
   date: '2020-03-17'
   open_position_value: 0.0
-  portfolio_value: 999702.0
-- cash: 999702.0
+  portfolio_value: 1007554.9175746401
+- cash: 1007554.9175746401
   date: '2020-03-18'
   open_position_value: 0.0
-  portfolio_value: 999702.0
-- cash: 999702.0
+  portfolio_value: 1007554.9175746401
+- cash: 1007554.9175746401
   date: '2020-03-19'
   open_position_value: 0.0
-  portfolio_value: 999702.0
-- cash: 999702.0
+  portfolio_value: 1007554.9175746401
+- cash: 1007554.9175746401
   date: '2020-03-20'
   open_position_value: 0.0
-  portfolio_value: 999702.0
-- cash: 999702.0
+  portfolio_value: 1007554.9175746401
+- cash: 1007554.9175746401
   date: '2020-03-23'
   open_position_value: 0.0
-  portfolio_value: 999702.0
-- cash: 999702.0
+  portfolio_value: 1007554.9175746401
+- cash: 1007554.9175746401
   date: '2020-03-24'
   open_position_value: 0.0
-  portfolio_value: 999702.0
-- cash: 999702.0
+  portfolio_value: 1007554.9175746401
+- cash: 1007554.9175746401
   date: '2020-03-25'
   open_position_value: 0.0
-  portfolio_value: 999702.0
-- cash: 0.0
+  portfolio_value: 1007554.9175746401
+- cash: 503777.45878732
   date: '2020-03-26'
-  open_position_value: 999702.0
-  portfolio_value: 999702.0
-- cash: 979707.96
+  open_position_value: 503777.4587873201
+  portfolio_value: 1007554.9175746401
+- cash: 1027706.0159261329
   date: '2020-03-27'
   open_position_value: 0.0
-  portfolio_value: 979707.96
-- cash: 979707.96
+  portfolio_value: 1027706.0159261329
+- cash: 1027706.0159261329
   date: '2020-03-30'
   open_position_value: 0.0
-  portfolio_value: 979707.96
-- cash: 979707.96
+  portfolio_value: 1027706.0159261329
+- cash: 1027706.0159261329
   date: '2020-03-31'
   open_position_value: 0.0
-  portfolio_value: 979707.96
-- cash: 979707.96
+  portfolio_value: 1027706.0159261329
+- cash: 1027706.0159261329
   date: '2020-04-01'
   open_position_value: 0.0
-  portfolio_value: 979707.96
-- cash: 1.1641532182693481e-10
+  portfolio_value: 1027706.0159261329
+- cash: 513853.0079630664
   date: '2020-04-03'
-  open_position_value: 979707.9599999998
-  portfolio_value: 979707.96
-- cash: 960113.8008
+  open_position_value: 513853.0079630665
+  portfolio_value: 1027706.0159261329
+- cash: 1017428.9557668716
   date: '2020-04-07'
   open_position_value: 0.0
-  portfolio_value: 960113.8008
-- cash: 960113.8008
+  portfolio_value: 1017428.9557668716
+- cash: 1017428.9557668716
   date: '2020-04-08'
   open_position_value: 0.0
-  portfolio_value: 960113.8008
-- cash: 960113.8008
+  portfolio_value: 1017428.9557668716
+- cash: 1017428.9557668716
   date: '2020-04-09'
   open_position_value: 0.0
-  portfolio_value: 960113.8008
-- cash: 960113.8008
+  portfolio_value: 1017428.9557668716
+- cash: 1017428.9557668716
   date: '2020-04-13'
   open_position_value: 0.0
-  portfolio_value: 960113.8008
-- cash: 960113.8008
+  portfolio_value: 1017428.9557668716
+- cash: 1017428.9557668716
   date: '2020-04-15'
   open_position_value: 0.0
-  portfolio_value: 960113.8008
-- cash: 0.0
+  portfolio_value: 1017428.9557668716
+- cash: 508714.47788343584
   date: '2020-04-16'
-  open_position_value: 960113.8008
-  portfolio_value: 960113.8008
-- cash: 998518.3528320001
+  open_position_value: 508714.4778834357
+  portfolio_value: 1017428.9557668716
+- cash: 508714.47788343584
   date: '2020-04-17'
-  open_position_value: 0.0
-  portfolio_value: 998518.3528320001
-- cash: 998518.3528320001
+  open_position_value: 524211.590418046
+  portfolio_value: 1032926.0683014819
+- cash: 1037777.534882209
   date: '2020-04-20'
   open_position_value: 0.0
-  portfolio_value: 998518.3528320001
-- cash: 998518.3528320001
+  portfolio_value: 1037777.534882209
+- cash: 1037777.534882209
   date: '2020-04-21'
   open_position_value: 0.0
-  portfolio_value: 998518.3528320001
-- cash: 998518.3528320001
+  portfolio_value: 1037777.534882209
+- cash: 1037777.534882209
   date: '2020-04-22'
   open_position_value: 0.0
-  portfolio_value: 998518.3528320001
-- cash: 998518.3528320001
+  portfolio_value: 1037777.534882209
+- cash: 1037777.534882209
   date: '2020-04-23'
   open_position_value: 0.0
-  portfolio_value: 998518.3528320001
-- cash: 998518.3528320001
+  portfolio_value: 1037777.534882209
+- cash: 1037777.534882209
   date: '2020-04-24'
   open_position_value: 0.0
-  portfolio_value: 998518.3528320001
-- cash: 998518.3528320001
+  portfolio_value: 1037777.534882209
+- cash: 1037777.534882209
   date: '2020-04-27'
   open_position_value: 0.0
-  portfolio_value: 998518.3528320001
-- cash: 998518.3528320001
+  portfolio_value: 1037777.534882209
+- cash: 1037777.534882209
   date: '2020-04-28'
   open_position_value: 0.0
-  portfolio_value: 998518.3528320001
-- cash: 998518.3528320001
+  portfolio_value: 1037777.534882209
+- cash: 1037777.534882209
   date: '2020-04-29'
   open_position_value: 0.0
-  portfolio_value: 998518.3528320001
-- cash: 998518.3528320001
+  portfolio_value: 1037777.534882209
+- cash: 1037777.534882209
   date: '2020-04-30'
   open_position_value: 0.0
-  portfolio_value: 998518.3528320001
-- cash: 998518.3528320001
+  portfolio_value: 1037777.534882209
+- cash: 1037777.534882209
   date: '2020-05-04'
   open_position_value: 0.0
-  portfolio_value: 998518.3528320001
-- cash: 998518.3528320001
+  portfolio_value: 1037777.534882209
+- cash: 1037777.534882209
   date: '2020-05-05'
   open_position_value: 0.0
-  portfolio_value: 998518.3528320001
-- cash: 499259.17641600006
+  portfolio_value: 1037777.534882209
+- cash: 518888.7674411046
   date: '2020-05-06'
-  open_position_value: 499259.17641600006
-  portfolio_value: 998518.3528320001
-- cash: 988533.1693036801
+  open_position_value: 518888.76744110446
+  portfolio_value: 1037777.534882209
+- cash: 518888.7674411046
   date: '2020-05-07'
-  open_position_value: 0.0
-  portfolio_value: 988533.1693036801
-- cash: 988533.1693036801
+  open_position_value: 514867.317484126
+  portfolio_value: 1033756.0849252306
+- cash: 518888.7674411046
   date: '2020-05-08'
-  open_position_value: 0.0
-  portfolio_value: 988533.1693036801
-- cash: 988533.1693036801
+  open_position_value: 517802.9349593466
+  portfolio_value: 1036691.7024004512
+- cash: 518888.7674411046
   date: '2020-05-11'
-  open_position_value: 0.0
-  portfolio_value: 988533.1693036801
-- cash: 988533.1693036801
+  open_position_value: 517114.5195708567
+  portfolio_value: 1036003.2870119612
+- cash: 1027399.7595333869
   date: '2020-05-12'
   open_position_value: 0.0
-  portfolio_value: 988533.1693036801
-- cash: 494266.5846518401
+  portfolio_value: 1027399.7595333869
+- cash: 513699.8797666935
   date: '2020-05-13'
-  open_position_value: 494266.58465184
-  portfolio_value: 988533.1693036801
-- cash: 978647.8376106434
+  open_position_value: 513699.8797666934
+  portfolio_value: 1027399.7595333869
+- cash: 1017125.7619380531
   date: '2020-05-14'
   open_position_value: 0.0
-  portfolio_value: 978647.8376106434
-- cash: 978647.8376106434
+  portfolio_value: 1017125.7619380531
+- cash: 1017125.7619380531
   date: '2020-05-15'
   open_position_value: 0.0
-  portfolio_value: 978647.8376106434
-- cash: 0.0
+  portfolio_value: 1017125.7619380531
+- cash: 508562.88096902653
   date: '2020-05-18'
-  open_position_value: 978647.8376106434
-  portfolio_value: 978647.8376106434
-- cash: 1017793.7511150691
+  open_position_value: 508562.88096902653
+  portfolio_value: 1017125.7619380531
+- cash: 508562.88096902653
   date: '2020-05-19'
-  open_position_value: 0.0
-  portfolio_value: 1017793.7511150691
-- cash: 1017793.7511150691
+  open_position_value: 511781.993908674
+  portfolio_value: 1020344.8748777006
+- cash: 508562.88096902653
   date: '2020-05-20'
-  open_position_value: 0.0
-  portfolio_value: 1017793.7511150691
-- cash: 1017793.7511150691
+  open_position_value: 522586.42667056236
+  portfolio_value: 1031149.3076395888
+- cash: 1037468.2771768142
   date: '2020-05-21'
   open_position_value: 0.0
-  portfolio_value: 1017793.7511150691
-- cash: 1017793.7511150691
+  portfolio_value: 1037468.2771768142
+- cash: 1037468.2771768142
   date: '2020-05-22'
   open_position_value: 0.0
-  portfolio_value: 1017793.7511150691
-- cash: 1017793.7511150691
+  portfolio_value: 1037468.2771768142
+- cash: 1037468.2771768142
   date: '2020-05-26'
   open_position_value: 0.0
-  portfolio_value: 1017793.7511150691
-- cash: 508896.8755575346
+  portfolio_value: 1037468.2771768142
+- cash: 518734.138588407
   date: '2020-05-27'
-  open_position_value: 508896.8755575346
-  portfolio_value: 1017793.7511150691
-- cash: 1038149.6261373705
+  open_position_value: 518734.13858840714
+  portfolio_value: 1037468.2771768142
+- cash: 518734.138588407
   date: '2020-05-28'
-  open_position_value: 0.0
-  portfolio_value: 1038149.6261373705
-- cash: 1038149.6261373705
+  open_position_value: 528487.9191801377
+  portfolio_value: 1047222.0577685446
+- cash: 518734.138588407
   date: '2020-05-29'
-  open_position_value: 0.0
-  portfolio_value: 1038149.6261373705
-- cash: 1038149.6261373705
+  open_position_value: 533511.0185671297
+  portfolio_value: 1052245.1571555368
+- cash: 1058217.6427203505
   date: '2020-06-01'
   open_position_value: 0.0
-  portfolio_value: 1038149.6261373705
-- cash: 1038149.6261373705
+  portfolio_value: 1058217.6427203505
+- cash: 1058217.6427203505
   date: '2020-06-02'
   open_position_value: 0.0
-  portfolio_value: 1038149.6261373705
-- cash: 1038149.6261373705
+  portfolio_value: 1058217.6427203505
+- cash: 1058217.6427203505
   date: '2020-06-03'
   open_position_value: 0.0
-  portfolio_value: 1038149.6261373705
-- cash: 1038149.6261373705
+  portfolio_value: 1058217.6427203505
+- cash: 1058217.6427203505
   date: '2020-06-04'
   open_position_value: 0.0
-  portfolio_value: 1038149.6261373705
-- cash: 1038149.6261373705
+  portfolio_value: 1058217.6427203505
+- cash: 1058217.6427203505
   date: '2020-06-05'
   open_position_value: 0.0
-  portfolio_value: 1038149.6261373705
-- cash: 1038149.6261373705
+  portfolio_value: 1058217.6427203505
+- cash: 1058217.6427203505
   date: '2020-06-08'
   open_position_value: 0.0
-  portfolio_value: 1038149.6261373705
-- cash: 1038149.6261373705
+  portfolio_value: 1058217.6427203505
+- cash: 1058217.6427203505
   date: '2020-06-09'
   open_position_value: 0.0
-  portfolio_value: 1038149.6261373705
-- cash: 1038149.6261373705
+  portfolio_value: 1058217.6427203505
+- cash: 1058217.6427203505
   date: '2020-06-10'
   open_position_value: 0.0
-  portfolio_value: 1038149.6261373705
-- cash: 1038149.6261373705
+  portfolio_value: 1058217.6427203505
+- cash: 1058217.6427203505
   date: '2020-06-11'
   open_position_value: 0.0
-  portfolio_value: 1038149.6261373705
-- cash: 1038149.6261373705
+  portfolio_value: 1058217.6427203505
+- cash: 1058217.6427203505
   date: '2020-06-12'
   open_position_value: 0.0
-  portfolio_value: 1038149.6261373705
-- cash: 1038149.6261373705
+  portfolio_value: 1058217.6427203505
+- cash: 1058217.6427203505
   date: '2020-06-15'
   open_position_value: 0.0
-  portfolio_value: 1038149.6261373705
-- cash: 1038149.6261373705
+  portfolio_value: 1058217.6427203505
+- cash: 1058217.6427203505
   date: '2020-06-16'
   open_position_value: 0.0
-  portfolio_value: 1038149.6261373705
-- cash: 1038149.6261373705
+  portfolio_value: 1058217.6427203505
+- cash: 1058217.6427203505
   date: '2020-06-17'
   open_position_value: 0.0
-  portfolio_value: 1038149.6261373705
-- cash: 1038149.6261373705
+  portfolio_value: 1058217.6427203505
+- cash: 1058217.6427203505
   date: '2020-06-18'
   open_position_value: 0.0
-  portfolio_value: 1038149.6261373705
-- cash: 1038149.6261373705
+  portfolio_value: 1058217.6427203505
+- cash: 1058217.6427203505
   date: '2020-06-19'
   open_position_value: 0.0
-  portfolio_value: 1038149.6261373705
-- cash: 1038149.6261373705
+  portfolio_value: 1058217.6427203505
+- cash: 1058217.6427203505
   date: '2020-06-22'
   open_position_value: 0.0
-  portfolio_value: 1038149.6261373705
-- cash: 1038149.6261373705
+  portfolio_value: 1058217.6427203505
+- cash: 1058217.6427203505
   date: '2020-06-23'
   open_position_value: 0.0
-  portfolio_value: 1038149.6261373705
-- cash: 1038149.6261373705
+  portfolio_value: 1058217.6427203505
+- cash: 1058217.6427203505
   date: '2020-06-24'
   open_position_value: 0.0
-  portfolio_value: 1038149.6261373705
-- cash: 1038149.6261373705
+  portfolio_value: 1058217.6427203505
+- cash: 1058217.6427203505
   date: '2020-06-25'
   open_position_value: 0.0
-  portfolio_value: 1038149.6261373705
-- cash: 1038149.6261373705
+  portfolio_value: 1058217.6427203505
+- cash: 1058217.6427203505
   date: '2020-06-26'
   open_position_value: 0.0
-  portfolio_value: 1038149.6261373705
-- cash: 1038149.6261373705
+  portfolio_value: 1058217.6427203505
+- cash: 1058217.6427203505
   date: '2020-06-29'
   open_position_value: 0.0
-  portfolio_value: 1038149.6261373705
-- cash: 1038149.6261373705
+  portfolio_value: 1058217.6427203505
+- cash: 1058217.6427203505
   date: '2020-06-30'
   open_position_value: 0.0
-  portfolio_value: 1038149.6261373705
-- cash: 519074.8130686853
+  portfolio_value: 1058217.6427203505
+- cash: 529108.8213601753
   date: '2020-07-01'
-  open_position_value: 519074.8130686852
-  portfolio_value: 1038149.6261373705
-- cash: 1027768.1298759967
+  open_position_value: 529108.8213601753
+  portfolio_value: 1058217.6427203505
+- cash: 529108.8213601753
   date: '2020-07-02'
-  open_position_value: 0.0
-  portfolio_value: 1027768.1298759967
-- cash: 1027768.1298759967
+  open_position_value: 522937.5857470269
+  portfolio_value: 1052046.407107202
+- cash: 529108.8213601753
   date: '2020-07-03'
-  open_position_value: 0.0
-  portfolio_value: 1027768.1298759967
-- cash: 1027768.1298759967
+  open_position_value: 520114.5315492645
+  portfolio_value: 1049223.3529094397
+- cash: 1047635.4662931471
   date: '2020-07-06'
   open_position_value: 0.0
-  portfolio_value: 1027768.1298759967
-- cash: 1027768.1298759967
+  portfolio_value: 1047635.4662931471
+- cash: 1047635.4662931471
   date: '2020-07-07'
   open_position_value: 0.0
-  portfolio_value: 1027768.1298759967
-- cash: 1027768.1298759967
+  portfolio_value: 1047635.4662931471
+- cash: 1047635.4662931471
   date: '2020-07-08'
   open_position_value: 0.0
-  portfolio_value: 1027768.1298759967
-- cash: 1027768.1298759967
+  portfolio_value: 1047635.4662931471
+- cash: 1047635.4662931471
   date: '2020-07-09'
   open_position_value: 0.0
-  portfolio_value: 1027768.1298759967
-- cash: 1027768.1298759967
+  portfolio_value: 1047635.4662931471
+- cash: 1047635.4662931471
   date: '2020-07-10'
   open_position_value: 0.0
-  portfolio_value: 1027768.1298759967
-- cash: 1027768.1298759967
+  portfolio_value: 1047635.4662931471
+- cash: 1047635.4662931471
   date: '2020-07-13'
   open_position_value: 0.0
-  portfolio_value: 1027768.1298759967
-- cash: 1027768.1298759967
+  portfolio_value: 1047635.4662931471
+- cash: 1047635.4662931471
   date: '2020-07-14'
   open_position_value: 0.0
-  portfolio_value: 1027768.1298759967
-- cash: 1027768.1298759967
+  portfolio_value: 1047635.4662931471
+- cash: 1047635.4662931471
   date: '2020-07-15'
   open_position_value: 0.0
-  portfolio_value: 1027768.1298759967
-- cash: 1027768.1298759967
+  portfolio_value: 1047635.4662931471
+- cash: 1047635.4662931471
   date: '2020-07-16'
   open_position_value: 0.0
-  portfolio_value: 1027768.1298759967
-- cash: 1027768.1298759967
+  portfolio_value: 1047635.4662931471
+- cash: 1047635.4662931471
   date: '2020-07-17'
   open_position_value: 0.0
-  portfolio_value: 1027768.1298759967
-- cash: 1027768.1298759967
+  portfolio_value: 1047635.4662931471
+- cash: 1047635.4662931471
   date: '2020-07-20'
   open_position_value: 0.0
-  portfolio_value: 1027768.1298759967
-- cash: 1027768.1298759967
+  portfolio_value: 1047635.4662931471
+- cash: 1047635.4662931471
   date: '2020-07-21'
   open_position_value: 0.0
-  portfolio_value: 1027768.1298759967
-- cash: 1027768.1298759967
+  portfolio_value: 1047635.4662931471
+- cash: 1047635.4662931471
   date: '2020-07-22'
   open_position_value: 0.0
-  portfolio_value: 1027768.1298759967
-- cash: 513884.06493799837
+  portfolio_value: 1047635.4662931471
+- cash: 523817.73314657353
   date: '2020-07-23'
-  open_position_value: 513884.06493799837
-  portfolio_value: 1027768.1298759967
-- cash: 513884.06493799837
+  open_position_value: 523817.73314657353
+  portfolio_value: 1047635.4662931471
+- cash: 523817.73314657353
   date: '2020-07-24'
-  open_position_value: 519469.87945684325
-  portfolio_value: 1033353.9443948416
-- cash: 513884.06493799837
+  open_position_value: 524812.5407747625
+  portfolio_value: 1048630.273921336
+- cash: 523817.73314657353
   date: '2020-07-27'
-  open_position_value: 535821.1471467562
-  portfolio_value: 1049705.2120847546
-- cash: 1017490.4485772367
+  open_position_value: 527724.6256235538
+  portfolio_value: 1051542.3587701274
+- cash: 523817.73314657353
   date: '2020-07-28'
-  open_position_value: 0.0
-  portfolio_value: 1017490.4485772367
-- cash: 1017490.4485772367
+  open_position_value: 519843.15489084716
+  portfolio_value: 1043660.8880374207
+- cash: 523817.73314657353
   date: '2020-07-29'
-  open_position_value: 0.0
-  portfolio_value: 1017490.4485772367
-- cash: 1017490.4485772367
+  open_position_value: 524406.2436608335
+  portfolio_value: 1048223.976807407
+- cash: 523817.73314657353
   date: '2020-07-30'
-  open_position_value: 0.0
-  portfolio_value: 1017490.4485772367
-- cash: 1017490.4485772367
+  open_position_value: 529109.4018557048
+  portfolio_value: 1052927.1350022783
+- cash: 523817.73314657353
   date: '2020-07-31'
-  open_position_value: 0.0
-  portfolio_value: 1017490.4485772367
-- cash: 508745.2242886183
+  open_position_value: 530449.8448149845
+  portfolio_value: 1054267.577961558
+- cash: 1062760.9117143992
   date: '2020-08-03'
-  open_position_value: 508745.2242886184
-  portfolio_value: 1017490.4485772367
-- cash: 1037840.2575487815
+  open_position_value: 0.0
+  portfolio_value: 1062760.9117143992
+- cash: 1062760.9117143992
   date: '2020-08-04'
   open_position_value: 0.0
-  portfolio_value: 1037840.2575487815
-- cash: 1037840.2575487815
+  portfolio_value: 1062760.9117143992
+- cash: 1062760.9117143992
   date: '2020-08-05'
   open_position_value: 0.0
-  portfolio_value: 1037840.2575487815
-- cash: 518920.12877439073
+  portfolio_value: 1062760.9117143992
+- cash: 531380.4558571996
   date: '2020-08-06'
-  open_position_value: 518920.12877439073
-  portfolio_value: 1037840.2575487815
-- cash: 518920.12877439073
+  open_position_value: 531380.4558571996
+  portfolio_value: 1062760.9117143992
+- cash: 531380.4558571996
   date: '2020-08-07'
-  open_position_value: 522629.89858856366
-  portfolio_value: 1041550.0273629543
-- cash: 1058597.062699757
+  open_position_value: 532039.9003042011
+  portfolio_value: 1063420.3561614007
+- cash: 531380.4558571996
   date: '2020-08-10'
-  open_position_value: 0.0
-  portfolio_value: 1058597.062699757
-- cash: 1058597.062699757
+  open_position_value: 534701.5391116834
+  portfolio_value: 1066081.994968883
+- cash: 531380.4558571996
   date: '2020-08-11'
-  open_position_value: 0.0
-  portfolio_value: 1058597.062699757
-- cash: 1058597.062699757
+  open_position_value: 537185.2164127416
+  portfolio_value: 1068565.6722699413
+- cash: 531380.4558571996
   date: '2020-08-12'
-  open_position_value: 0.0
-  portfolio_value: 1058597.062699757
-- cash: 1058597.062699757
+  open_position_value: 536516.2738900263
+  portfolio_value: 1067896.729747226
+- cash: 531380.4558571996
   date: '2020-08-13'
-  open_position_value: 0.0
-  portfolio_value: 1058597.062699757
-- cash: 1058597.062699757
+  open_position_value: 536139.0844539945
+  portfolio_value: 1067519.540311194
+- cash: 531380.4558571996
   date: '2020-08-14'
-  open_position_value: 0.0
-  portfolio_value: 1058597.062699757
-- cash: 529298.5313498785
+  open_position_value: 530348.547845985
+  portfolio_value: 1061729.0037031847
+- cash: 531380.4558571996
   date: '2020-08-17'
-  open_position_value: 529298.5313498785
-  portfolio_value: 1058597.062699757
-- cash: 1079769.003953752
+  open_position_value: 533607.916774367
+  portfolio_value: 1064988.3726315666
+- cash: 531380.4558571996
   date: '2020-08-18'
-  open_position_value: 0.0
-  portfolio_value: 1079769.003953752
-- cash: 1079769.003953752
+  open_position_value: 540167.0562019723
+  portfolio_value: 1071547.512059172
+- cash: 531380.4558571996
   date: '2020-08-19'
-  open_position_value: 0.0
-  portfolio_value: 1079769.003953752
-- cash: 1079769.003953752
+  open_position_value: 541260.6785392887
+  portfolio_value: 1072641.1343964883
+- cash: 1068077.0078574824
   date: '2020-08-20'
   open_position_value: 0.0
-  portfolio_value: 1079769.003953752
-- cash: 539884.501976876
+  portfolio_value: 1068077.0078574824
+- cash: 534038.5039287413
   date: '2020-08-21'
-  open_position_value: 539884.501976876
-  portfolio_value: 1079769.003953752
-- cash: 539884.501976876
+  open_position_value: 534038.5039287411
+  portfolio_value: 1068077.0078574824
+- cash: 534038.5039287413
   date: '2020-08-24'
-  open_position_value: 564088.5968699829
-  portfolio_value: 1103973.0988468588
-- cash: 1101364.3840328273
+  open_position_value: 538492.9225462474
+  portfolio_value: 1072531.4264749887
+- cash: 534038.5039287413
   date: '2020-08-25'
-  open_position_value: 0.0
-  portfolio_value: 1101364.3840328273
-- cash: 1101364.3840328273
+  open_position_value: 538765.2957500875
+  portfolio_value: 1072803.7996788288
+- cash: 534038.5039287413
   date: '2020-08-26'
-  open_position_value: 0.0
-  portfolio_value: 1101364.3840328273
-- cash: 1101364.3840328273
+  open_position_value: 542397.8251293353
+  portfolio_value: 1076436.3290580767
+- cash: 534038.5039287413
   date: '2020-08-27'
-  open_position_value: 0.0
-  portfolio_value: 1101364.3840328273
-- cash: 1101364.3840328273
+  open_position_value: 542851.0313930744
+  portfolio_value: 1076889.5353218159
+- cash: 534038.5039287413
   date: '2020-08-28'
-  open_position_value: 0.0
-  portfolio_value: 1101364.3840328273
-- cash: 1101364.3840328273
+  open_position_value: 547000.1480375275
+  portfolio_value: 1081038.6519662687
+- cash: 534038.5039287413
   date: '2020-08-31'
-  open_position_value: 0.0
-  portfolio_value: 1101364.3840328273
-- cash: 1101364.3840328273
+  open_position_value: 534785.2256840742
+  portfolio_value: 1068823.7296128157
+- cash: 534038.5039287413
   date: '2020-09-01'
-  open_position_value: 0.0
-  portfolio_value: 1101364.3840328273
-- cash: 1101364.3840328273
+  open_position_value: 538671.3707927774
+  portfolio_value: 1072709.8747215187
+- cash: 534038.5039287413
   date: '2020-09-02'
-  open_position_value: 0.0
-  portfolio_value: 1101364.3840328273
-- cash: 1101364.3840328273
+  open_position_value: 541712.1912856902
+  portfolio_value: 1075750.6952144315
+- cash: 534038.5039287413
   date: '2020-09-03'
-  open_position_value: 0.0
-  portfolio_value: 1101364.3840328273
-- cash: 550682.1920164137
+  open_position_value: 541357.6337442038
+  portfolio_value: 1075396.1376729452
+- cash: 1066304.1742882554
   date: '2020-09-04'
-  open_position_value: 550682.1920164137
-  portfolio_value: 1101364.3840328273
-- cash: 550682.1920164137
+  open_position_value: 0.0
+  portfolio_value: 1066304.1742882554
+- cash: 1066304.1742882554
   date: '2020-09-07'
-  open_position_value: 556300.5304025528
-  portfolio_value: 1106982.7224189665
-- cash: 550682.1920164137
+  open_position_value: 0.0
+  portfolio_value: 1066304.1742882554
+- cash: 1066304.1742882554
   date: '2020-09-08'
-  open_position_value: 546309.4689351014
-  portfolio_value: 1096991.6609515152
-- cash: 1090350.740192499
+  open_position_value: 0.0
+  portfolio_value: 1066304.1742882554
+- cash: 1066304.1742882554
   date: '2020-09-09'
   open_position_value: 0.0
-  portfolio_value: 1090350.740192499
-- cash: 1090350.740192499
+  portfolio_value: 1066304.1742882554
+- cash: 1066304.1742882554
   date: '2020-09-10'
   open_position_value: 0.0
-  portfolio_value: 1090350.740192499
-- cash: 545175.3700962495
+  portfolio_value: 1066304.1742882554
+- cash: 533152.0871441277
   date: '2020-09-11'
-  open_position_value: 545175.3700962495
-  portfolio_value: 1090350.740192499
-- cash: 545175.3700962495
+  open_position_value: 533152.0871441277
+  portfolio_value: 1066304.1742882554
+- cash: 533152.0871441277
   date: '2020-09-14'
-  open_position_value: 539152.1653984013
-  portfolio_value: 1084327.5354946507
-- cash: 545175.3700962495
+  open_position_value: 532017.3515949106
+  portfolio_value: 1065169.4387390383
+- cash: 533152.0871441277
   date: '2020-09-15'
-  open_position_value: 559332.046598524
-  portfolio_value: 1104507.4166947734
-- cash: 1112157.754996349
+  open_position_value: 535819.1198769913
+  portfolio_value: 1068971.207021119
+- cash: 533152.0871441277
   date: '2020-09-16'
-  open_position_value: 0.0
-  portfolio_value: 1112157.754996349
-- cash: 1112157.754996349
+  open_position_value: 539667.3929698619
+  portfolio_value: 1072819.4801139897
+- cash: 533152.0871441277
   date: '2020-09-17'
-  open_position_value: 0.0
-  portfolio_value: 1112157.754996349
-- cash: 1112157.754996349
+  open_position_value: 535554.0333725174
+  portfolio_value: 1068706.1205166453
+- cash: 533152.0871441277
   date: '2020-09-18'
-  open_position_value: 0.0
-  portfolio_value: 1112157.754996349
-- cash: 556078.8774981746
+  open_position_value: 535035.5319811219
+  portfolio_value: 1068187.6191252496
+- cash: 1055641.132545373
   date: '2020-09-21'
-  open_position_value: 556078.8774981746
-  portfolio_value: 1112157.754996349
-- cash: 1134400.910096276
+  open_position_value: 0.0
+  portfolio_value: 1055641.132545373
+- cash: 1055641.132545373
   date: '2020-09-22'
   open_position_value: 0.0
-  portfolio_value: 1134400.910096276
-- cash: 1134400.910096276
+  portfolio_value: 1055641.132545373
+- cash: 1055641.132545373
   date: '2020-09-23'
   open_position_value: 0.0
-  portfolio_value: 1134400.910096276
-- cash: 1134400.910096276
+  portfolio_value: 1055641.132545373
+- cash: 1055641.132545373
   date: '2020-09-24'
   open_position_value: 0.0
-  portfolio_value: 1134400.910096276
-- cash: 567200.455048138
+  portfolio_value: 1055641.132545373
+- cash: 527820.5662726865
   date: '2020-09-25'
-  open_position_value: 567200.455048138
-  portfolio_value: 1134400.910096276
-- cash: 1157088.9282982019
+  open_position_value: 527820.5662726865
+  portfolio_value: 1055641.132545373
+- cash: 527820.5662726865
   date: '2020-09-28'
-  open_position_value: 0.0
-  portfolio_value: 1157088.9282982019
-- cash: 1157088.9282982019
+  open_position_value: 536289.3776851154
+  portfolio_value: 1064109.943957802
+- cash: 527820.5662726865
   date: '2020-09-29'
-  open_position_value: 0.0
-  portfolio_value: 1157088.9282982019
-- cash: 578544.4641491009
+  open_position_value: 536043.4134176607
+  portfolio_value: 1063863.9796903473
+- cash: 527820.5662726865
   date: '2020-09-30'
-  open_position_value: 578544.4641491009
-  portfolio_value: 1157088.9282982019
-- cash: 1180230.706864166
+  open_position_value: 537244.6874134432
+  portfolio_value: 1065065.2536861296
+- cash: 527820.5662726865
   date: '2020-10-01'
-  open_position_value: 0.0
-  portfolio_value: 1180230.706864166
-- cash: 1180230.706864166
+  open_position_value: 545336.1794707724
+  portfolio_value: 1073156.7457434589
+- cash: 1076753.9551962805
   date: '2020-10-05'
   open_position_value: 0.0
-  portfolio_value: 1180230.706864166
-- cash: 1180230.706864166
+  portfolio_value: 1076753.9551962805
+- cash: 1076753.9551962805
   date: '2020-10-06'
   open_position_value: 0.0
-  portfolio_value: 1180230.706864166
-- cash: 1180230.706864166
+  portfolio_value: 1076753.9551962805
+- cash: 1076753.9551962805
   date: '2020-10-07'
   open_position_value: 0.0
-  portfolio_value: 1180230.706864166
-- cash: 1180230.706864166
+  portfolio_value: 1076753.9551962805
+- cash: 1076753.9551962805
   date: '2020-10-08'
   open_position_value: 0.0
-  portfolio_value: 1180230.706864166
-- cash: 1180230.706864166
+  portfolio_value: 1076753.9551962805
+- cash: 1076753.9551962805
   date: '2020-10-09'
   open_position_value: 0.0
-  portfolio_value: 1180230.706864166
-- cash: 1180230.706864166
+  portfolio_value: 1076753.9551962805
+- cash: 1076753.9551962805
   date: '2020-10-12'
   open_position_value: 0.0
-  portfolio_value: 1180230.706864166
-- cash: 1180230.706864166
+  portfolio_value: 1076753.9551962805
+- cash: 1076753.9551962805
   date: '2020-10-13'
   open_position_value: 0.0
-  portfolio_value: 1180230.706864166
-- cash: 1180230.706864166
+  portfolio_value: 1076753.9551962805
+- cash: 1076753.9551962805
   date: '2020-10-14'
   open_position_value: 0.0
-  portfolio_value: 1180230.706864166
-- cash: 1180230.706864166
+  portfolio_value: 1076753.9551962805
+- cash: 1076753.9551962805
   date: '2020-10-15'
   open_position_value: 0.0
-  portfolio_value: 1180230.706864166
-- cash: 1180230.706864166
+  portfolio_value: 1076753.9551962805
+- cash: 1076753.9551962805
   date: '2020-10-16'
   open_position_value: 0.0
-  portfolio_value: 1180230.706864166
-- cash: 1180230.706864166
+  portfolio_value: 1076753.9551962805
+- cash: 1076753.9551962805
   date: '2020-10-19'
   open_position_value: 0.0
-  portfolio_value: 1180230.706864166
-- cash: 1180230.706864166
+  portfolio_value: 1076753.9551962805
+- cash: 1076753.9551962805
   date: '2020-10-20'
   open_position_value: 0.0
-  portfolio_value: 1180230.706864166
-- cash: 1180230.706864166
+  portfolio_value: 1076753.9551962805
+- cash: 1076753.9551962805
   date: '2020-10-21'
   open_position_value: 0.0
-  portfolio_value: 1180230.706864166
-- cash: 1180230.706864166
+  portfolio_value: 1076753.9551962805
+- cash: 1076753.9551962805
   date: '2020-10-22'
   open_position_value: 0.0
-  portfolio_value: 1180230.706864166
-- cash: 1180230.706864166
+  portfolio_value: 1076753.9551962805
+- cash: 1076753.9551962805
   date: '2020-10-23'
   open_position_value: 0.0
-  portfolio_value: 1180230.706864166
-- cash: 1180230.706864166
+  portfolio_value: 1076753.9551962805
+- cash: 1076753.9551962805
   date: '2020-10-26'
   open_position_value: 0.0
-  portfolio_value: 1180230.706864166
-- cash: 590115.353432083
+  portfolio_value: 1076753.9551962805
+- cash: 538376.9775981402
   date: '2020-10-27'
-  open_position_value: 590115.353432083
-  portfolio_value: 1180230.706864166
-- cash: 1203835.3210014494
+  open_position_value: 538376.9775981402
+  portfolio_value: 1076753.9551962805
+- cash: 538376.9775981402
   date: '2020-10-28'
-  open_position_value: 0.0
-  portfolio_value: 1203835.3210014494
-- cash: 1203835.3210014494
+  open_position_value: 545613.092019439
+  portfolio_value: 1083990.0696175792
+- cash: 538376.9775981402
   date: '2020-10-29'
-  open_position_value: 0.0
-  portfolio_value: 1203835.3210014494
-- cash: 1203835.3210014494
+  open_position_value: 548275.6704582961
+  portfolio_value: 1086652.6480564363
+- cash: 538376.9775981402
   date: '2020-10-30'
-  open_position_value: 0.0
-  portfolio_value: 1203835.3210014494
-- cash: 601917.6605007247
+  open_position_value: 549561.6554706759
+  portfolio_value: 1087938.6330688163
+- cash: 538376.9775981402
   date: '2020-11-02'
-  open_position_value: 601917.6605007247
-  portfolio_value: 1203835.3210014494
-- cash: 1191796.9677914348
+  open_position_value: 548350.35938529
+  portfolio_value: 1086727.3369834302
+- cash: 538376.9775981402
   date: '2020-11-03'
-  open_position_value: 0.0
-  portfolio_value: 1191796.9677914348
-- cash: 1191796.9677914348
+  open_position_value: 541813.9064221899
+  portfolio_value: 1080190.8840203302
+- cash: 538376.9775981402
   date: '2020-11-04'
-  open_position_value: 0.0
-  portfolio_value: 1191796.9677914348
-- cash: 1191796.9677914348
+  open_position_value: 537512.1072404453
+  portfolio_value: 1075889.0848385855
+- cash: 1065986.4156443179
   date: '2020-11-05'
   open_position_value: 0.0
-  portfolio_value: 1191796.9677914348
-- cash: 1191796.9677914348
+  portfolio_value: 1065986.4156443179
+- cash: 1065986.4156443179
   date: '2020-11-06'
   open_position_value: 0.0
-  portfolio_value: 1191796.9677914348
-- cash: 1191796.9677914348
+  portfolio_value: 1065986.4156443179
+- cash: 1065986.4156443179
   date: '2020-11-09'
   open_position_value: 0.0
-  portfolio_value: 1191796.9677914348
-- cash: 1191796.9677914348
+  portfolio_value: 1065986.4156443179
+- cash: 1065986.4156443179
   date: '2020-11-10'
   open_position_value: 0.0
-  portfolio_value: 1191796.9677914348
-- cash: 1191796.9677914348
+  portfolio_value: 1065986.4156443179
+- cash: 1065986.4156443179
   date: '2020-11-11'
   open_position_value: 0.0
-  portfolio_value: 1191796.9677914348
-- cash: 1191796.9677914348
+  portfolio_value: 1065986.4156443179
+- cash: 1065986.4156443179
   date: '2020-11-12'
   open_position_value: 0.0
-  portfolio_value: 1191796.9677914348
-- cash: 1191796.9677914348
+  portfolio_value: 1065986.4156443179
+- cash: 1065986.4156443179
   date: '2020-11-13'
   open_position_value: 0.0
-  portfolio_value: 1191796.9677914348
-- cash: 1191796.9677914348
+  portfolio_value: 1065986.4156443179
+- cash: 1065986.4156443179
   date: '2020-11-17'
   open_position_value: 0.0
-  portfolio_value: 1191796.9677914348
-- cash: 595898.4838957174
+  portfolio_value: 1065986.4156443179
+- cash: 532993.2078221589
   date: '2020-11-18'
-  open_position_value: 595898.4838957174
-  portfolio_value: 1191796.9677914348
-- cash: 595898.4838957174
+  open_position_value: 532993.2078221589
+  portfolio_value: 1065986.4156443179
+- cash: 532993.2078221589
   date: '2020-11-19'
-  open_position_value: 622850.5757099553
-  portfolio_value: 1218749.0596056727
-- cash: 1215632.9071472636
+  open_position_value: 539854.252759654
+  portfolio_value: 1072847.460581813
+- cash: 532993.2078221589
   date: '2020-11-20'
-  open_position_value: 0.0
-  portfolio_value: 1215632.9071472636
-- cash: 1215632.9071472636
+  open_position_value: 536255.8721051764
+  portfolio_value: 1069249.0799273355
+- cash: 532993.2078221589
   date: '2020-11-23'
-  open_position_value: 0.0
-  portfolio_value: 1215632.9071472636
-- cash: 1215632.9071472636
+  open_position_value: 533479.302599433
+  portfolio_value: 1066472.5104215918
+- cash: 532993.2078221589
   date: '2020-11-24'
-  open_position_value: 0.0
-  portfolio_value: 1215632.9071472636
-- cash: 1215632.9071472636
+  open_position_value: 528177.4781682349
+  portfolio_value: 1061170.6859903939
+- cash: 532993.2078221589
   date: '2020-11-25'
-  open_position_value: 0.0
-  portfolio_value: 1215632.9071472636
-- cash: 1215632.9071472636
+  open_position_value: 536282.6248178212
+  portfolio_value: 1069275.8326399801
+- cash: 532993.2078221589
   date: '2020-11-26'
-  open_position_value: 0.0
-  portfolio_value: 1215632.9071472636
-- cash: 1215632.9071472636
+  open_position_value: 530984.9440398599
+  portfolio_value: 1063978.1518620187
+- cash: 532993.2078221589
   date: '2020-11-27'
-  open_position_value: 0.0
-  portfolio_value: 1215632.9071472636
-- cash: 1215632.9071472636
+  open_position_value: 531728.5085328133
+  portfolio_value: 1064721.7163549722
+- cash: 532993.2078221589
   date: '2020-12-01'
-  open_position_value: 0.0
-  portfolio_value: 1215632.9071472636
-- cash: 1215632.9071472636
+  open_position_value: 525957.083478002
+  portfolio_value: 1058950.2913001608
+- cash: 532993.2078221589
   date: '2020-12-02'
-  open_position_value: 0.0
-  portfolio_value: 1215632.9071472636
-- cash: 1215632.9071472636
+  open_position_value: 525763.4582058825
+  portfolio_value: 1058756.6660280414
+- cash: 1055326.5514878747
   date: '2020-12-03'
   open_position_value: 0.0
-  portfolio_value: 1215632.9071472636
-- cash: 1215632.9071472636
+  portfolio_value: 1055326.5514878747
+- cash: 1055326.5514878747
   date: '2020-12-04'
   open_position_value: 0.0
-  portfolio_value: 1215632.9071472636
-- cash: 1215632.9071472636
+  portfolio_value: 1055326.5514878747
+- cash: 1055326.5514878747
   date: '2020-12-07'
   open_position_value: 0.0
-  portfolio_value: 1215632.9071472636
-- cash: 1215632.9071472636
+  portfolio_value: 1055326.5514878747
+- cash: 1055326.5514878747
   date: '2020-12-08'
   open_position_value: 0.0
-  portfolio_value: 1215632.9071472636
-- cash: 607816.4535736318
+  portfolio_value: 1055326.5514878747
+- cash: 527663.2757439375
   date: '2020-12-09'
-  open_position_value: 607816.4535736318
-  portfolio_value: 1215632.9071472636
-- cash: 607816.4535736318
+  open_position_value: 527663.2757439372
+  portfolio_value: 1055326.5514878747
+- cash: 527663.2757439375
   date: '2020-12-10'
-  open_position_value: 615042.1929344208
-  portfolio_value: 1222858.6465080525
-- cash: 607816.4535736318
+  open_position_value: 529644.5747307511
+  portfolio_value: 1057307.8504746887
+- cash: 527663.2757439375
   date: '2020-12-11'
-  open_position_value: 609985.6061113215
-  portfolio_value: 1217802.0596849532
-- cash: 607816.4535736318
+  open_position_value: 528258.0577462458
+  portfolio_value: 1055921.333490183
+- cash: 527663.2757439375
   date: '2020-12-14'
-  open_position_value: 603684.2846641035
-  portfolio_value: 1211500.7382377353
-- cash: 607816.4535736318
+  open_position_value: 526530.2343117732
+  portfolio_value: 1054193.5100557106
+- cash: 527663.2757439375
   date: '2020-12-15'
-  open_position_value: 602304.67253524
-  portfolio_value: 1210121.1261088718
-- cash: 1203476.578075791
+  open_position_value: 526151.944426596
+  portfolio_value: 1053815.2201705335
+- cash: 527663.2757439375
   date: '2020-12-16'
-  open_position_value: 0.0
-  portfolio_value: 1203476.578075791
-- cash: 1203476.578075791
+  open_position_value: 521672.530559697
+  portfolio_value: 1049335.8063036345
+- cash: 527663.2757439375
   date: '2020-12-17'
-  open_position_value: 0.0
-  portfolio_value: 1203476.578075791
-- cash: 1203476.578075791
+  open_position_value: 519410.40884599916
+  portfolio_value: 1047073.6845899366
+- cash: 527663.2757439375
   date: '2020-12-18'
-  open_position_value: 0.0
-  portfolio_value: 1203476.578075791
-- cash: 1203476.578075791
+  open_position_value: 518636.2324257301
+  portfolio_value: 1046299.5081696676
+- cash: 527663.2757439375
   date: '2020-12-21'
-  open_position_value: 0.0
-  portfolio_value: 1203476.578075791
-- cash: 1203476.578075791
+  open_position_value: 535490.9664449126
+  portfolio_value: 1063154.24218885
+- cash: 527663.2757439375
   date: '2020-12-22'
-  open_position_value: 0.0
-  portfolio_value: 1203476.578075791
-- cash: 1203476.578075791
+  open_position_value: 530112.5999128955
+  portfolio_value: 1057775.875656833
+- cash: 1052518.4003950083
   date: '2020-12-23'
   open_position_value: 0.0
-  portfolio_value: 1203476.578075791
-- cash: 1203476.578075791
+  portfolio_value: 1052518.4003950083
+- cash: 1052518.4003950083
   date: '2020-12-24'
   open_position_value: 0.0
-  portfolio_value: 1203476.578075791
-- cash: 1203476.578075791
+  portfolio_value: 1052518.4003950083
+- cash: 1052518.4003950083
   date: '2020-12-28'
   open_position_value: 0.0
-  portfolio_value: 1203476.578075791
-- cash: 1203476.578075791
+  portfolio_value: 1052518.4003950083
+- cash: 1052518.4003950083
   date: '2020-12-29'
   open_position_value: 0.0
-  portfolio_value: 1203476.578075791
-- cash: 1203476.578075791
+  portfolio_value: 1052518.4003950083
+- cash: 1052518.4003950083
   date: '2020-12-30'
   open_position_value: 0.0
-  portfolio_value: 1203476.578075791
-- cash: 1203476.578075791
+  portfolio_value: 1052518.4003950083
+- cash: 1052518.4003950083
   date: '2020-12-31'
   open_position_value: 0.0
-  portfolio_value: 1203476.578075791
+  portfolio_value: 1052518.4003950083

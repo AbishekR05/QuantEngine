@@ -11,41 +11,41 @@ always_flat:
   total_return: 0.0
   win_rate: 0.0
 always_long:
-  annualized_return_cagr: 0.6209963792575248
+  annualized_return_cagr: 0.14895683574490848
   average_holding_period: 0.0
-  calmar_ratio: 0.4059420962929719
-  exposure_pct: 0.856
-  max_drawdown: -1.5297659073262173
+  calmar_ratio: 0.38750626300669544
+  exposure_pct: 1.0
+  max_drawdown: -0.384398524527421
   number_of_trades: 0
   profit_factor: 1.0
-  sharpe_ratio: -0.9367046900484751
-  sortino_ratio: -0.6285656290770724
-  total_return: 0.6147939288552189
+  sharpe_ratio: 0.6025559305202606
+  sortino_ratio: 0.6175617766690239
+  total_return: 0.14769136055817755
   win_rate: 0.0
 buy_and_hold:
-  annualized_return_cagr: 0.6209963792575248
+  annualized_return_cagr: 0.14895683574490848
   average_holding_period: 0.0
-  calmar_ratio: 0.4059420962929719
-  exposure_pct: 0.856
-  max_drawdown: -1.5297659073262173
+  calmar_ratio: 0.38750626300669544
+  exposure_pct: 1.0
+  max_drawdown: -0.384398524527421
   number_of_trades: 0
   profit_factor: 1.0
-  sharpe_ratio: -0.9367046900484751
-  sortino_ratio: -0.6285656290770724
-  total_return: 0.6147939288552189
+  sharpe_ratio: 0.6025559305202606
+  sortino_ratio: 0.6175617766690239
+  total_return: 0.14769136055817755
   win_rate: 0.0
 model_strategy:
-  annualized_return_cagr: 0.017889230373715037
-  average_holding_period: 1.0
-  calmar_ratio: 15.555852498882642
-  exposure_pct: 0.004
-  max_drawdown: -0.00115
-  number_of_trades: 1
-  profit_factor: 20000.00000000002
-  sharpe_ratio: 0.9409935773404731
-  sortino_ratio: 0.0
-  total_return: 0.01774600000000004
-  win_rate: 1.0
+  annualized_return_cagr: 0.07097858652031963
+  average_holding_period: 1.8888888888888888
+  calmar_ratio: 2.8257450231489964
+  exposure_pct: 0.068
+  max_drawdown: -0.02511853898311796
+  number_of_trades: 9
+  profit_factor: 3.838932116679026
+  sharpe_ratio: 1.3689517687727042
+  sortino_ratio: 1.110651568619571
+  total_return: 0.07039588797161489
+  win_rate: 0.6666666666666666
 naive_classifier:
   annualized_return_cagr: 0.0
   average_holding_period: 0.0
@@ -59,14 +59,14 @@ naive_classifier:
   total_return: 0.0
   win_rate: 0.0
 previous_step_baseline:
-  annualized_return_cagr: -0.012374605795591798
+  annualized_return_cagr: 0.010430359413006851
   average_holding_period: 1.0
-  calmar_ratio: -1.0079502969448397
-  exposure_pct: 0.004
-  max_drawdown: -0.012277
-  number_of_trades: 1
-  profit_factor: 0.0
-  sharpe_ratio: -1.1022343894377196
-  sortino_ratio: -0.11047479228023634
-  total_return: -0.012276999999999982
-  win_rate: 0.0
+  calmar_ratio: 0.7776374861649701
+  exposure_pct: 0.016
+  max_drawdown: -0.013412881450000119
+  number_of_trades: 4
+  profit_factor: 1.9754460000000034
+  sharpe_ratio: 0.3480124936658704
+  sortino_ratio: 0.13258731403802376
+  total_return: 0.010347151986278114
+  win_rate: 0.5

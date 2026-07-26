@@ -1,77 +1,66 @@
 - direction: LONG
   entry_cost: 1150.0
   entry_date: '2026-03-05'
-  entry_price: 1.8575823233913824
+  entry_price: 24765.900390625
   exit_cost: 1127.0
-  exit_date: '2026-03-06'
-  exit_price: 1.8204306769235548
+  exit_date: '2026-03-09'
+  exit_price: 24270.5823828125
   exit_reason: STOP_LOSS
-  holding_days: 1
-  net_pnl: -12277.000000000002
-  realized_pnl: -10000.000000000002
+  holding_days: 2
+  net_pnl: -12277.000000000011
+  realized_pnl: -10000.000000000011
 - direction: LONG
   entry_cost: 1135.88145
   entry_date: '2026-03-16'
-  entry_price: 1.6246764516887018
-  exit_cost: 1113.1638209999999
+  entry_price: 23408.80078125
+  exit_cost: 1113.1638209999996
   exit_date: '2026-03-19'
-  exit_price: 1.5921829226549278
+  exit_price: 22940.624765624998
   exit_reason: STOP_LOSS
   holding_days: 3
-  net_pnl: -12126.275270999991
-  realized_pnl: -9877.22999999999
+  net_pnl: -12126.275271000042
+  realized_pnl: -9877.230000000041
 - direction: LONG
-  entry_cost: 1121.93623343835
+  entry_cost: 1121.9362334383497
   entry_date: '2026-04-01'
-  entry_price: 1.4994965219140342
-  exit_cost: 1099.497508769583
+  entry_price: 22679.400390625
+  exit_cost: 1099.4975087695827
   exit_date: '2026-04-02'
-  exit_price: 1.4695065914757535
+  exit_price: 22225.8123828125
   exit_reason: STOP_LOSS
   holding_days: 1
-  net_pnl: -11977.400989497932
-  realized_pnl: -9755.96724729
+  net_pnl: -11977.400989497952
+  realized_pnl: -9755.96724729002
 - direction: LONG
-  entry_cost: 1108.1622223004276
+  entry_cost: 1108.162222300427
   entry_date: '2026-04-08'
-  entry_price: 1.725683390978275
-  exit_cost: 1085.998977854419
-  exit_date: '2026-04-13'
-  exit_price: 1.6911697231587095
-  exit_reason: STOP_LOSS
-  holding_days: 3
-  net_pnl: -11830.354437549851
-  realized_pnl: -9636.193237395006
+  entry_price: 23997.349609375
+  exit_cost: 1116.2758433567176
+  exit_date: '2026-04-23'
+  exit_price: 24173.05078125
+  exit_reason: MAX_HOLDING_DAYS
+  holding_days: 10
+  net_pnl: 1303.2232631648064
+  realized_pnl: 3527.661328821951
 - direction: LONG
-  entry_cost: 1094.5573146972451
-  entry_date: '2026-04-15'
-  entry_price: 1.7658341663856194
-  exit_cost: 1072.6661684033002
-  exit_date: '2026-04-24'
-  exit_price: 1.730517483057907
-  exit_reason: STOP_LOSS
-  holding_days: 7
-  net_pnl: -11685.113176120049
-  realized_pnl: -9517.889693019502
-- direction: LONG
-  entry_cost: 1081.1194345447072
+  entry_cost: 1109.6609290530666
   entry_date: '2026-04-27'
-  entry_price: 1.7420473216246202
-  exit_cost: 1059.497045853813
+  entry_price: 24092.69921875
+  exit_cost: 1087.4677104720054
   exit_date: '2026-05-12'
-  exit_price: 1.7072063751921278
+  exit_price: 23610.845234375
   exit_reason: STOP_LOSS
   holding_days: 10
-  net_pnl: -11541.655041656832
-  realized_pnl: -9401.03856125831
+  net_pnl: -11846.354109551747
+  realized_pnl: -9649.225470026675
 - direction: LONG
-  entry_cost: 1067.846531246802
+  entry_cost: 1096.0376218270824
   entry_date: '2026-05-20'
-  entry_price: 1.6676157221296795
-  exit_cost: 1046.489600621866
-  exit_date: '2026-06-02'
-  exit_price: 1.634263407687086
+  entry_price: 23659.0
+  exit_cost: 1074.1168693905406
+  exit_date: '2026-06-03'
+  exit_price: 23185.82
   exit_reason: STOP_LOSS
-  holding_days: 8
-  net_pnl: -11399.958142710417
-  realized_pnl: -9285.62201084175
+  holding_days: 9
+  net_pnl: -11700.916420148778
+  realized_pnl: -9530.761928931155

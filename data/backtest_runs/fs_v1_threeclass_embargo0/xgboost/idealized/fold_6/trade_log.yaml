@@ -1,66 +1,66 @@
 - direction: LONG
   entry_cost: 0.0
   entry_date: '2024-01-25'
-  entry_price: 2.381571009329094
+  entry_price: 21352.599609375
   exit_cost: 0.0
-  exit_date: '2024-02-01'
-  exit_price: 2.476833849702258
-  exit_reason: TAKE_PROFIT
-  holding_days: 4
-  net_pnl: 20000.00000000003
-  realized_pnl: 20000.00000000003
+  exit_date: '2024-02-09'
+  exit_price: 21782.5
+  exit_reason: MAX_HOLDING_DAYS
+  holding_days: 10
+  net_pnl: 10066.699101973732
+  realized_pnl: 10066.699101973732
 - direction: LONG
   entry_cost: 0.0
   entry_date: '2024-08-08'
-  entry_price: 3.078414091740217
+  entry_price: 24117.0
   exit_cost: 0.0
-  exit_date: '2024-08-20'
-  exit_price: 3.201550655409826
-  exit_reason: TAKE_PROFIT
-  holding_days: 7
-  net_pnl: 20400.000000000036
-  realized_pnl: 20400.000000000036
+  exit_date: '2024-08-23'
+  exit_price: 24823.150390625
+  exit_reason: MAX_HOLDING_DAYS
+  holding_days: 10
+  net_pnl: 14787.473444627505
+  realized_pnl: 14787.473444627505
 - direction: LONG
   entry_cost: 0.0
   entry_date: '2024-10-07'
-  entry_price: 3.249511680855958
+  entry_price: 24795.75
   exit_cost: 0.0
   exit_date: '2024-10-21'
-  exit_price: 3.2458186473155655
+  exit_price: 24781.099609375
   exit_reason: MAX_HOLDING_DAYS
   holding_days: 10
-  net_pnl: -591.2014592931355
-  realized_pnl: -591.2014592931355
+  net_pnl: -302.76385996529365
+  realized_pnl: -302.76385996529365
 - direction: LONG
   entry_cost: 0.0
   entry_date: '2024-10-28'
-  entry_price: 3.1344132022478526
+  entry_price: 24339.150390625
   exit_cost: 0.0
   exit_date: '2024-11-04'
-  exit_price: 3.0717249382028955
+  exit_price: 23852.3673828125
   exit_reason: STOP_LOSS
   holding_days: 5
-  net_pnl: -10398.087985407072
-  realized_pnl: -10398.087985407072
+  net_pnl: -10245.514086866375
+  realized_pnl: -10245.514086866375
 - direction: LONG
   entry_cost: 0.0
   entry_date: '2024-11-05'
-  entry_price: 3.1026893499381356
+  entry_price: 24213.30078125
   exit_cost: 0.0
-  exit_date: '2024-11-12'
-  exit_price: 3.040635562939373
+  exit_date: '2024-11-13'
+  exit_price: 23729.034765624998
   exit_reason: STOP_LOSS
-  holding_days: 5
-  net_pnl: -10294.107105553001
-  realized_pnl: -10294.107105553001
+  holding_days: 6
+  net_pnl: -10143.05894599774
+  realized_pnl: -10143.05894599774
 - direction: LONG
   entry_cost: 0.0
   entry_date: '2024-11-14'
-  entry_price: 2.9311250236145168
+  entry_price: 23532.69921875
   exit_cost: 0.0
-  exit_date: '2024-11-25'
-  exit_price: 3.0483700245590977
-  exit_reason: TAKE_PROFIT
-  holding_days: 5
-  net_pnl: 20382.332068994976
-  realized_pnl: 20382.332068994976
+  exit_date: '2024-12-02'
+  exit_price: 24276.05078125
+  exit_reason: MAX_HOLDING_DAYS
+  holding_days: 10
+  net_pnl: 15859.761898731129
+  realized_pnl: 15859.761898731129

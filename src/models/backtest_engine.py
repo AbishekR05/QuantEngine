@@ -178,6 +178,15 @@ class BacktestEngine:
         self.run_output_dir = self.output_dir / self.run_id
         self.run_output_dir.mkdir(parents=True, exist_ok=True)
         self.best_model_src = self.hpo_dir / self.run_id
+        
+        # Load raw prices to prevent trading on scaled z-scores
+        raw_csv_path = Path(__file__).resolve().parent.parent.parent / "data/processed/nsei_clean.csv"
+        if not raw_csv_path.exists():
+            raise FileNotFoundError(f"Clean NSE data CSV not found at: {raw_csv_path}")
+        raw_df = pd.read_csv(raw_csv_path)
+        self.raw_prices = raw_df[["Date", "Close", "High", "Low"]].copy()
+        self.raw_prices["Date"] = self.raw_prices["Date"].astype(str)
+        self.raw_prices.rename(columns={"Close": "Raw_Close", "High": "Raw_High", "Low": "Raw_Low"}, inplace=True)
 
     def _calculate_metrics(self, history: List[Dict[str, Any]], trade_log: List[Position]) -> Dict[str, Any]:
         """Calculates risk, Sharpe, Sortino, drawdowns, and CAGR return rates."""
@@ -284,12 +293,16 @@ class BacktestEngine:
         label_col = "Label_Binary" if self.label_version == "binary" else "Label_ThreeClass"
         test_df = test_df.dropna(subset=[label_col]).reset_index(drop=True)
         
-        dates = test_df["Date"].astype(str).tolist()
-        close_prices = test_df["Close"].values
-        high_prices = test_df["High"].values
-        low_prices = test_df["Low"].values
+        # Convert Date to string for merging
+        test_df["Date"] = test_df["Date"].astype(str)
+        test_df = test_df.merge(self.raw_prices, on="Date", how="left")
         
-        X_test = test_df.drop(columns=["Date", label_col])
+        dates = test_df["Date"].tolist()
+        close_prices = test_df["Raw_Close"].values
+        high_prices = test_df["Raw_High"].values
+        low_prices = test_df["Raw_Low"].values
+        
+        X_test = test_df.drop(columns=["Date", label_col, "Raw_Close", "Raw_High", "Raw_Low"])
         
         # 2. Get predictions probabilities
         if use_default_step4_model:
@@ -435,8 +448,11 @@ class BacktestEngine:
         label_col = "Label_Binary" if self.label_version == "binary" else "Label_ThreeClass"
         test_df = test_df.dropna(subset=[label_col]).reset_index(drop=True)
         
-        dates = test_df["Date"].astype(str).tolist()
-        close_prices = test_df["Close"].values
+        test_df["Date"] = test_df["Date"].astype(str)
+        test_df = test_df.merge(self.raw_prices, on="Date", how="left")
+        
+        dates = test_df["Date"].tolist()
+        close_prices = test_df["Raw_Close"].values
         
         initial_cap = self.bt_config["initial_capital"]
         cash = initial_cap

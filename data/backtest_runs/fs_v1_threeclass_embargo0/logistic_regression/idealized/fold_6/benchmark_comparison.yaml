@@ -11,28 +11,28 @@ always_flat:
   total_return: 0.0
   win_rate: 0.0
 always_long:
-  annualized_return_cagr: 0.1986003689082596
+  annualized_return_cagr: 0.08975003857621466
   average_holding_period: 0.0
-  calmar_ratio: 0.9916487884223347
+  calmar_ratio: 0.820923974062684
   exposure_pct: 1.0
-  max_drawdown: -0.2002728901874858
+  max_drawdown: -0.10932807593868801
   number_of_trades: 0
   profit_factor: 1.0
-  sharpe_ratio: 0.772021803540087
-  sortino_ratio: 0.9367146194074589
-  total_return: 0.19344169566256952
+  sharpe_ratio: 0.6816701566404358
+  sortino_ratio: 0.8181509979273826
+  total_return: 0.08752226605938818
   win_rate: 0.0
 buy_and_hold:
-  annualized_return_cagr: 0.1986003689082596
+  annualized_return_cagr: 0.08975003857621466
   average_holding_period: 0.0
-  calmar_ratio: 0.9916487884223347
+  calmar_ratio: 0.820923974062684
   exposure_pct: 1.0
-  max_drawdown: -0.2002728901874858
+  max_drawdown: -0.10932807593868801
   number_of_trades: 0
   profit_factor: 1.0
-  sharpe_ratio: 0.772021803540087
-  sortino_ratio: 0.9367146194074589
-  total_return: 0.19344169566256952
+  sharpe_ratio: 0.6816701566404358
+  sortino_ratio: 0.8181509979273826
+  total_return: 0.08752226605938818
   win_rate: 0.0
 model_strategy:
   annualized_return_cagr: 0.0
