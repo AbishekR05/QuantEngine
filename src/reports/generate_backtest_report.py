@@ -4,6 +4,7 @@ from pathlib import Path
 import pandas as pd
 import numpy as np
 
+# Report generator script entry point
 def main():
     project_root = Path(__file__).resolve().parent.parent.parent
     backtest_dir = project_root / "data/backtest_runs/fs_v1_threeclass_embargo0"
