@@ -141,8 +141,8 @@ def main():
     xgb_thresholds = [0.66, 0.67, 0.68, 0.69, 0.70, 0.71, 0.72, 0.73, 0.74]
     run_sweep_for_model(engine, "xgboost", xgb_thresholds, project_root)
     
-    # Sweep LightGBM (wider range to capture sweet spot)
-    lgb_thresholds = [0.55, 0.57, 0.59, 0.61, 0.63, 0.65, 0.67, 0.69, 0.71, 0.73, 0.75]
+    # Sweep LightGBM (highly granular step 0.01 sweep from 0.50 to 0.85)
+    lgb_thresholds = [round(float(x), 2) for x in np.arange(0.50, 0.86, 0.01)]
     run_sweep_for_model(engine, "lightgbm", lgb_thresholds, project_root)
 
 if __name__ == "__main__":
