@@ -6,45 +6,24 @@ from pathlib import Path
 from src.models.backtest_engine import BacktestEngine
 from src.utils.config_loader import load_global_config
 
-def main():
-    project_root = Path(__file__).resolve().parent.parent.parent
-    global_config = load_global_config()
-    
-    # Instantiate engine
-    runs_dir = project_root / "data/walk_forward_runs"
-    hpo_dir = project_root / "data/hpo_runs"
-    output_dir = project_root / "data/backtest_runs"
-    
-    engine = BacktestEngine(
-        config=global_config.model_dump(),
-        runs_dir=str(runs_dir),
-        hpo_dir=str(hpo_dir),
-        output_dir=str(output_dir)
-    )
-    
-    # We will sweep buy/sell thresholds symmetrically from 0.66 to 0.74 (step 0.01)
-    thresholds = [0.66, 0.67, 0.68, 0.69, 0.70, 0.71, 0.72, 0.73, 0.74]
-    
+def run_sweep_for_model(engine, model_name: str, thresholds: list, project_root: Path):
+    print(f"Starting {model_name} threshold sweep...")
+    folds = [1, 2, 3, 4, 5, 6, 7]
     sweep_results = []
     
-    print("Starting XGBoost threshold sweep...")
-    
-    # Target full year folds (Folds 1-7)
-    folds = [1, 2, 3, 4, 5, 6, 7]
-    
     for thresh in thresholds:
-        print(f"Evaluating Threshold: {thresh:.2f}...")
+        print(f"Evaluating {model_name} at Threshold: {thresh:.2f}...")
         
         # Override config thresholds temporarily
-        engine.bt_config["signal_generation"]["confidence_thresholds"]["xgboost"]["buy_threshold"] = thresh
-        engine.bt_config["signal_generation"]["confidence_thresholds"]["xgboost"]["sell_threshold"] = thresh
+        engine.bt_config["signal_generation"]["confidence_thresholds"][model_name]["buy_threshold"] = thresh
+        engine.bt_config["signal_generation"]["confidence_thresholds"][model_name]["sell_threshold"] = thresh
         all_returns = []
         all_completed_trades = []
         fold_exposures = []
         fold_trades_count = []
         
         for fold_id in folds:
-            history, trades = engine.run_backtest_on_fold("xgboost", fold_id, "realistic")
+            history, trades = engine.run_backtest_on_fold(model_name, fold_id, "realistic")
             
             # Daily returns
             h_df = pd.DataFrame(history)
@@ -109,7 +88,7 @@ def main():
         
     # Generate Markdown report
     report_lines = []
-    report_lines.append("# QuantEngine: XGBoost Decision Threshold Sweep Report")
+    report_lines.append(f"# QuantEngine: {model_name.upper()} Decision Threshold Sweep Report")
     report_lines.append(f"\n*Evaluated under realistic transaction costs across Folds 1–7.*")
     report_lines.append("\n---")
     report_lines.append("\n## 1. Threshold Sweep Results Table")
@@ -137,11 +116,34 @@ def main():
     report_lines.append(f"- **Trade Frequency Optimization**: Raising the threshold restricts marginal trades, lowering the transaction cost drag (mean trades count goes from `{sweep_results[0]['mean_trades']:.1f}` to `{sweep_results[-1]['mean_trades']:.1f}`).")
     
     # Save file
-    report_path = project_root / "reports/Results/xgboost_threshold_sweep.md"
+    report_path = project_root / f"reports/Results/{model_name}_threshold_sweep.md"
     with open(report_path, "w", encoding="utf-8") as f:
         f.write("\n".join(report_lines))
         
     print(f"Sweep completed successfully. Report generated at: {report_path}")
+
+def main():
+    project_root = Path(__file__).resolve().parent.parent.parent
+    global_config = load_global_config()
+    
+    runs_dir = project_root / "data/walk_forward_runs"
+    hpo_dir = project_root / "data/hpo_runs"
+    output_dir = project_root / "data/backtest_runs"
+    
+    engine = BacktestEngine(
+        config=global_config.model_dump(),
+        runs_dir=str(runs_dir),
+        hpo_dir=str(hpo_dir),
+        output_dir=str(output_dir)
+    )
+    
+    # Sweep XGBoost
+    xgb_thresholds = [0.66, 0.67, 0.68, 0.69, 0.70, 0.71, 0.72, 0.73, 0.74]
+    run_sweep_for_model(engine, "xgboost", xgb_thresholds, project_root)
+    
+    # Sweep LightGBM (wider range to capture sweet spot)
+    lgb_thresholds = [0.55, 0.57, 0.59, 0.61, 0.63, 0.65, 0.67, 0.69, 0.71, 0.73, 0.75]
+    run_sweep_for_model(engine, "lightgbm", lgb_thresholds, project_root)
 
 if __name__ == "__main__":
     main()
