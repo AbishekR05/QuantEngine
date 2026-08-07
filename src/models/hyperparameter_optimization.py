@@ -24,6 +24,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 from sklearn.utils.class_weight import compute_sample_weight
 
 import xgboost as xgb
+import lightgbm as lgb
 
 from src.utils.logger import get_logger
 from src.utils.config_loader import load_global_config
@@ -125,6 +126,23 @@ class HyperparameterOptimizer:
             "eval_metric": "mlogloss"
         }
 
+    def _get_lgb_params(self, trial: optuna.Trial, space: Dict[str, Any]) -> Dict[str, Any]:
+        """Samples LightGBM hyperparameter space."""
+        return {
+            "learning_rate": trial.suggest_float("learning_rate", space["learning_rate"]["low"], space["learning_rate"]["high"], log=True),
+            "max_depth": trial.suggest_int("max_depth", space["max_depth"]["low"], space["max_depth"]["high"]),
+            "num_leaves": trial.suggest_int("num_leaves", space["num_leaves"]["low"], space["num_leaves"]["high"]),
+            "n_estimators": trial.suggest_int("n_estimators", space["n_estimators"]["low"], space["n_estimators"]["high"]),
+            "min_child_samples": trial.suggest_int("min_child_samples", space["min_child_samples"]["low"], space["min_child_samples"]["high"]),
+            "subsample": trial.suggest_float("subsample", space["subsample"]["low"], space["subsample"]["high"]),
+            "colsample_bytree": trial.suggest_float("colsample_bytree", space["colsample_bytree"]["low"], space["colsample_bytree"]["high"]),
+            "reg_alpha": trial.suggest_float("reg_alpha", space["reg_alpha"]["low"], space["reg_alpha"]["high"], log=True),
+            "reg_lambda": trial.suggest_float("reg_lambda", space["reg_lambda"]["low"], space["reg_lambda"]["high"], log=True),
+            "random_state": space["random_state"],
+            "class_weight": space["class_weight"],
+            "verbosity": -1
+        }
+
     def _evaluate_params(self, model_name: str, params: Dict[str, Any], trial: optuna.Trial) -> float:
         """Evaluates a parameter dictionary across walk-forward folds with optional pruning."""
         folds = self.wf_config['folds']
@@ -159,6 +177,8 @@ class HyperparameterOptimizer:
                 # Apply sample weighting for class balancing
                 sample_weight = compute_sample_weight(class_weight="balanced", y=y_train)
                 fit_params["sample_weight"] = sample_weight
+            elif model_name == "lightgbm":
+                model = lgb.LGBMClassifier(**params)
             else:
                 raise ValueError(f"Unknown model name: {model_name}")
                 
@@ -227,6 +247,8 @@ class HyperparameterOptimizer:
         def objective(trial: optuna.Trial) -> float:
             if model_name == "logistic_regression":
                 params = self._get_lr_params(trial, space)
+            elif model_name == "lightgbm":
+                params = self._get_lgb_params(trial, space)
             else:
                 params = self._get_xgb_params(trial, space)
                 
@@ -261,6 +283,10 @@ class HyperparameterOptimizer:
             best_params["max_iter"] = space["max_iter"]
             best_params["class_weight"] = space["class_weight"]
             best_params["random_state"] = space["random_state"]
+        elif model_name == "lightgbm":
+            best_params["random_state"] = space["random_state"]
+            best_params["class_weight"] = space["class_weight"]
+            best_params["verbosity"] = -1
         else:
             best_params["random_state"] = space["random_state"]
             
@@ -316,6 +342,8 @@ class HyperparameterOptimizer:
                 model = xgb.XGBClassifier(**xgb_params)
                 sample_weight = compute_sample_weight(class_weight="balanced", y=y_train)
                 fit_params["sample_weight"] = sample_weight
+            elif model_name == "lightgbm":
+                model = lgb.LGBMClassifier(**best_params)
                 
             cal_method = self.hpo_config["search_spaces"][model_name]["calibration_method"]
             method_name = "sigmoid" if cal_method == "platt" else "isotonic"

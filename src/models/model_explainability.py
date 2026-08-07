@@ -14,6 +14,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.calibration import CalibratedClassifierCV
 from sklearn.metrics import accuracy_score, f1_score
 import xgboost as xgb
+import lightgbm as lgb
 
 from src.utils.logger import get_logger
 from src.utils.config_loader import load_global_config
@@ -572,7 +573,135 @@ class ModelExplainer:
             
         return stability_report
 
-    def generate_model_comparison_report(self, lr_results: Dict[str, Any], xgb_results: Dict[str, Any]) -> None:
+    def explain_lightgbm(self) -> Dict[str, Any]:
+        """Computes native split/gain, TreeSHAP values, and local explanations for LightGBM."""
+        logger.info("Explaining LightGBM Classifier...")
+        folds = self.wf_config['folds']
+        lgb_output_dir = self.run_output_dir / "lightgbm"
+        lgb_output_dir.mkdir(parents=True, exist_ok=True)
+        
+        best_lgb_dir = self.best_model_src / "lightgbm" / "best_trial"
+        if not best_lgb_dir.exists():
+            raise FileNotFoundError(f"Best LightGBM trial outputs not found at: {best_lgb_dir}")
+            
+        fold_shap_summaries = {}
+        features_list = []
+        
+        for idx, f_cfg in enumerate(folds):
+            fold_id = idx + 1
+            fold_dir = lgb_output_dir / f"fold_{fold_id}"
+            fold_dir.mkdir(parents=True, exist_ok=True)
+            
+            # Load fold datasets
+            train_path = self.slices_dir / f"fold_{fold_id}_train.parquet"
+            test_path = self.slices_dir / f"fold_{fold_id}_test.parquet"
+            train_df = pd.read_parquet(train_path)
+            test_df = pd.read_parquet(test_path)
+            
+            label_col = "Label_Binary" if self.label_version == "binary" else "Label_ThreeClass"
+            train_df = train_df.dropna(subset=[label_col]).reset_index(drop=True)
+            test_df = test_df.dropna(subset=[label_col]).reset_index(drop=True)
+            
+            X_train = train_df.drop(columns=["Date", label_col])
+            X_test = test_df.drop(columns=["Date", label_col])
+            y_test = test_df[label_col].map(LABEL_MAPPING).values
+            features_list = list(X_train.columns)
+            
+            # Load raw trained model
+            model_path = best_lgb_dir / f"fold_{fold_id}_model_raw.joblib"
+            model = joblib.load(model_path)
+            
+            # 1. Native feature importance
+            booster = model.booster_
+            native_gain = booster.feature_importance(importance_type="gain")
+            native_weight = booster.feature_importance(importance_type="split")
+            
+            native_importance = {}
+            for j, feat in enumerate(features_list):
+                native_importance[feat] = {
+                    "gain": float(native_gain[j]),
+                    "weight": float(native_weight[j]),
+                    "cover": 0.0
+                }
+            with open(fold_dir / "native_importance.yaml", "w", encoding="utf-8") as f:
+                yaml.safe_dump(native_importance, f, default_flow_style=False)
+                
+            # 2. SHAP Background Reference Distribution
+            bg_size = self.exp_config["shap"]["background_sample_size"]
+            if len(X_train) > bg_size:
+                X_bg = X_train.sample(n=bg_size, random_state=self.exp_config["shap"]["seed"])
+            else:
+                X_bg = X_train
+                
+            # Compute exact TreeSHAP values
+            explainer = shap.TreeExplainer(model, data=X_bg)
+            shap_results = explainer(X_test)
+            shap_vals = shap_results.values
+            
+            # Standardize multidimensional SHAP arrays
+            if shap_vals.ndim == 2:
+                shap_vals = shap_vals[:, :, np.newaxis]
+                
+            n_classes = shap_vals.shape[2]
+            
+            # Save SHAP Summary
+            shap_summary = {}
+            for c_idx in range(n_classes):
+                class_name = LABEL_CLASSES[c_idx] if n_classes == 3 else "TARGET"
+                mean_abs_shaps = np.mean(np.abs(shap_vals[:, :, c_idx]), axis=0)
+                sorted_idx = np.argsort(mean_abs_shaps)[::-1]
+                shap_summary[class_name] = [
+                    {
+                        "rank": rank + 1,
+                        "feature": features_list[j],
+                        "mean_abs_shap": float(mean_abs_shaps[j])
+                    }
+                    for rank, j in enumerate(sorted_idx)
+                ]
+            with open(fold_dir / "shap_summary.yaml", "w", encoding="utf-8") as f:
+                yaml.safe_dump(shap_summary, f, default_flow_style=False)
+                
+            fold_shap_summaries[fold_id] = shap_summary
+            
+            # Save Raw SHAP Dependence data
+            dep_data = {}
+            for c_idx in range(n_classes):
+                class_name = LABEL_CLASSES[c_idx] if n_classes == 3 else "TARGET"
+                dep_data[class_name] = {}
+                for j, feat in enumerate(features_list):
+                    dep_data[class_name][feat] = [
+                        {
+                            "feature_value": float(X_test.iloc[i, j]),
+                            "shap_value": float(shap_vals[i, j, c_idx])
+                        }
+                        for i in range(len(X_test))
+                    ]
+            with open(fold_dir / "shap_dependence_data.yaml", "w", encoding="utf-8") as f:
+                yaml.safe_dump(dep_data, f, default_flow_style=False)
+                
+            # 3. Local explanations
+            local_exp = self._generate_local_shap_explanations(
+                model, X_test, y_test, shap_vals, features_list, n_classes
+            )
+            with open(fold_dir / "local_explanations.yaml", "w", encoding="utf-8") as f:
+                yaml.safe_dump(local_exp, f, default_flow_style=False)
+                
+        # Global Ranking rollup
+        global_rank = self._calculate_global_xgb_ranking(fold_shap_summaries, features_list, folds)
+        with open(lgb_output_dir / "global_ranking.yaml", "w", encoding="utf-8") as f:
+            yaml.safe_dump(global_rank, f, default_flow_style=False)
+            
+        # Stability report
+        stability_report = self._calculate_xgb_stability(fold_shap_summaries, features_list, folds)
+        with open(lgb_output_dir / "stability_report.yaml", "w", encoding="utf-8") as f:
+            yaml.safe_dump(stability_report, f, default_flow_style=False)
+            
+        return {
+            "global_ranking": global_rank,
+            "stability_report": stability_report
+        }
+
+    def generate_model_comparison_report(self, model_results: Dict[str, Dict[str, Any]]) -> None:
         """Saves model overlap, directional correlation analysis and cross-model ranking correlations."""
         top_k = self.exp_config['stability']['top_k']
         
@@ -583,24 +712,32 @@ class ModelExplainer:
             "features_overlap_jaccard": {}
         }
         
-        lr_ranks = lr_results["global_ranking"]
-        xgb_ranks = xgb_results["global_ranking"]
-        
-        # Compute Jaccard Overlap per class in Top-K ranking
-        for class_name in lr_ranks.keys():
-            if class_name in xgb_ranks:
-                lr_top_k = set([item["feature"] for item in lr_ranks[class_name][:top_k]])
-                xgb_top_k = set([item["feature"] for item in xgb_ranks[class_name][:top_k]])
+        models = list(model_results.keys())
+        # Pairwise Jaccard overlap
+        for i in range(len(models)):
+            for j in range(i + 1, len(models)):
+                m1 = models[i]
+                m2 = models[j]
+                pair_key = f"{m1}_vs_{m2}"
+                comparison["features_overlap_jaccard"][pair_key] = {}
                 
-                intersection = lr_top_k.intersection(xgb_top_k)
-                union = lr_top_k.union(xgb_top_k)
-                jaccard = len(intersection) / len(union) if union else 0.0
+                m1_ranks = model_results[m1]["global_ranking"]
+                m2_ranks = model_results[m2]["global_ranking"]
                 
-                comparison["features_overlap_jaccard"][class_name] = {
-                    "shared_features": list(intersection),
-                    "jaccard_similarity": float(jaccard)
-                }
-                
+                for class_name in m1_ranks.keys():
+                    if class_name in m2_ranks:
+                        m1_top_k = set([item["feature"] for item in m1_ranks[class_name][:top_k]])
+                        m2_top_k = set([item["feature"] for item in m2_ranks[class_name][:top_k]])
+                        
+                        intersection = m1_top_k.intersection(m2_top_k)
+                        union = m1_top_k.union(m2_top_k)
+                        jaccard = len(intersection) / len(union) if union else 0.0
+                        
+                        comparison["features_overlap_jaccard"][pair_key][class_name] = {
+                            "shared_features": list(intersection),
+                            "jaccard_similarity": float(jaccard)
+                        }
+                        
         # Save comparison YAML file
         comp_path = self.run_output_dir / "model_comparison_report.yaml"
         with open(comp_path, "w", encoding="utf-8") as f:
@@ -613,25 +750,32 @@ class ModelExplainer:
         logger.info("Initializing Explainability Pipeline...")
         
         # Save run config snapshot
-        config_snapshot = self.run_output_dir / "run_config_snapshot.yaml"
+        config_snapshot = self.run_config_snapshot = self.run_output_dir / "run_config_snapshot.yaml"
         with open(config_snapshot, "w", encoding="utf-8") as f:
             yaml.safe_dump({
                 "explainability": self.exp_config,
                 "library_versions": {
                     "shap": getattr(sys.modules.get("shap"), "__version__", "unknown"),
                     "scipy": getattr(sys.modules.get("scipy"), "__version__", "unknown"),
-                    "scikit-learn": getattr(sys.modules.get("sklearn"), "__version__", "unknown")
+                    "scikit-learn": getattr(sys.modules.get("sklearn"), "__version__", "unknown"),
+                    "lightgbm": getattr(sys.modules.get("lightgbm"), "__version__", "unknown")
                 }
             }, f, default_flow_style=False)
             
-        # Explain Logistic Regression coefficients
-        lr_results = self.explain_logistic_regression()
+        eligible_models = self.config["eda"]["hyperparameter_optimization"]["eligible_models"]
+        model_results = {}
         
-        # Explain XGBoost SHAP values
-        xgb_results = self.explain_xgboost()
-        
+        if "logistic_regression" in eligible_models:
+            model_results["logistic_regression"] = self.explain_logistic_regression()
+            
+        if "xgboost" in eligible_models:
+            model_results["xgboost"] = self.explain_xgboost()
+            
+        if "lightgbm" in eligible_models:
+            model_results["lightgbm"] = self.explain_lightgbm()
+            
         # Perform cross-model comparison
-        self.generate_model_comparison_report(lr_results, xgb_results)
+        self.generate_model_comparison_report(model_results)
         
         logger.info("Explainability pipeline completed successfully.")
 

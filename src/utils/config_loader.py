@@ -259,9 +259,26 @@ class EdaHpoXGBoostSpace(BaseModel):
     calibration_method: str
     n_trials: Optional[int] = None
 
+class EdaHpoLightGBMSpace(BaseModel):
+    active: bool
+    learning_rate: EdaHpoParamLogUniform
+    max_depth: EdaHpoParamInt
+    num_leaves: EdaHpoParamInt
+    n_estimators: EdaHpoParamInt
+    min_child_samples: EdaHpoParamInt
+    subsample: EdaHpoParamUniform
+    colsample_bytree: EdaHpoParamUniform
+    reg_alpha: EdaHpoParamLogUniform
+    reg_lambda: EdaHpoParamLogUniform
+    class_weight: str
+    random_state: int
+    calibration_method: str
+    n_trials: Optional[int] = None
+
 class EdaHpoSearchSpaces(BaseModel):
     logistic_regression: EdaHpoLogisticRegressionSpace
     xgboost: EdaHpoXGBoostSpace
+    lightgbm: EdaHpoLightGBMSpace
 
 class EdaHpoStudyConfig(BaseModel):
     sampler: str

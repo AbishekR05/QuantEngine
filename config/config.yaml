@@ -146,11 +146,10 @@ eda:
     label_version: "threeclass"
     walk_forward_run_id: "fs_v1_threeclass_embargo0"
   hyperparameter_optimization:
-    eligible_models: ["logistic_regression", "xgboost"]
+    eligible_models: ["logistic_regression", "xgboost", "lightgbm"]
     excluded_models:
       decision_tree: "failed viability gate (0/8)"
       random_forest: "failed viability gate (0/8)"
-      lightgbm: "failed viability gate (0/8)"
     study:
       sampler: "tpe"
       sampler_seed: 123
@@ -186,6 +185,21 @@ eda:
         random_state: 42
         calibration_method: "platt"
         n_trials: 20
+      lightgbm:
+        active: true
+        learning_rate: {type: "log_uniform", low: 0.01, high: 0.3}
+        max_depth: {type: "int", low: 2, high: 10}
+        num_leaves: {type: "int", low: 10, high: 150}
+        n_estimators: {type: "int", low: 50, high: 500}
+        min_child_samples: {type: "int", low: 10, high: 100}
+        subsample: {type: "uniform", low: 0.5, high: 1.0}
+        colsample_bytree: {type: "uniform", low: 0.5, high: 1.0}
+        reg_alpha: {type: "log_uniform", low: 1e-8, high: 1.0}
+        reg_lambda: {type: "log_uniform", low: 1e-8, high: 1.0}
+        class_weight: "balanced"
+        random_state: 42
+        calibration_method: "platt"
+        n_trials: 20
     feature_store_version: 1
     label_version: "threeclass"
     walk_forward_run_id: "fs_v1_threeclass_embargo0"
@@ -193,6 +207,7 @@ eda:
     enabled_methods:
       logistic_regression: ["coefficients", "standardized_coefficients", "sign_stability"]
       xgboost: ["native_importance", "shap_global", "shap_local", "shap_interaction"]
+      lightgbm: ["shap_global", "shap_local"]
     shap:
       background_sample_size: 500
       interaction_row_ceiling: 2000
@@ -219,6 +234,9 @@ eda:
           buy_threshold: 0.55
           sell_threshold: 0.55
         xgboost:
+          buy_threshold: 0.55
+          sell_threshold: 0.55
+        lightgbm:
           buy_threshold: 0.55
           sell_threshold: 0.55
     position:

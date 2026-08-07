@@ -30,7 +30,7 @@ def main():
     md_content.append("| Model | Cost Mode | Sharpe [95% CI] | Sortino | Max DD | Profit Factor | Expectancy | Exposure | CAGR |")
     md_content.append("| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |")
     
-    models = ["xgboost", "logistic_regression"]
+    models = ["xgboost", "logistic_regression", "lightgbm"]
     modes = ["idealized", "realistic"]
     
     for m in models:
